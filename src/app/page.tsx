@@ -2,18 +2,39 @@
 import Image from "next/image"
 import style from "./page.module.scss"
 import Select from '@/UI/Select/Select'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cards } from '@/list/card.list'
 import { us_number } from '@/list/us_number.list'
+import { levels } from '@/list/level.list'
+import { questions } from '@/list/question.list'
 
 export default function Home() {
   const [select, setSelect] = useState(null)
   const [selectTwo, setSelectTwo] = useState(null)
   const [ActiveCard, setActiveCard] = useState(null)
+  const [ActiveFAQ, setActiveFAQ] = useState(null)
+  const faqRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const setRef = (el: HTMLDivElement | null, index: number) => {
+    faqRefs.current[index] = el;
+  };
+
 
   const handleCardClick = (index: any) => {
     setActiveCard(index === ActiveCard ? null : index)
   }
+
+  const handleFAQClick = (index: any) => {
+    setActiveFAQ(index === ActiveFAQ ? null : index)
+  }
+
+  useEffect(() => {
+    faqRefs.current.forEach((ref, index) => {
+      if (ref) {
+        ref.style.height = ActiveFAQ === index ? `${ref.scrollHeight}px` : '0px';
+      }
+    });
+  }, [ActiveFAQ]);
 
   return (
     <main className="content">
@@ -272,6 +293,75 @@ export default function Home() {
             </div>
             <div className={style.cards_row}>
               <button className={style.cards_button}>Рассчитать мою матрицу</button>
+            </div>
+          </div>
+        </section>
+        <section className={`${style.content_couple} ${style.content_reg}`}>
+          <div className={`${style.couple_content} ${style.reg_content}`}>
+            <div className={`${style.couple_title} ${style.reg_title}`}>
+              <h1>Расчет совместимости</h1>
+              <p>Глубокоя расшифровка для двоих</p>
+              <p>Наш онлайн-калькулятор поможет оценить совместимость партнёров по Матрице судьбы, в результате вы получите расшифровку и руководство к действию</p>
+            </div>
+            <form action="" className={style.couple_form}>
+              <div className={style.couple_form_row}>
+                <div className={style.couple_form_sex}>
+                  <div className={style.couple_form_title}>
+                    <Image src={'/img/woman.svg'} width={50} height={50} alt="woman" />
+                    <h3>Женщина</h3>
+                  </div>
+                  <input type="text" placeholder='Введите имя*' />
+                  <input type="text" placeholder='Введите дату рождения*' />
+                </div>
+                <div className={style.couple_form_sex}>
+                  <div className={style.couple_form_title}>
+                    <Image src={'/img/man.svg'} width={50} height={50} alt="man" />
+                    <h3>мужчина</h3>
+                  </div>
+                  <input type="text" placeholder='Введите имя*' />
+                  <input type="text" placeholder='Введите дату рождения*' />
+                </div>
+              </div>
+              <button className={style.couple_button}>Рассчитать</button>
+            </form>
+          </div>
+        </section>
+        <section className={`${style.content_level} ${style.content_cards}`}>
+          <div className={`${style.level_content} ${style.cards_content}`}>
+            <div className={`${style.level_title} ${style.cards_title}`}>
+              <p>Изучение расшифровок своей матрицы даст вам</p>
+              <h2>Выход на новый уровень жизни через осознание и корректировку программ</h2>
+            </div>
+            <div className={style.level_grid}>
+              {levels.map((level) => (
+                <div className={style.level_block}>
+                  <Image src={level.img} alt={level.img} width={70} height={70}/>
+                  <p>{level.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className={`${style.content_faq} ${style.content_cards}`}>
+          <div className={`${style.faq_content} ${style.cards_content}`}>
+            <div className={`${style.faq_title} ${style.cards_title}`}>
+              <p>А еще всегда на связи служба заботы</p>
+              <h2>Отвечаем на ваши самые частые вопросы</h2>
+            </div>
+            <div className={style.faq_column}>
+              {questions.map((question, index) => (
+                <div className={index === ActiveFAQ ? style.faq_block_active : style.faq_block}>
+                  <div className={style.faq_block_title} onClick={() => handleFAQClick(index)}>
+                    <h3>{question.title}</h3>
+                    <div className={style.faq_img}>
+                      <Image src={'/img/arrow.png'} alt={`arrow`} width={24} height={24}/>
+                    </div>
+                  </div>
+                  <div className={style.faq_text} ref={(el) => setRef(el, index)}>
+                    <span>{question.text}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

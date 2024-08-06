@@ -723,9 +723,9 @@
 .us_number_number {
   display: flex;
   align-items: center;
-    justify-content: center;
+  justify-content: center;
   position: relative;
-    right: 10px;
+  right: 10px;
 
   border-radius: 10px;
 
@@ -746,22 +746,293 @@
   }
 }
 
-.us_number_text{
+.us_number_text {
   margin-left: 20px;
-  span{
+
+  span {
     /* body 18 */
-color: $txtDark;
-font-family: 'Mont';
-font-size: 18px;
-font-weight: 400;
-line-height: 140%;
-letter-spacing: 2%;
-text-align: left;
+    color: $txtDark;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
   }
 }
 
 
+.content_couple {
+  background-image: url('/img/couple.png');
+}
 
+.couple_form_row {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.couple_form_sex {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  input {
+    border-radius: 100px;
+
+    background: rgb(254, 254, 254);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 17px 28px 17px 28px;
+    width: 357px;
+    height: 56px;
+    color: $LightViolet;
+    font-family: 'Mont';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}
+
+.couple_form_title {
+  display: flex;
+  align-items: center;
+
+  h3 {
+    display: inline-block;
+    margin-left: 10px;
+    color: $LightViolet;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.couple_form {
+  margin-top: 30px;
+  display: flex;
+  max-width: 764px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.couple_button {
+  margin-top: 50px;
+  border-radius: 100px;
+
+  background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
+  width: 357px;
+  height: 56px;
+  /* Автолейаут */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 28px 17px 28px;
+  color: $txtLight;
+  font-family: 'Mont';
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: left;
+}
+
+.couple_title {
+  h1 {
+    @include adaptiv-font(30, 24);
+  }
+
+  & p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+  }
+}
+
+.content_couple {
+  margin-top: 80px;
+}
+
+.content_level {
+  background-color: rgb(233, 239, 248);
+  padding: 30px 0;
+}
+
+.level_block {
+  z-index: 1;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 20px;
+
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.4);
+  width: 360px;
+  height: 195px;
+  /* Автолейаут */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  &::before {
+    z-index: 0;
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgb(248, 248, 248);
+    width: 360px;
+    height: 195px;
+    transform: rotate(6.00deg);
+    border-radius: 20px;
+  }
+
+  p {
+    margin-top: 10px;
+    display: inline-block;
+    position: relative;
+    /* body 18 */
+    color: $txtDark;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}
+
+.level_grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.level_title {
+  max-width: 800px;
+}
+
+.faq_column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.faq_block, .faq_block_active {
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px 30px 20px 30px;
+
+  background: rgb(252, 252, 255);
+}
+
+.faq_block_active{
+  transition: 0.3s ease-in-out;
+  background: rgb(208, 213, 255);
+  .faq_img{
+    img{
+      transition: 0.3s ease-in-out;
+      transform: rotate(190deg);
+    }
+  }
+}
+
+.faq_block:hover{
+  .faq_block_title{
+    h3{
+      transition: 0.3s ease-in-out;
+      color: $Violet;
+    }
+    .faq_img{
+      background-image: url('/img/EllipseFormArrowLight.png');
+      &::before{
+        transition: 0.3s ease-in-out;
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+.faq_block_title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    transition: 0.3s ease-in-out;
+    color: $LightViolet;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+    text-transform: uppercase;
+  }
+}
+
+.faq_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/img/EllipseFormArrow.png');
+  transform: rotate(-8.99deg);
+  width: 104px;
+    height: 47px;
+    &::before{
+      content: '';
+      transition: 0.3s ease-in-out;
+      display: block;
+      position: absolute;
+      background-image: url('/img/EllipseArrow.png');
+      width: 104px;
+      height: 48px;
+    }
+  img{
+    transition: 0.3s ease-in-out;
+    transform: rotate(8.99deg);
+  }
+}
+
+.faq_text {
+  transition: 0.3s ease-in-out;
+  margin-top: 20px;
+  span {
+    color: $txtDark;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}
+
+.faq_text{
+  transition: 0.3s ease-in-out;
+  overflow: hidden;
+  height: 0;
+}
+
+@media(max-width: 1200px) {
+  .level_grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
 @media(max-width: 1040px) {
   .questions_row {
@@ -842,6 +1113,19 @@ text-align: left;
 }
 
 @media(max-width: 780px) {
+  .level_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content_couple {
+    background-size: 50%;
+    background-position: top right;
+  }
+
+  .couple_form_row {
+    flex-direction: column;
+  }
+
   .content_about {
     background-image: url('/img/numerology-concept-still-life-about-768.png');
   }
@@ -851,6 +1135,11 @@ text-align: left;
   .content_reg {
     background-size: cover;
     background-position: left;
+  }
+
+  .content_couple {
+    background-size: 50%;
+    background-position: top right;
   }
 
   .form_top {
@@ -891,6 +1180,11 @@ text-align: left;
 }
 
 @media(max-width: 490px) {
+  .content_couple {
+    background-size: 100%;
+    background-position: right bottom 30%;
+  }
+
   .material_row {
     position: relative;
     display: flex;
