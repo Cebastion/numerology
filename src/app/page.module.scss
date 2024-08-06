@@ -1,0 +1,704 @@
+@import "../global/colors.scss";
+@import "../global/fonts.scss";
+@import "../global/function.scss";
+
+.content {
+  /* width: 100%;
+  height: 100%; */
+}
+
+.content_container {
+  width: 100%;
+  height: 100%;
+}
+
+.content_reg {
+  background-image: url('/img/numerology-concept-still-life-left.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.reg_title {
+  max-width: 602px;
+
+  & h1 {
+    color: $DarkBlue;
+    font-family: "Tenor Sans";
+    @include adaptiv-font(44, 36);
+    font-weight: 400;
+    line-height: 51px;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  & p {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: $LightViolet;
+    font-family: "Mont";
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  & p:last-child {
+    margin: 0;
+    color: rgb(32, 47, 54);
+    font-family: "Mont";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+  }
+}
+
+.reg_form {
+  margin-top: 50px;
+}
+
+.form_top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 30px;
+
+  & input {
+    border-radius: 100px;
+
+    background: rgb(254, 254, 254);
+    /* inputs */
+    position: static;
+    width: 357px;
+    height: 56px;
+    /* Автолейаут */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 17px 28px 17px 28px;
+
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    &:last-child {
+      margin: 0px 0 0 20px;
+    }
+  }
+}
+
+.form_bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  & select {
+    position: relative;
+    appearance: none;
+    outline: none;
+    border-radius: 100px;
+
+    background: rgb(254, 254, 254);
+    /* inputs */
+    width: 357px;
+    height: 56px;
+    /* Автолейаут */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 17px 28px 17px 28px;
+
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-image: url('/img/arrow-select.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  & button {
+    /* Frame 11 */
+    position: static;
+    width: 357px;
+    height: 56px;
+    /* Автолейаут */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 17px 28px 17px 28px;
+
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 0 0 20px;
+    border-radius: 100px;
+
+    background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
+
+    color: $txtLight;
+    font-family: "Mont";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}
+
+.reg_content {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.content_about {
+  margin-top: 80px;
+  background-image: url('/img/numerology-concept-still-life-about.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: cover;
+  background-color: rgb(233, 239, 248);
+  width: 100%;
+  height: 100%;
+  padding: 80px 60px;
+}
+
+.about_content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.about_title {
+  max-width: 630px;
+
+  p {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: $LightViolet;
+    font-family: "mont";
+    @include adaptiv-font(18, 16);
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+  }
+
+  h2 {
+    color: $DarkBlue;
+    font-family: "Tenor Sans";
+    @include adaptiv-font(30, 24);
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: uppercase;
+  }
+}
+
+.about_text {
+  max-width: 630px;
+  margin-top: 20px;
+
+  span {
+    color: $txtDark;
+    font-family: "Mont";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}
+
+.about_button {
+  /* Frame 11 */
+  position: static;
+  width: 357px;
+  height: 56px;
+  /* Автолейаут */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 28px 17px 28px;
+
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 20px 0px;
+
+  border-radius: 100px;
+
+  background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
+
+
+  color: $txtLight;
+  font-family: "Mont";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: left;
+}
+
+.content_cards {
+  margin-top: 80px;
+}
+
+.cards_content{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.content_recognise{
+  background: rgb(233, 239, 248);
+  padding: 10px;
+}
+
+.cards_title {
+  margin-bottom: 40px;
+
+  p {
+    color: $LightViolet;
+    font-family: "Mont";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+  }
+
+  h2 {
+    display: inline-block;
+    margin-top: 20px;
+    color: $DarkBlue;
+    font-family: "Tenor Sans";
+    @include adaptiv-font(30, 24);
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+    span {
+      color: $Violet;
+    }
+  }
+}
+
+.cards_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-gap: 20px;
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 225px;
+  height: 225px;
+  padding: 5px;
+  background-image: url('/img/form-card.png');
+
+  span {
+    color: $LightViolet;
+    font-family: Montaga;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .card_body {
+    z-index: 10;
+    border-radius: 10px;
+
+    box-shadow: 0px 1px 10px 0px rgba(162, 165, 192, 0.2);
+    background: rgb(255, 255, 255);
+    /* Frame 47 */
+    position: absolute;
+    width: 355px;
+    /* Автолейаут */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    h2 {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: $Violet;
+      font-family: "Tenor Sans";
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 30px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+
+    p {
+      color: $LightViolet;
+      font-family: "Mont";
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 140%;
+      letter-spacing: 2%;
+      text-align: left;
+    }
+  }
+
+  &:nth-child(1) {
+    .card_body {
+      top: 20%;
+      left: 80%;
+    }
+  }
+
+  &:nth-child(4) {
+    .card_body {
+      top: 20%;
+      right: 80%;
+    }
+  }
+
+  &:nth-child(2),
+  &:nth-child(3),
+  &:nth-child(6),
+  &:nth-child(7) {
+    .card_body {
+      top: 60%;
+    }
+  }
+
+  &:nth-child(5),
+  &:nth-child(9) {
+    .card_body {
+      bottom: 20%;
+      left: 80%;
+    }
+  }
+
+  &:nth-child(8),
+  &:nth-child(12) {
+    .card_body {
+      bottom: 20%;
+      right: 80%;
+    }
+  }
+
+  &:nth-child(10),
+  &:nth-child(11) {
+    .card_body {
+      bottom: 60%;
+    }
+  }
+}
+
+.cards_button {
+  position: relative;
+  margin: 0 auto;
+  background: radial-gradient(30.08% 99.46% at 89% 74%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  color: rgb(247, 251, 254);
+  font-family: "Mont";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -9px;
+    width: 160px;
+    height: 140px;
+    background-image: url('/img/Ellipse.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.cards_row {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.recognise_content{
+  padding: 80px 60px;
+}
+
+.recognise_row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.recognise_block{
+  width: 100%;
+height: 280px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: flex-start;
+padding: 20px;
+border-radius: 10px;
+
+background: rgb(255, 255, 255);
+}
+
+.recognise_title{
+  max-width: 600px;
+  h2{
+    @include adaptiv-font(30, 24);
+  }
+}
+
+.recognise_block_title{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  h3{
+    display: inline-block;
+    margin-left: 25px;
+color: $LightViolet;
+font-family: 'Mont';
+font-size: 18px;
+font-weight: 700;
+line-height: 140%;
+letter-spacing: 2%;
+text-align: center;
+text-transform: uppercase;
+  }
+}
+
+.recognise_text{
+  span{
+    /* body 18 */
+color: $txtDark;
+font-family: 'Mont';
+font-size: 18px;
+font-weight: 400;
+line-height: 140%;
+letter-spacing: 2%;
+text-align: left;
+  }
+}
+
+
+.content_questions{
+  background-image: url('/img/questionMark.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.questions_row{
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-image: url('/img/girl.png');
+  background-repeat: no-repeat;
+  background-position: center, bottom;
+  background-size: contain;
+}
+
+.questions_column{
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  h3{
+    color: $LightViolet;
+font-family: 'Mont';
+font-size: 22px;
+font-weight: 700;
+line-height: 140%;
+letter-spacing: 2%;
+text-align: center;
+text-transform: uppercase;
+  }
+}
+
+.questions_block{
+  display: flex;
+  align-items: center;
+  background-image: url('/img/form2.svg');
+  width: 430px;
+  height: 100px;
+  background-repeat: no-repeat;
+  span{
+    display: inline-block;
+    margin-left: 20px;
+color: $txtDark;
+font-family: 'Mont';
+font-size: 18px;
+font-weight: 400;
+line-height: 140%;
+letter-spacing: 2%;
+  }
+}
+
+.questions_column:last-child{
+  .questions_block{
+    transform: scaleX(-1);
+    span{
+      transform: scaleX(-1);
+      margin-right: 20px;
+    }
+  }
+}
+
+@media(max-width: 1040px) {
+  .questions_row{
+    flex-wrap: wrap;
+    background-image: none;
+  }
+  .questions_column:nth-child(2){
+    display: flex;
+    justify-content: center;
+    height: 416px;
+    width: 100%;
+    margin-top: 30px;
+    order: 2;
+    background-image: url('/img/girl.png');
+    background-repeat: no-repeat;
+    align-items: flex-start;
+    justify-content: center;
+    background-position: right;
+    h3{
+      display: inline-block;
+      width: 219px;
+    }
+  }
+}
+
+@media(max-width: 1000px) {
+  .recognise_row{
+    flex-direction: column;
+  }
+  .card {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7),
+    &:nth-child(8),
+    &:nth-child(9),
+    &:nth-child(10),
+    &:nth-child(11),
+    &:nth-child(12) {
+      .card_body {
+        width: 320px;
+        height: 200%;
+        top: 60%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+@media(max-width: 735px) {
+  .content_reg {
+    background-size: cover;
+    background-position: left;
+  }
+
+  .form_top {
+    flex-direction: column;
+
+    input,
+    input:last-child {
+      width: 100%;
+      margin: 0;
+    }
+
+    input:last-child {
+      margin-top: 20px;
+    }
+  }
+
+  .form_bottom {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+      margin: 0;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media(max-width: 620px) {
+  .cards_grid {
+    justify-items: center;
+  }
+  .questions_column:nth-child(2){
+    align-items: flex-end;
+  }
+}
+
+@media(max-width: 420px) {
+  .about_button {
+    width: 100%;
+  }
+  .questions_block{
+    width: 100%;
+  }
+}
+
+@media(max-width: 320px) {
+  .card {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7),
+    &:nth-child(8),
+    &:nth-child(9),
+    &:nth-child(10),
+    &:nth-child(11),
+    &:nth-child(12) {
+      .card_body {
+        left: -20%;
+      }
+    }
+  }
+}

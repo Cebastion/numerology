@@ -189,3 +189,13 @@
   font-weight: 300;
   font-style: normal;
 }
+
+
+@font-face {
+  font-family: 'Tenor Sans';
+  src: url('../../public/fonts/TenorSans/TenorSans-Regular.ttf');
+  src: local('Mont Light'), local('Mont-Light'),
+      url('../../public/fonts/TenorSans/TenorSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}

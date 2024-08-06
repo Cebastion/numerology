@@ -1,0 +1,1 @@
+export const optionsSex = ['Женщина', 'Мужчина']
