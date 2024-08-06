@@ -4,9 +4,11 @@ import style from "./page.module.scss"
 import Select from '@/UI/Select/Select'
 import { useState } from 'react'
 import { cards } from '@/list/card.list'
+import { us_number } from '@/list/us_number.list'
 
 export default function Home() {
   const [select, setSelect] = useState(null)
+  const [selectTwo, setSelectTwo] = useState(null)
   const [ActiveCard, setActiveCard] = useState(null)
 
   const handleCardClick = (index: any) => {
@@ -149,11 +151,127 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="content_material">
-          <div className="material_content">
-            <div className="material_title">
+        <section className={`${style.content_material} ${style.content_cards}`}>
+          <div className={`${style.material_content} ${style.cards_content}`}>
+            <div className={`${style.material_title} ${style.cards_title}`}>
               <p>После выбора тарифа, вы моментально</p>
               <h2>Получите бесценный материал, чтобы познать себя, близких и клиентов</h2>
+            </div>
+            <div className={style.material_row}>
+              <div className={style.material_column}>
+                <div className={style.material_block}>
+                  <div className={style.material_info}>
+                    <h2 className={style.material_block_title}>РАСШИФРОВКА МАТРИЦЫ СУДЬБЫ:</h2>
+                    <div className={style.material_text}>
+                      <span>Персональная онлайн книга, созданная по анализу вашей личности. В нее входят подробные описания 12 основных сфер вашей жизни</span>
+                    </div>
+                    <div className={style.material_scope}>
+                      <span>Объем 40-50 страниц</span>
+                    </div>
+                  </div>
+                  <div className={style.material_block_number}>1</div>
+                </div>
+                <div className={style.material_block}>
+                  <div className={style.material_info}>
+                    <h2 className={style.material_block_title}>ПРОГНОЗ ПО ГОДАМ</h2>
+                    <div className={style.material_text}>
+                      <span>Подробное описание и анализ энергий которые будут влиять на вашу жизнь. Прогноз на 10 лет вперед</span>
+                    </div>
+                    <div className={style.material_scope}>
+                      <span>Объем 12-15 страниц</span>
+                    </div>
+                  </div>
+                  <div className={style.material_block_number}>2</div>
+                </div>
+                <div className={style.material_block}>
+                  <div className={style.material_info}>
+                    <h2 className={style.material_block_title}>МАТРИЦА СОВМЕСТИМОСТИ:</h2>
+                    <div className={style.material_text}>
+                      <span>Подробное описание и анализ двух партнеров, оценка отношений, потенциал пары по 8 критериям с рекомендациями</span>
+                    </div>
+                    <div className={style.material_scope}>
+                      <span>Объем 12-15 страниц</span>
+                    </div>
+                  </div>
+                  <div className={style.material_block_number}>3</div>
+                </div>
+              </div>
+              <Image src={'/img/book.png'} width={1136} height={800} alt='book' />
+            </div>
+            <div style={{ marginTop: '100px' }} className={`${style.material_title} ${style.cards_title}`}>
+              <p>С нами вы всегда в плюсе</p>
+              <h2>Помимо материалов, вы получите</h2>
+            </div>
+            <div className={style.recognise_row}>
+              <div className={style.recognise_block}>
+                <div className={style.recognise_block_title}>
+                  <Image src={'/img/gift.png'} width={120} height={120} alt="gift" />
+                  <h3>ПОДАРКИ</h3>
+                </div>
+                <div className={style.recognise_text}>
+                  <span>Рабочая тетрадь для практической проработки инсайтов.В нее входят:Чек листы, таблицы, упражнения, индивидуальные медитации</span>
+                </div>
+              </div>
+              <div className={style.recognise_block}>
+                <div className={style.recognise_block_title}>
+                  <Image src={'/img/pazle.png'} width={120} height={120} alt="pazle" />
+                  <h3>СТРУКТУРу</h3>
+                </div>
+                <div className={style.recognise_text}>
+                  <span>Вся информация, интуитивно понятна и структурированна.Ее приятно и легко изучать.Описание делится на подробную часть и основные тезисы</span>
+                </div>
+              </div>
+              <div className={style.recognise_block}>
+                <div className={style.recognise_block_title}>
+                  <Image src={'/img/bird.png'} width={120} height={120} alt="bird" />
+                  <h3>КЭШБЭК</h3>
+                </div>
+                <div className={style.recognise_text}>
+                  <span>При оплате любого тарифа, вам всегда начисляются баллы.10% от стоимости.Вы можете их использовать для следующих покупок в нашем сервисе</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className={`${style.content_forecast} ${style.content_reg}`}>
+          <div className={`${style.forecast_content} ${style.reg_content}`}>
+            <div className={`${style.forecast_title} ${style.reg_title}`}>
+              <h1>Расчет прогноза на 10 лет</h1>
+              <p>Глубокоя расшифровка вашей личности</p>
+              <p>Узнайте на какие события обратить внимание в определенный год вашего рождения, что вас может ожидать, на что можно надеяться и чего следует опасаться</p>
+            </div>
+            <form action="" className={style.reg_form}>
+              <div className={style.form_top}>
+                <input type="text" placeholder='Введите ваше имя*' />
+                <input type="text" placeholder='Введите дату рождения*' />
+              </div>
+              <div className={style.form_bottom}>
+                <Select setSelect={setSelectTwo} select={selectTwo} />
+                <button>Рассчитать</button>
+              </div>
+            </form>
+          </div>
+        </section>
+        <section className={`${style.us_number} ${style.content_cards}`}>
+          <div className={`${style.us_number_content} ${style.cards_content}`}>
+            <div className={`${style.us_number_title} ${style.cards_title}`}>
+              <p>Вместо тысячи слов. Данные мы обновляем ежемесячно</p>
+              <h2>О НАШИХ ТРУДАХ В ЦИФРАХ</h2>
+            </div>
+            <div className={style.us_number_grid}>
+              {us_number.map((number) => (
+                <div className={style.us_number_block}>
+                  <div className={style.us_number_number}>
+                    <span>{number.number}</span>
+                  </div>
+                  <div className={style.us_number_text}>
+                    <span>{number.text}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className={style.cards_row}>
+              <button className={style.cards_button}>Рассчитать мою матрицу</button>
             </div>
           </div>
         </section>

@@ -68,6 +68,13 @@
   & input {
     border-radius: 100px;
 
+    color: $LightViolet;
+    font-family: 'Mont';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+
     background: rgb(254, 254, 254);
     /* inputs */
     position: static;
@@ -176,8 +183,8 @@
   margin-top: 80px;
   background-image: url('/img/numerology-concept-still-life-about.png');
   background-repeat: no-repeat;
-  background-position: right bottom;
-  background-size: cover;
+  background-position: right;
+  background-size: contain;
   background-color: rgb(233, 239, 248);
   width: 100%;
   height: 100%;
@@ -267,13 +274,13 @@
   margin-top: 80px;
 }
 
-.cards_content{
+.cards_content {
   max-width: 1280px;
   margin: 0 auto;
   padding: 10px;
 }
 
-.content_recognise{
+.content_recognise {
   background: rgb(233, 239, 248);
   padding: 10px;
 }
@@ -455,57 +462,292 @@
   justify-content: center;
 }
 
-.recognise_content{
+.recognise_content {
   padding: 80px 60px;
 }
 
-.recognise_row{
+.recognise_row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
 }
 
-.recognise_block{
+.recognise_block {
   width: 100%;
-height: 280px;
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items: flex-start;
-padding: 20px;
-border-radius: 10px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 10px;
 
-background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
 }
 
-.recognise_title{
+.recognise_title {
   max-width: 600px;
-  h2{
+
+  h2 {
     @include adaptiv-font(30, 24);
   }
 }
 
-.recognise_block_title{
+.recognise_block_title {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
-  h3{
+
+  h3 {
     display: inline-block;
     margin-left: 25px;
-color: $LightViolet;
-font-family: 'Mont';
-font-size: 18px;
-font-weight: 700;
-line-height: 140%;
-letter-spacing: 2%;
-text-align: center;
-text-transform: uppercase;
+    color: $LightViolet;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: center;
+    text-transform: uppercase;
   }
 }
 
-.recognise_text{
+.recognise_text {
+  span {
+    /* body 18 */
+    color: $txtDark;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}
+
+
+.content_questions {
+  background-image: url('/img/questionMark.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.questions_row {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-image: url('/img/girl.png');
+  background-repeat: no-repeat;
+  background-position: center, bottom;
+  background-size: contain;
+}
+
+.questions_column {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  h3 {
+    color: $LightViolet;
+    font-family: 'Mont';
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.questions_block {
+  display: flex;
+  align-items: center;
+  background-image: url('/img/form2.svg');
+  width: 430px;
+  height: 100px;
+  background-repeat: no-repeat;
+
+  span {
+    display: inline-block;
+    margin-left: 20px;
+    color: $txtDark;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+  }
+}
+
+.questions_column:last-child {
+  .questions_block {
+    transform: scaleX(-1);
+
+    span {
+      transform: scaleX(-1);
+      margin-right: 20px;
+    }
+  }
+}
+
+.content_material {
+  background-color: rgb(233, 239, 248);
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.material_title {
+  max-width: 780px;
+}
+
+.material_row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+
+  img {
+    position: absolute;
+    z-index: 0;
+    left: 45%;
+    bottom: -5%;
+  }
+}
+
+.material_column {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.material_block {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+
+  background: $White;
+  width: 630px;
+  height: 213.33px;
+  padding: 20px;
+}
+
+.material_block_number {
+  position: relative;
+  top: 63px;
+  color: rgb(233, 239, 248);
+  font-family: 'Tenor Sans';
+  font-size: 144px;
+  font-weight: 400;
+  line-height: 168px;
+  letter-spacing: 0%;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.material_info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.material_block_title {
+  color: $LightViolet;
+  font-family: 'Mont';
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.material_text {
+  span {
+    color: $txtDark;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+  }
+}
+
+.material_scope {
+  span {
+    color: $Violet;
+    font-family: 'Mont';
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+    text-transform: uppercase;
+  }
+}
+
+.content_forecast {
+  margin-top: 80px;
+  background-image: url('/img/forecast.png');
+}
+
+
+.us_number {
+  background: rgb(233, 239, 248);
+}
+
+.us_number_title {
+  margin-top: 20px;
+}
+
+.us_number_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 400px);
+  gap: 20px;
+}
+
+.us_number_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 341.33px;
+  height: 164px;
+  border-radius: 10px;
+
+  box-shadow: 0px 4px 13px 0px rgba(170, 173, 202, 0.2);
+  background: rgb(255, 255, 255);
+}
+
+.us_number_number {
+  display: flex;
+  align-items: center;
+    justify-content: center;
+  position: relative;
+    right: 10px;
+
+  border-radius: 10px;
+
+  box-shadow: 0px 4px 13px 0px rgba(170, 173, 202, 0.2);
+  background: rgb(224, 227, 255);
+  width: 182px;
+  height: 60px;
+
+  span {
+    color: $LightViolet;
+    font-family: 'Mont';
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.us_number_text{
+  margin-left: 20px;
   span{
     /* body 18 */
 color: $txtDark;
@@ -519,73 +761,15 @@ text-align: left;
 }
 
 
-.content_questions{
-  background-image: url('/img/questionMark.png');
-  background-repeat: no-repeat;
-  background-position: center;
-}
 
-.questions_row{
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  background-image: url('/img/girl.png');
-  background-repeat: no-repeat;
-  background-position: center, bottom;
-  background-size: contain;
-}
-
-.questions_column{
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  h3{
-    color: $LightViolet;
-font-family: 'Mont';
-font-size: 22px;
-font-weight: 700;
-line-height: 140%;
-letter-spacing: 2%;
-text-align: center;
-text-transform: uppercase;
-  }
-}
-
-.questions_block{
-  display: flex;
-  align-items: center;
-  background-image: url('/img/form2.svg');
-  width: 430px;
-  height: 100px;
-  background-repeat: no-repeat;
-  span{
-    display: inline-block;
-    margin-left: 20px;
-color: $txtDark;
-font-family: 'Mont';
-font-size: 18px;
-font-weight: 400;
-line-height: 140%;
-letter-spacing: 2%;
-  }
-}
-
-.questions_column:last-child{
-  .questions_block{
-    transform: scaleX(-1);
-    span{
-      transform: scaleX(-1);
-      margin-right: 20px;
-    }
-  }
-}
 
 @media(max-width: 1040px) {
-  .questions_row{
+  .questions_row {
     flex-wrap: wrap;
     background-image: none;
   }
-  .questions_column:nth-child(2){
+
+  .questions_column:nth-child(2) {
     display: flex;
     justify-content: center;
     height: 416px;
@@ -597,7 +781,8 @@ letter-spacing: 2%;
     align-items: flex-start;
     justify-content: center;
     background-position: right;
-    h3{
+
+    h3 {
       display: inline-block;
       width: 219px;
     }
@@ -605,10 +790,27 @@ letter-spacing: 2%;
 }
 
 @media(max-width: 1000px) {
-  .recognise_row{
+  .material_block {
+    width: 460px;
+    height: 230px;
+  }
+
+  .material_row {
+    img {
+      left: 10%;
+    }
+  }
+
+  .content_about {
+    background-image: url('/img/numerology-concept-still-life-about-1000.png');
+  }
+
+  .recognise_row {
     flex-direction: column;
   }
+
   .card {
+
     &:nth-child(1),
     &:nth-child(2),
     &:nth-child(3),
@@ -630,6 +832,18 @@ letter-spacing: 2%;
         bottom: 0;
       }
     }
+  }
+}
+
+.questions_title {
+  h2 {
+    max-width: 573px;
+  }
+}
+
+@media(max-width: 780px) {
+  .content_about {
+    background-image: url('/img/numerology-concept-still-life-about-768.png');
   }
 }
 
@@ -664,12 +878,40 @@ letter-spacing: 2%;
   }
 }
 
+@media(max-width: 680px) {}
+
 @media(max-width: 620px) {
   .cards_grid {
     justify-items: center;
   }
-  .questions_column:nth-child(2){
+
+  .questions_column:nth-child(2) {
     align-items: flex-end;
+  }
+}
+
+@media(max-width: 490px) {
+  .material_row {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      left: 0;
+      bottom: 0;
+    }
+  }
+
+  .about_button {
+    margin: 130px 0 0 0;
+  }
+
+  .content_about {
+    background-image: url('/img/numerology-concept-still-life-about-480.png');
+    background-position: right bottom;
   }
 }
 
@@ -677,13 +919,15 @@ letter-spacing: 2%;
   .about_button {
     width: 100%;
   }
-  .questions_block{
+
+  .questions_block {
     width: 100%;
   }
 }
 
 @media(max-width: 320px) {
   .card {
+
     &:nth-child(1),
     &:nth-child(2),
     &:nth-child(3),
