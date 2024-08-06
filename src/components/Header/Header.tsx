@@ -5,12 +5,15 @@ import style from './Header.module.scss'
 
 const Header: FC = () => {
   const [showMenu, setShowMenu] = useState(false)
-  const [widthWindow, setWidthWindow] = useState(window.innerWidth)
+  const [widthWindow, setWidthWindow] = useState(0)
 
   useEffect(() => {
+    setWidthWindow(window.innerWidth)
+
     function handleResize() {
       setWidthWindow(window.innerWidth)
     }
+
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
