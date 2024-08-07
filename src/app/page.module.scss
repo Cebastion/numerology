@@ -1228,6 +1228,10 @@ border: 1.5px solid rgb(118, 125, 191);
 }
 
 @media(max-width: 490px) {
+  .level_block{
+    flex-direction: row;
+    gap: 10px;
+  }
   .content_couple {
     background-size: 100%;
     background-position: right bottom 30%;
