@@ -989,6 +989,7 @@ background: rgb(255, 255, 255);
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   h3 {
     transition: 0.3s ease-in-out;
@@ -1031,7 +1032,6 @@ border: 1.5px solid rgb(118, 125, 191);
 
 .faq_text {
   transition: 0.3s ease-in-out;
-  margin-top: 20px;
   span {
     color: $txtDark;
     font-family: 'Mont';

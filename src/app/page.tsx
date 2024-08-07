@@ -68,6 +68,7 @@ export default function Home() {
     faqRefs.current.forEach((ref, index) => {
       if (ref) {
         ref.style.height = ActiveFAQ === index ? `${ref.scrollHeight}px` : '0px'
+        ref.style.marginTop = ActiveFAQ === index ? `20px` : '0px'
       }
     })
   }, [ActiveFAQ])
