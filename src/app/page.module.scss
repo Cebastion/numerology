@@ -76,6 +76,18 @@
     letter-spacing: 2%;
 
     background: rgb(254, 254, 254);
+    
+    &:hover{
+      background: rgb(226, 228, 245);
+    }
+    &:focus{
+      box-sizing: border-box;
+/* violet */
+border: 2px solid rgb(140, 151, 251);
+border-radius: 100px;
+background: rgb(255, 255, 255);
+    }
+
     /* inputs */
     position: static;
     width: 357px;
@@ -103,43 +115,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-
-  & select {
-    position: relative;
-    appearance: none;
-    outline: none;
-    border-radius: 100px;
-
-    background: rgb(254, 254, 254);
-    /* inputs */
-    width: 357px;
-    height: 56px;
-    /* Автолейаут */
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 17px 28px 17px 28px;
-
-
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-
-    &::before {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      display: block;
-      width: 24px;
-      height: 24px;
-      background-image: url('/img/arrow-select.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-  }
 
   & button {
     /* Frame 11 */
@@ -170,6 +145,14 @@
     line-height: 140%;
     letter-spacing: 2%;
     text-align: left;
+
+    &:hover{
+      background: radial-gradient(74.03% 68.01% at 89% 59%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
+    }
+
+    &:active{
+      background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%,rgb(217, 219, 241),rgb(199, 201, 223) 100%);
+    }
   }
 }
 
@@ -260,6 +243,14 @@
 
   background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
 
+  &:hover{
+    background: radial-gradient(74.03% 68.01% at 89% 59%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
+  }
+
+  &:active{
+    background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%,rgb(217, 219, 241),rgb(199, 201, 223) 100%);
+  }
+
 
   color: $txtLight;
   font-family: "Mont";
@@ -330,6 +321,9 @@
   height: 225px;
   padding: 5px;
   background-image: url('/img/form-card.png');
+  &:hover{
+    background-image: url('/img/form-card-light.png');
+  }
 
   span {
     color: $LightViolet;
@@ -440,6 +434,10 @@
   line-height: 140%;
   letter-spacing: 2%;
   text-align: center;
+
+  &:hover{
+    background: radial-gradient(37.70% 124.23% at 22% 16%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
+  }
 
   &::before {
     content: '';
@@ -795,6 +793,10 @@
     line-height: 140%;
     letter-spacing: 2%;
     text-align: left;
+
+    &:hover{
+      background: rgb(226, 228, 245);
+    }
   }
 }
 
@@ -830,6 +832,13 @@
   border-radius: 100px;
 
   background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
+  &:hover{
+    background: radial-gradient(74.03% 68.01% at 89% 59%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
+  }
+
+  &:active{
+    background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%,rgb(217, 219, 241),rgb(199, 201, 223) 100%);
+  }
   width: 357px;
   height: 56px;
   /* Автолейаут */
@@ -958,10 +967,10 @@
       color: $Violet;
     }
     .faq_img{
-      background-image: url('/img/EllipseFormArrowLight.png');
+      background: radial-gradient(51.20% 138.84% at 26% 9%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
       &::before{
         transition: 0.3s ease-in-out;
-        transform: rotate(45deg);
+        transform: rotate(15deg);
       }
     }
   }
@@ -989,7 +998,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/img/EllipseFormArrow.png');
+  background: radial-gradient(42.05% 67.27% at 73% 66%,rgb(179, 186, 251),rgb(140, 151, 251) 100%);
+  border-radius: 50%;
   transform: rotate(-8.99deg);
   width: 104px;
     height: 47px;
@@ -1109,6 +1119,16 @@
 .questions_title {
   h2 {
     max-width: 573px;
+  }
+}
+
+@media(max-width: 900px) {
+  .faq_block_title{
+    position: relative;
+  }
+  .faq_img{
+    position: absolute;
+    right: 0;
   }
 }
 

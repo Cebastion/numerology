@@ -16,7 +16,33 @@
   justify-content: space-between;
   align-items: center;
 
+  & li:hover {
+    position: relative;
+    transform: rotate(-6.04deg);
+    background: rgb(140, 151, 251);
+    border-radius: 50%;
+    padding: 5px 10px;
+    &::before{
+      content: '';
+      transform: rotate(6.04deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 1.5px solid rgb(118, 125, 191);
+    }
+
+    a {
+      transform: rotate(6.04deg);
+    }
+  }
+
   li a {
+    position: relative;
+    z-index: 1;
     font-family: 'Mont';
     font-style: normal;
     font-size: 18px;
@@ -25,6 +51,7 @@
     letter-spacing: 2px;
     color: $txtDark;
   }
+
 }
 
 .burger {
@@ -38,7 +65,7 @@
 }
 
 @media(max-width: 768px) {
-  .blur{
+  .blur {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -47,6 +74,7 @@
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
   .header__container {
     padding: 16px 20px;
   }

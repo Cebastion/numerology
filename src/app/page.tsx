@@ -7,17 +7,49 @@ import { cards } from '@/list/card.list'
 import { us_number } from '@/list/us_number.list'
 import { levels } from '@/list/level.list'
 import { questions } from '@/list/question.list'
+import Tariffs from '@/components/Tariffs/Tariffs'
 
 export default function Home() {
-  const [select, setSelect] = useState(null)
-  const [selectTwo, setSelectTwo] = useState(null)
+  const [select, setSelect] = useState('Женщина')
+  const [selectTwo, setSelectTwo] = useState('Женщина')
   const [ActiveCard, setActiveCard] = useState(null)
   const [ActiveFAQ, setActiveFAQ] = useState(null)
-  const faqRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const faqRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [touched, setTouched] = useState(false)
+
+  const [FormOne, SetFormOne] = useState({
+    name: '',
+    date: '',
+    touchedName: false,
+    touchedDate: false
+  })
+
+  const [FormTwo, SetFormTwo] = useState({
+    name: '',
+    date: '',
+    touchedName: false,
+    touchedDate: false
+  })
+
+  const [FormThree, SetFormThree] = useState({
+    name: '',
+    date: '',
+    touchedName: false,
+    touchedDate: false
+  })
+
+  const [FormFour, SetFormFour] = useState({
+    name: '',
+    date: '',
+    touchedName: false,
+    touchedDate: false
+  })
+
+
 
   const setRef = (el: HTMLDivElement | null, index: number) => {
-    faqRefs.current[index] = el;
-  };
+    faqRefs.current[index] = el
+  }
 
 
   const handleCardClick = (index: any) => {
@@ -31,10 +63,10 @@ export default function Home() {
   useEffect(() => {
     faqRefs.current.forEach((ref, index) => {
       if (ref) {
-        ref.style.height = ActiveFAQ === index ? `${ref.scrollHeight}px` : '0px';
+        ref.style.height = ActiveFAQ === index ? `${ref.scrollHeight}px` : '0px'
       }
-    });
-  }, [ActiveFAQ]);
+    })
+  }, [ActiveFAQ])
 
   return (
     <main className="content">
@@ -48,8 +80,18 @@ export default function Home() {
             </div>
             <form action="" className={style.reg_form}>
               <div className={style.form_top}>
-                <input type="text" placeholder='Введите ваше имя*' />
-                <input type="text" placeholder='Введите дату рождения*' />
+                <input type="text" placeholder='Введите ваше имя*' style={FormOne.name.trim() === '' && FormOne.touchedName ? {
+                  boxSizing: 'border-box',
+                  border: '2px solid rgb(251, 140, 140)',
+                  borderRadius: '100px',
+                  background: 'rgb(255, 255, 255)'
+                } : undefined} value={FormOne.name} onChange={(e) => SetFormOne({ ...FormOne, name: e.target.value })} required onBlur={() => SetFormOne({ ...FormOne, touchedName: true })} />
+                <input type="text" placeholder='Введите дату рождения*' style={FormOne.date.trim() === '' && FormOne.touchedDate ? {
+                  boxSizing: 'border-box',
+                  border: '2px solid rgb(251, 140, 140)',
+                  borderRadius: '100px',
+                  background: 'rgb(255, 255, 255)'
+                } : undefined} value={FormOne.date} onChange={(e) => SetFormOne({ ...FormOne, date: e.target.value })} required onBlur={() => SetFormOne({ ...FormOne, touchedDate: true })} />
               </div>
               <div className={style.form_bottom}>
                 <Select setSelect={setSelect} select={select} />
@@ -263,8 +305,18 @@ export default function Home() {
             </div>
             <form action="" className={style.reg_form}>
               <div className={style.form_top}>
-                <input type="text" placeholder='Введите ваше имя*' />
-                <input type="text" placeholder='Введите дату рождения*' />
+                <input type="text" placeholder='Введите ваше имя*' style={FormTwo.name.trim() === '' && FormTwo.touchedName ? {
+                  boxSizing: 'border-box',
+                  border: '2px solid rgb(251, 140, 140)',
+                  borderRadius: '100px',
+                  background: 'rgb(255, 255, 255)'
+                } : undefined} value={FormTwo.name} onChange={(e) => SetFormTwo({ ...FormTwo, name: e.target.value })} required onBlur={() => SetFormTwo({ ...FormTwo, touchedName: true })} />
+                <input type="text" placeholder='Введите дату рождения*' style={FormTwo.date.trim() === '' && FormTwo.touchedDate ? {
+                  boxSizing: 'border-box',
+                  border: '2px solid rgb(251, 140, 140)',
+                  borderRadius: '100px',
+                  background: 'rgb(255, 255, 255)'
+                } : undefined} value={FormTwo.date} onChange={(e) => SetFormTwo({ ...FormTwo, date: e.target.value })} required onBlur={() => SetFormTwo({ ...FormTwo, touchedDate: true })} />
               </div>
               <div className={style.form_bottom}>
                 <Select setSelect={setSelectTwo} select={selectTwo} />
@@ -310,16 +362,36 @@ export default function Home() {
                     <Image src={'/img/woman.svg'} width={50} height={50} alt="woman" />
                     <h3>Женщина</h3>
                   </div>
-                  <input type="text" placeholder='Введите имя*' />
-                  <input type="text" placeholder='Введите дату рождения*' />
+                  <input type="text" placeholder='Введите ваше имя*' style={FormThree.name.trim() === '' && FormThree.touchedName ? {
+                    boxSizing: 'border-box',
+                    border: '2px solid rgb(251, 140, 140)',
+                    borderRadius: '100px',
+                    background: 'rgb(255, 255, 255)'
+                  } : undefined} value={FormThree.name} onChange={(e) => SetFormThree({ ...FormThree, name: e.target.value })} required onBlur={() => SetFormThree({ ...FormThree, touchedName: true })} />
+                  <input type="text" placeholder='Введите дату рождения*' style={FormThree.date.trim() === '' && FormThree.touchedDate ? {
+                    boxSizing: 'border-box',
+                    border: '2px solid rgb(251, 140, 140)',
+                    borderRadius: '100px',
+                    background: 'rgb(255, 255, 255)'
+                  } : undefined} value={FormThree.date} onChange={(e) => SetFormThree({ ...FormThree, date: e.target.value })} required onBlur={() => SetFormThree({ ...FormThree, touchedDate: true })} />
                 </div>
                 <div className={style.couple_form_sex}>
                   <div className={style.couple_form_title}>
                     <Image src={'/img/man.svg'} width={50} height={50} alt="man" />
                     <h3>мужчина</h3>
                   </div>
-                  <input type="text" placeholder='Введите имя*' />
-                  <input type="text" placeholder='Введите дату рождения*' />
+                  <input type="text" placeholder='Введите ваше имя*' style={FormFour.name.trim() === '' && FormFour.touchedName ? {
+                    boxSizing: 'border-box',
+                    border: '2px solid rgb(251, 140, 140)',
+                    borderRadius: '100px',
+                    background: 'rgb(255, 255, 255)'
+                  } : undefined} value={FormFour.name} onChange={(e) => SetFormFour({ ...FormFour, name: e.target.value })} required onBlur={() => SetFormFour({ ...FormFour, touchedName: true })} />
+                  <input type="text" placeholder='Введите дату рождения*' style={FormFour.date.trim() === '' && FormFour.touchedDate ? {
+                    boxSizing: 'border-box',
+                    border: '2px solid rgb(251, 140, 140)',
+                    borderRadius: '100px',
+                    background: 'rgb(255, 255, 255)'
+                  } : undefined} value={FormFour.date} onChange={(e) => SetFormFour({ ...FormFour, date: e.target.value })} required onBlur={() => SetFormFour({ ...FormFour, touchedDate: true })} />
                 </div>
               </div>
               <button className={style.couple_button}>Рассчитать</button>
@@ -335,7 +407,7 @@ export default function Home() {
             <div className={style.level_grid}>
               {levels.map((level) => (
                 <div className={style.level_block}>
-                  <Image src={level.img} alt={level.img} width={70} height={70}/>
+                  <Image src={level.img} alt={level.img} width={70} height={70} />
                   <p>{level.text}</p>
                 </div>
               ))}
@@ -354,7 +426,7 @@ export default function Home() {
                   <div className={style.faq_block_title} onClick={() => handleFAQClick(index)}>
                     <h3>{question.title}</h3>
                     <div className={style.faq_img}>
-                      <Image src={'/img/arrow.png'} alt={`arrow`} width={24} height={24}/>
+                      <Image src={'/img/arrow.png'} alt={`arrow`} width={24} height={24} />
                     </div>
                   </div>
                   <div className={style.faq_text} ref={(el) => setRef(el, index)}>
@@ -365,6 +437,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <Tariffs />
       </div>
     </main>
   )

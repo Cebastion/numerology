@@ -1,7 +1,7 @@
 @import "../../global/fonts.scss";
 @import "../../global/colors.scss";
 
-.select {
+.select, .select_active {
   cursor: pointer;
   user-select: none;
   position: relative;
@@ -10,9 +10,17 @@
   width: 357px;
   height: 56px;
   padding: 16px 28px 16px 28px;
+
+  &:hover{
+    background: rgb(226, 228, 245);
+  }
 }
 
-.select_choose {
+.select_active{
+  background: rgb(226, 228, 245);
+}
+
+.select_choose, .select_choose_active {
   width: 100%;
   height: 100%;
   display: flex;
@@ -26,6 +34,7 @@
   line-height: 140%;
 
   &::after {
+    transition: all 1s;
     content: '';
     position: relative;
     width: 24px;
@@ -37,29 +46,10 @@
   }
 }
 
-.select_options {
-  margin-top: 5px;
-  position: absolute;
-  background: rgb(254, 254, 254);
-  width: 95%;
-  top: 100%;
-  left: 10px;
-}
-
-.select_option {
-  padding: 10px;
-  //margin: 10px 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  color: $LightViolet;
-  font-family: "Mont";
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 140%;
-
-  &:hover {
-    background-color: rgb(32, 47, 54, 0.3);
+.select_choose_active{
+  &::after {
+    transition: all 1s;
+    transform: rotate(180deg);
   }
 }
 
