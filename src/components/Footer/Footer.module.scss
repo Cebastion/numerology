@@ -66,6 +66,9 @@
     letter-spacing: 2%;
     color: $txtDark;
     margin: 0 0 0 20px;
+    &:hover{
+      color: $Violet;
+    }
   }
 }
 
