@@ -420,7 +420,7 @@ export default function Home() {
             <div className={style.level_grid}>
               {levels.map((level) => (
                 <div className={style.level_block}>
-                  <Image src={level.img} alt={level.img} width={70} height={70} />
+                  <Image src={'/img/level1.svg'} alt={level.img} width={70} height={70} />
                   <p>{level.text}</p>
                 </div>
               ))}
