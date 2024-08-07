@@ -1254,6 +1254,8 @@ border: 1.5px solid rgb(118, 125, 191);
   .content_about {
     background-image: url('/img/numerology-concept-still-life-about-480.png');
     background-position: right bottom;
+    padding: 10px;
+    background-size: 68%;
   }
 
   .cards_grid{
@@ -1293,6 +1295,19 @@ border: 1.5px solid rgb(118, 125, 191);
     width: 100%;
     height: 100%;
   }
+
+  .card{
+    width: 190px;
+    height: 190px;
+    background-size: contain;
+    span{
+      font-size: 16px;
+    }
+  }
+
+  .level_block, .level_block::before {
+    width: 100%;
+  }
 }
 
 @media(max-width: 420px) {
@@ -1304,6 +1319,14 @@ border: 1.5px solid rgb(118, 125, 191);
   }
 
   .questions_block {
+    width: 100%;
+  }
+
+  .us_number_block, .couple_form_sex input{
+    width: 300px;
+  }
+
+  .couple_button{
     width: 100%;
   }
 }
