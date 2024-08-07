@@ -8,7 +8,7 @@ const Tariffs: FC = () => {
       <div className={style.tariffs_content}>
         <div className={style.tariffs_title}>
           <p>Отправим на почту или в личный кабинет</p>
-          <h2>ВЫБЕРИТЕ ТАРИФ И ПОЛУЧИТЕ ВАШИ ПОЛНЫЕ РАСШИФРОВКИ</h2>
+          <h2>ВЫБЕРИТЕ <span style={{ color: 'rgb(115, 121, 176)' }}>ТАРИФ</span> И ПОЛУЧИТЕ ВАШИ ПОЛНЫЕ РАСШИФРОВКИ</h2>
         </div>
         <div className={style.tariffs_list}>
           {tariffs.map((tariff) => (

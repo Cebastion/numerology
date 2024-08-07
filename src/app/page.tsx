@@ -126,7 +126,7 @@ export default function Home() {
           <div className={style.cards_content}>
             <div className={style.cards_title}>
               <p>Базовые расшифровки бесплатны</p>
-              <h2>Структурный анализ личности в самых важных сферах</h2>
+              <h2>ИЗУЧИТЕ <span style={{ color: 'rgb(115, 121, 176)' }}>СТРУКТУРУ</span> ЛИЧНОСТИ ПО ВСЕМ СФЕРАМ</h2>
             </div>
             <div className={style.cards_grid}>
               {cards.map((card, index) => (
@@ -153,7 +153,7 @@ export default function Home() {
           <div className={`${style.recognise_content}`}>
             <div className={`${style.recognise_title} ${style.cards_title}`}>
               <p>Ваша роль</p>
-              <h2>ЕСЛИ ВЫ СЕБЯ УЗНАЛИ, ТО МЫ СОЗДАЛИ ЭТОТ СЕРВИС ДЛЯ ВАС</h2>
+              <h2>ЕСЛИ ВЫ <span style={{ color: 'rgb(115, 121, 176)' }}>СЕБЯ УЗНАЛИ</span>, ТО МЫ СОЗДАЛИ ЭТОТ СЕРВИС ДЛЯ ВАС</h2>
             </div>
             <div className={style.recognise_row}>
               <div className={style.recognise_block}>
@@ -190,7 +190,7 @@ export default function Home() {
           <div className={`${style.questions_content} ${style.cards_content}`}>
             <div className={`${style.questions_title} ${style.cards_title}`}>
               <p>Спросите себя</p>
-              <h2>Вас посещали подобные мысли, задавали себе такие вопросы?</h2>
+              <h2>Вас посещали подобные мысли, задавали себе такие <span style={{ color: 'rgb(115, 121, 176)' }}>вопросы</span>?</h2>
             </div>
             <div className={style.questions_row}>
               <div className={style.questions_column}>
@@ -231,7 +231,7 @@ export default function Home() {
           <div className={`${style.material_content} ${style.cards_content}`}>
             <div className={`${style.material_title} ${style.cards_title}`}>
               <p>После выбора тарифа, вы моментально</p>
-              <h2>Получите бесценный материал, чтобы познать себя, близких и клиентов</h2>
+              <h2>Получите <span style={{ color: 'rgb(115, 121, 176)' }}>бесценный материал</span>, чтобы познать себя, близких и клиентов</h2>
             </div>
             <div className={style.material_row}>
               <div className={style.material_column}>
@@ -276,7 +276,7 @@ export default function Home() {
             </div>
             <div style={{ marginTop: '100px' }} className={`${style.material_title} ${style.cards_title}`}>
               <p>С нами вы всегда в плюсе</p>
-              <h2>Помимо материалов, вы получите</h2>
+              <h2>Помимо материалов, вы <span style={{ color: 'rgb(115, 121, 176)' }}>получите</span></h2>
             </div>
             <div className={style.recognise_row}>
               <div className={style.recognise_block}>
@@ -342,7 +342,7 @@ export default function Home() {
           <div className={`${style.us_number_content} ${style.cards_content}`}>
             <div className={`${style.us_number_title} ${style.cards_title}`}>
               <p>Вместо тысячи слов. Данные мы обновляем ежемесячно</p>
-              <h2>О НАШИХ ТРУДАХ В ЦИФРАХ</h2>
+              <h2>О НАШИХ ТРУДАХ В <span style={{ color: 'rgb(115, 121, 176)' }}>ЦИФРАХ</span></h2>
             </div>
             <div className={style.us_number_grid}>
               {us_number.map((number) => (
@@ -415,7 +415,7 @@ export default function Home() {
           <div className={`${style.level_content} ${style.cards_content}`}>
             <div className={`${style.level_title} ${style.cards_title}`}>
               <p>Изучение расшифровок своей матрицы даст вам</p>
-              <h2>Выход на новый уровень жизни через осознание и корректировку программ</h2>
+              <h2>Выход на <span style={{ color: 'rgb(115, 121, 176)' }}>новый уровень</span> жизни через осознание и корректировку программ</h2>
             </div>
             <div className={style.level_grid}>
               {levels.map((level) => (
@@ -431,7 +431,7 @@ export default function Home() {
           <div className={`${style.faq_content} ${style.cards_content}`}>
             <div className={`${style.faq_title} ${style.cards_title}`}>
               <p>А еще всегда на связи служба заботы</p>
-              <h2>Отвечаем на ваши самые частые вопросы</h2>
+              <h2>Отвечаем на ваши самые частые <span style={{ color: 'rgb(115, 121, 176)' }}>вопросы</span></h2>
             </div>
             <div className={style.faq_column}>
               {questions.map((question, index) => (

@@ -32,8 +32,8 @@ const Header: FC = () => {
     <header className={style.header}>
       <div className={style.header__container}>
         <ul className={style.header__menu}>
-          <li className={isActive('/') ? style.header__menu_li_active : ''}>
-            <Link href='/' style={{ display: widthWindow > 540 ? 'block' : 'none' }}>Главная</Link>
+          <li style={{ display: widthWindow > 540 ? 'block' : 'none' }} className={isActive('/') ? style.header__menu_li_active : ''}>
+            <Link href='/'>Главная</Link>
           </li>
           <li>
             <Link href='/forecast'>Прогноз по годам</Link>
@@ -52,7 +52,7 @@ const Header: FC = () => {
               <div className={style.blur}></div>
               <ul className={style.header__menu__mobile}>
                 <h2>Меню</h2>
-                <li style={{ display: widthWindow >= 540 ? 'none' : 'block' }}>
+                <li style={{ display: widthWindow >= 540 ? 'none' : 'block' }} className={isActive('/') ? style.header__menu_li_active : ''}>
                   <Link href='/'>Главная</Link>
                 </li>
                 <li>
