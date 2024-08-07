@@ -2,10 +2,12 @@
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import style from './Header.module.scss'
+import { usePathname } from 'next/navigation'
 
 const Header: FC = () => {
   const [showMenu, setShowMenu] = useState(false)
   const [widthWindow, setWidthWindow] = useState(0)
+  const pathname = usePathname ()
 
   useEffect(() => {
     setWidthWindow(window.innerWidth)
@@ -24,11 +26,13 @@ const Header: FC = () => {
     setShowMenu(!showMenu)
   }
 
+  const isActive = (path: string) => pathname === path
+
   return (
     <header className={style.header}>
       <div className={style.header__container}>
         <ul className={style.header__menu}>
-          <li>
+          <li className={isActive('/') ? style.header__menu_li_active : ''}>
             <Link href='/' style={{ display: widthWindow > 540 ? 'block' : 'none' }}>Главная</Link>
           </li>
           <li>

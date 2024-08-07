@@ -7,7 +7,7 @@
 }
 
 .header__container {
-  padding: 16px 80px;
+  padding: 16px 0px;
 }
 
 .header__menu {
@@ -15,32 +15,42 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 1s;
+
+  & li {
+    transition: all 1s;
+  }
 
   & li:hover {
+    transition: all 1s;
     position: relative;
     transform: rotate(-6.04deg);
     background: rgb(140, 151, 251);
     border-radius: 50%;
     padding: 5px 10px;
-    &::before{
+
+    &::before {
+      transition: all 1s;
       content: '';
       transform: rotate(6.04deg);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-sizing: border-box;
-    border: 1.5px solid rgb(118, 125, 191);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-sizing: border-box;
+      border: 1.5px solid rgb(118, 125, 191);
     }
 
     a {
+      transition: all 1s;
       transform: rotate(6.04deg);
     }
   }
 
   li a {
+    transition: all 1s;
     position: relative;
     z-index: 1;
     font-family: 'Mont';
@@ -52,6 +62,33 @@
     color: $txtDark;
   }
 
+}
+
+.header__menu_li_active {
+  transition: all 1s;
+  position: relative;
+  transform: rotate(-6.04deg);
+  background: rgb(140, 151, 251);
+  border-radius: 50%;
+  padding: 5px 10px;
+
+  &::before {
+    transition: all 1s;
+    content: '';
+    transform: rotate(6.04deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 1.5px solid rgb(118, 125, 191);
+  }
+  a {
+    transition: all 1s;
+    transform: rotate(6.04deg);
+  }
 }
 
 .burger {

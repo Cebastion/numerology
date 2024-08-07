@@ -12,10 +12,11 @@ import Tariffs from '@/components/Tariffs/Tariffs'
 export default function Home() {
   const [select, setSelect] = useState('Женщина')
   const [selectTwo, setSelectTwo] = useState('Женщина')
-  const [ActiveCard, setActiveCard] = useState(null)
   const [ActiveFAQ, setActiveFAQ] = useState(null)
+  const [ActiveIndexCard, setActiveIndexCard] = useState(null)
   const faqRefs = useRef<(HTMLDivElement | null)[]>([])
-  const [touched, setTouched] = useState(false)
+  const faqBlockRef = useRef<HTMLDivElement | null>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const [FormOne, SetFormOne] = useState({
     name: '',
@@ -51,13 +52,16 @@ export default function Home() {
     faqRefs.current[index] = el
   }
 
-
-  const handleCardClick = (index: any) => {
-    setActiveCard(index === ActiveCard ? null : index)
-  }
-
   const handleFAQClick = (index: any) => {
     setActiveFAQ(index === ActiveFAQ ? null : index)
+  }
+
+  const handleMouseEnter = (index: any) => {
+    setActiveIndexCard(index)
+  }
+
+  const handleMouseLeave = () => {
+    setActiveIndexCard(null)
   }
 
   useEffect(() => {
@@ -67,6 +71,12 @@ export default function Home() {
       }
     })
   }, [ActiveFAQ])
+
+  useEffect(() => {
+    if (ActiveIndexCard !== null && cardRefs.current[ActiveIndexCard]) {
+      cardRefs.current[ActiveIndexCard].style.height = `${cardRefs.current[ActiveIndexCard].scrollHeight}px`
+    }
+  }, [ActiveIndexCard])
 
   return (
     <main className="content">
@@ -109,7 +119,7 @@ export default function Home() {
             <div className={style.about_text}>
               <span>Расчет матрицы выполняется по дате рождения с помощью онлайн-калькулятора, вы узнаете, зачем пришли в этот мир, какие качества необходимо развивать. Вам даже не потребуется помощь нумеролога. Персональный анализ раскрывает структуру личности человека, можно выйти на новый уровень во всех сферах жизни, выявить слабые места и раскрыть свой потенциал в работе или творчестве.</span>
             </div>
-            <button className={style.about_button}>Что такое?</button>
+            <button className={style.about_button} onClick={() => faqBlockRef.current && faqBlockRef.current.scrollIntoView({ behavior: 'smooth' })} >Что такое?</button>
           </div>
         </section>
         <section className={style.content_cards}>
@@ -120,10 +130,13 @@ export default function Home() {
             </div>
             <div className={style.cards_grid}>
               {cards.map((card, index) => (
-                <div className={style.card} onClick={() => handleCardClick(index)}>
+                <div className={style.card} onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}>
                   <span>{card.title}</span>
-                  {ActiveCard !== index ? null : (
-                    <div className={style.card_body}>
+                  {ActiveIndexCard === index && (
+                    <div className={style.card_body} ref={(el) => {
+                      cardRefs.current[index] = el
+                    }}>
                       <h2>{card.title}</h2>
                       <p dangerouslySetInnerHTML={{ __html: card.text }} />
                     </div>
@@ -414,7 +427,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className={`${style.content_faq} ${style.content_cards}`}>
+        <section ref={faqBlockRef} className={`${style.content_faq} ${style.content_cards}`}>
           <div className={`${style.faq_content} ${style.cards_content}`}>
             <div className={`${style.faq_title} ${style.cards_title}`}>
               <p>А еще всегда на связи служба заботы</p>
