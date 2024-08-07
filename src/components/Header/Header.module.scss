@@ -218,3 +218,11 @@
     }
   }
 }
+
+@media(max-width: 320px) {
+  .header__menu{
+    li a {
+      font-size: 12px;
+    }
+  }
+}
