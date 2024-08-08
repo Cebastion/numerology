@@ -8,6 +8,7 @@ import { us_number } from '@/list/us_number.list'
 import { levels } from '@/list/level.list'
 import { questions } from '@/list/question.list'
 import Tariffs from '@/components/Tariffs/Tariffs'
+import { link } from 'fs'
 
 export default function Home() {
   const [select, setSelect] = useState('Женщина')
@@ -130,11 +131,13 @@ export default function Home() {
               <p>Базовые расшифровки бесплатны</p>
               <h2>ИЗУЧИТЕ <span style={{ color: 'rgb(115, 121, 176)' }}>СТРУКТУРУ</span> ЛИЧНОСТИ ПО ВСЕМ СФЕРАМ</h2>
             </div>
-            <div className={style.cards_grid}>
+            <ul className={style.cards_grid}>
               {cards.map((card, index) => (
-                <div className={style.card} onMouseEnter={() => handleMouseEnter(index)}
+                <li className={style.card_structure} key={index} onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}>
-                  <span>{card.title}</span>
+                  <div className={style.card}>
+                    <span>{card.title}</span>
+                  </div>
                   {ActiveIndexCard === index && (
                     <div className={style.card_body} ref={(el) => {
                       cardRefs.current[index] = el
@@ -143,9 +146,9 @@ export default function Home() {
                       <p dangerouslySetInnerHTML={{ __html: card.text }} />
                     </div>
                   )}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className={style.cards_row}>
               <button className={style.cards_button} onClick={() => MatrixBlockRef.current && MatrixBlockRef.current.scrollIntoView({ behavior: 'smooth' })}>Рассчитать мою матрицу</button>
             </div>
@@ -197,16 +200,27 @@ export default function Home() {
             <div className={style.questions_row}>
               <div className={style.questions_column}>
                 <div className={style.questions_block}>
-                  <span>Почему я не ощущаю гармонию в своей жизни?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Почему я не ощущаю гармонию в своей жизни?</span>
+                  </div>
                 </div>
                 <div className={style.questions_block}>
-                  <span>Как мне надоели постоянные скандалы! Когда все это прекратиться?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Как мне надоели постоянные скандалы! Когда все это прекратиться?</span>
+                  </div>
+
                 </div>
                 <div className={style.questions_block}>
-                  <span>Живу чужими проблемами. Почему не хватает времени на свою личную жизнь?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Живу чужими проблемами. Почему не хватает времени на свою личную жизнь?</span>
+                  </div>
+
                 </div>
                 <div className={style.questions_block}>
-                  <span>Боюсь принимать решения? Как избавиться от этого страха?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Боюсь принимать решения? Как избавиться от этого страха?</span>
+                  </div>
+
                 </div>
               </div>
               <div className={style.questions_column}>
@@ -214,16 +228,28 @@ export default function Home() {
               </div>
               <div className={style.questions_column}>
                 <div className={style.questions_block}>
-                  <span>Почему я беспокоюсь о том, что скажут люди?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Почему я беспокоюсь о том, что скажут люди?</span>
+                  </div>
+
                 </div>
                 <div className={style.questions_block}>
-                  <span>Где найти эмоционально близкого человека?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Где найти эмоционально близкого человека?</span>
+                  </div>
+
                 </div>
                 <div className={style.questions_block}>
-                  <span>Надоел однообразный образ жизни? Можно ли вырваться из замкнутого круга?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Надоел однообразный образ жизни? Можно ли вырваться из замкнутого круга?</span>
+                  </div>
+
                 </div>
                 <div className={style.questions_block}>
-                  <span>Как мне реализовать себя, гармонизировать тело и дух?</span>
+                  <div className={style.questions_sub_block}>
+                    <span>Как мне реализовать себя, гармонизировать тело и дух?</span>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -422,7 +448,7 @@ export default function Home() {
             <div className={style.level_grid}>
               {levels.map((level) => (
                 <div className={style.level_block}>
-                  <Image src={level.img} alt={level.img} width={70} height={70} style={{ width: '70px', height: '70px' }}/>
+                  <Image src={level.img} alt={level.img} width={70} height={70} style={{ width: '70px', height: '70px' }} />
                   <p>{level.text}</p>
                 </div>
               ))}
@@ -452,7 +478,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <Tariffs MatrixBlockRef={MatrixBlockRef?.current}/>
+        <Tariffs MatrixBlockRef={MatrixBlockRef?.current} />
       </div>
     </main>
   )

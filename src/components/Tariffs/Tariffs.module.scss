@@ -56,11 +56,9 @@
   border-radius: 10px;
 
   background: radial-gradient(25.46% 73.88% at 18% 0%, rgb(255, 255, 255), rgb(255, 255, 255) 100%);
-  transition: background 1s ease;
 
   &:hover {
     background: radial-gradient(26.93% 87.66% at 86% 76%, rgb(255, 255, 255), rgb(226, 229, 255) 100%);
-    transition: background 1s ease;
   }
 }
 
@@ -85,7 +83,7 @@
   li {
     display: flex;
     color: $txtDark;
-    font-family: 'Mont';
+    font-family: 'Inter';
     font-size: 18px;
     font-weight: 400;
     line-height: 140%;
@@ -155,16 +153,12 @@
     letter-spacing: 2%;
     text-align: left;
 
-    transition: background 1s ease;
-
     &:hover{
       background: radial-gradient(74.03% 68.01% at 89% 59%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
-      transition: background 1s ease;
     }
 
     &:active{
       background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%,rgb(217, 219, 241),rgb(199, 201, 223) 100%);
-      transition: background 1s ease;
     }
   }
 }
@@ -200,12 +194,10 @@
 
 }
 
-
 .tariffs_row_button {
   position: relative;
   margin: 0 auto;
   background: radial-gradient(30.08% 99.46% at 89% 74%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
-  transition: background 1s ease;
   border-radius: 50%;
   width: 140px;
   height: 140px;
@@ -233,7 +225,7 @@
 
 .tariffs_row_button:hover{
   background: radial-gradient(37.70% 124.23% at 22% 16%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
-  transition: background 1s ease; 
+  transition: all 1s ease; 
 }
 
 .tariffs_row {

@@ -24,7 +24,7 @@
   & li:hover {
     transition: all 1s;
     position: relative;
-    transform: rotate(-6.04deg);
+    transform: rotate(0deg);
     background: rgb(140, 151, 251);
     border-radius: 50%;
     padding: 5px 10px;
@@ -32,7 +32,7 @@
     &::before {
       transition: all 1s;
       content: '';
-      transform: rotate(6.04deg);
+      transform: rotate(4.04deg);
       position: absolute;
       top: 0;
       left: 0;
@@ -46,6 +46,7 @@
     a {
       transition: all 1s;
       transform: rotate(6.04deg);
+      color: $txtLight;
     }
   }
 
@@ -53,7 +54,7 @@
     transition: all 1s;
     position: relative;
     z-index: 1;
-    font-family: 'Mont';
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-size: 18px;
     font-weight: 400;
@@ -62,12 +63,15 @@
     color: $txtDark;
   }
 
+  .header__menu_li_active a{
+    color: $txtLight;
+  }
 }
 
 .header__menu_li_active {
   transition: all 1s;
   position: relative;
-  transform: rotate(-6.04deg);
+  transform: rotate(0deg);
   background: rgb(140, 151, 251);
   border-radius: 50%;
   padding: 5px 10px;
@@ -84,10 +88,6 @@
     border-radius: 50%;
     box-sizing: border-box;
     border: 1.5px solid rgb(118, 125, 191);
-  }
-  a {
-    transition: all 1s;
-    transform: rotate(6.04deg);
   }
 }
 

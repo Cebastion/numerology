@@ -77,6 +77,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /*--------------------*/
 
+:root {
+  --myColor1: magenta;
+  --myColor2: #00ff00;
+}
+
 .wallpaper{
   display: flex;
   flex-direction: column;
