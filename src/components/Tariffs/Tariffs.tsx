@@ -6,7 +6,7 @@ import style from './Tariffs.module.scss'
 interface ITariffs{
   MatrixBlockRef?: HTMLDivElement | null
 }
-const Tariffs: FC<ITariffs> = ( { MatrixBlockRef } ) => {
+const Tariffs: FC<ITariffs> = () => {
   return (
     <section className={style.content_tariffs}>
       <div className={style.tariffs_content}>
@@ -41,7 +41,7 @@ const Tariffs: FC<ITariffs> = ( { MatrixBlockRef } ) => {
           ))}
         </div>
         <div className={style.tariffs_row}>
-          <button className={style.tariffs_row_button} onClick={() => MatrixBlockRef?.scrollIntoView({ behavior: 'smooth' })}>Рассчитать мою матрицу</button>
+          <button className={style.tariffs_row_button}>Рассчитать мою матрицу</button>
         </div>
       </div>
     </section>
