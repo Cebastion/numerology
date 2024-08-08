@@ -15,6 +15,7 @@ export default function Home() {
   const [selectTwo, setSelectTwo] = useState('Женщина')
   const [ActiveFAQ, setActiveFAQ] = useState(null)
   const [ActiveIndexCard, setActiveIndexCard] = useState(null)
+  const [ActiveBooleanCard, setActiveBooleanCard] = useState(false)
   const faqRefs = useRef<(HTMLDivElement | null)[]>([])
   const faqBlockRef = useRef<HTMLDivElement | null>(null)
   const MatrixBlockRef = useRef<HTMLDivElement | null>(null)
@@ -59,6 +60,7 @@ export default function Home() {
   }
 
   const handleMouseEnter = (index: any) => {
+    setActiveBooleanCard(true)
     setActiveIndexCard(index)
   }
 
@@ -138,12 +140,12 @@ export default function Home() {
                   <div className={style.card}>
                     <span>{card.title}</span>
                   </div>
-                  {ActiveIndexCard === index && (
+                  {ActiveIndexCard === index && ActiveBooleanCard && (
                     <div className={style.card_body} ref={(el) => {
                       cardRefs.current[index] = el
                     }}>
                       <h2>{card.title}</h2>
-                      <p dangerouslySetInnerHTML={{ __html: card.text }} />
+                      <p onMouseEnter={() => setActiveBooleanCard(false)} dangerouslySetInnerHTML={{ __html: card.text }} />
                     </div>
                   )}
                 </li>

@@ -173,7 +173,7 @@
   background-color: rgb(233, 239, 248);
   width: 100%;
   height: 100%;
-  padding: 80px 60px;
+  padding: 80px 0;
 }
 
 .about_content {
@@ -270,12 +270,12 @@
 .cards_content {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px;
 }
 
 .content_recognise {
   background: rgb(233, 239, 248);
-  padding: 10px;
+  padding: 20px;
 }
 
 .cards_title {
@@ -310,10 +310,12 @@
 .cards_grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
-  grid-gap: 20px;
+  grid-gap: 10px;
+  justify-items: center;
 }
 
 .card_structure{
+  margin: 10px 0 0 0;
   position: relative;
   max-width: 225px;
   max-height: 225px;
@@ -524,7 +526,8 @@ background: rgba(255, 255, 255, 0.01);
 }
 
 .recognise_content {
-  padding: 80px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .recognise_row {
@@ -1414,7 +1417,7 @@ background: rgba(255, 255, 255, 0.01);
   .content_about {
     background-image: url('/img/numerology-concept-still-life-about-480.png');
     background-position: right bottom;
-    padding: 10px;
+    padding: 20px;
     background-size: 68%;
   }
 
@@ -1472,11 +1475,16 @@ background: rgba(255, 255, 255, 0.01);
   .level_block::before {
     width: 100%;
   }
+
+
+  .content_cards{
+    display: none;
+  }
 }
 
 @media(max-width: 420px) {
   .content_about {
-    padding: 10px;
+    padding: 20px;
   }
 
   .about_button {
@@ -1497,7 +1505,7 @@ background: rgba(255, 255, 255, 0.01);
   }
 
   .recognise_content {
-    padding: 0;
+    padding: 20px;
   }
 }
 
