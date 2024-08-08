@@ -22,6 +22,7 @@ nav, footer, header, aside {
 }
 
 html, body {
+  transition: all 1s;
   background-color: rgb(248, 248, 248);
   height: 100%;
   width: 100%;
@@ -34,6 +35,7 @@ html, body {
 }
 
 input, button, textarea {
+  transition: all 1s;
   font-family: inherit;
 }
 
@@ -42,10 +44,12 @@ input::-ms-clear {
 }
 
 button {
+  transition: all 1s;
   cursor: pointer;
 }
 
 button::-moz-focus-inner {
+  transition: all 1s;
   padding: 0;
   border: 0;
 }

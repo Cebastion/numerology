@@ -2,7 +2,11 @@ import { tariffs } from '@/list/tariff.list'
 import { FC } from 'react'
 import style from './Tariffs.module.scss'
 
-const Tariffs: FC = () => {
+
+interface ITariffs{
+  MatrixBlockRef?: HTMLDivElement | null
+}
+const Tariffs: FC<ITariffs> = ( { MatrixBlockRef } ) => {
   return (
     <section className={style.content_tariffs}>
       <div className={style.tariffs_content}>
@@ -37,7 +41,7 @@ const Tariffs: FC = () => {
           ))}
         </div>
         <div className={style.tariffs_row}>
-          <button className={style.tariffs_row_button}>Рассчитать мою матрицу</button>
+          <button className={style.tariffs_row_button} onClick={() => MatrixBlockRef?.scrollIntoView({ behavior: 'smooth' })}>Рассчитать мою матрицу</button>
         </div>
       </div>
     </section>

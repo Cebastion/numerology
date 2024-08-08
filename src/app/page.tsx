@@ -16,6 +16,7 @@ export default function Home() {
   const [ActiveIndexCard, setActiveIndexCard] = useState(null)
   const faqRefs = useRef<(HTMLDivElement | null)[]>([])
   const faqBlockRef = useRef<HTMLDivElement | null>(null)
+  const MatrixBlockRef = useRef<HTMLDivElement | null>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const [FormOne, SetFormOne] = useState({
@@ -82,7 +83,7 @@ export default function Home() {
   return (
     <main className="content">
       <div className={style.content_container}>
-        <section className={style.content_reg}>
+        <section className={style.content_reg} ref={MatrixBlockRef}>
           <div className={style.reg_content}>
             <div className={style.reg_title}>
               <h1>МАТРИЦА СУДЬБЫ</h1>
@@ -146,7 +147,7 @@ export default function Home() {
               ))}
             </div>
             <div className={style.cards_row}>
-              <button className={style.cards_button}>Рассчитать мою матрицу</button>
+              <button className={style.cards_button} onClick={() => MatrixBlockRef.current && MatrixBlockRef.current.scrollIntoView({ behavior: 'smooth' })}>Рассчитать мою матрицу</button>
             </div>
           </div>
         </section>
@@ -358,7 +359,7 @@ export default function Home() {
               ))}
             </div>
             <div className={style.cards_row}>
-              <button className={style.cards_button}>Рассчитать мою матрицу</button>
+              <button className={style.cards_button} onClick={() => MatrixBlockRef.current && MatrixBlockRef.current.scrollIntoView({ behavior: 'smooth' })}>Рассчитать мою матрицу</button>
             </div>
           </div>
         </section>
@@ -421,7 +422,7 @@ export default function Home() {
             <div className={style.level_grid}>
               {levels.map((level) => (
                 <div className={style.level_block}>
-                  <Image src={level.img} alt={level.img} width={70} height={70} style={{ width: '70px', height: '70px' }}/>
+                  <img src={level.img} alt={level.img} style={{ width: '70px', height: '70px' }}/>
                   <p>{level.text}</p>
                 </div>
               ))}
@@ -451,7 +452,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <Tariffs />
+        <Tariffs MatrixBlockRef={MatrixBlockRef?.current}/>
       </div>
     </main>
   )
