@@ -4,12 +4,12 @@
 
 .content_tariffs {
   background-color: rgb(233, 239, 248);
+  padding: 80px 20px;
 }
 
 .tariffs_content {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 30px 20px;
 }
 
 .tariffs_title {
@@ -296,6 +296,18 @@
       text-align: center;
       text-transform: uppercase;
     }
+  }
+}
+
+@media(max-width: 1000px) {
+  .content_tariffs{
+    padding: 60px 20px;
+  }
+}
+
+@media(max-width: 490px) {
+  .content_tariffs{
+    padding: 40px 10px;
   }
 }
 

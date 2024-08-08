@@ -15,7 +15,6 @@ const Footer: FC = () => {
           </div>
           <div className={style.menu_column}>
             <Link href='/blog'>Блог</Link>
-            <Link href='/calculator'>Калькулятор</Link>
             <Link href='/account'>Личный кабинет</Link>
           </div>
           <div className={style.menu_column}>
