@@ -422,7 +422,7 @@ export default function Home() {
             <div className={style.level_grid}>
               {levels.map((level) => (
                 <div className={style.level_block}>
-                  <img src={level.img} alt={level.img} style={{ width: '70px', height: '70px' }}/>
+                  <Image src={level.img} alt={level.img} width={70} height={70} style={{ width: '70px', height: '70px' }}/>
                   <p>{level.text}</p>
                 </div>
               ))}
