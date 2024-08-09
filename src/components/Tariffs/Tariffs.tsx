@@ -15,12 +15,12 @@ const Tariffs: FC<ITariffs> = () => {
           <h2>ВЫБЕРИТЕ <span style={{ color: 'rgb(115, 121, 176)' }}>ТАРИФ</span> И ПОЛУЧИТЕ ВАШИ ПОЛНЫЕ РАСШИФРОВКИ</h2>
         </div>
         <div className={style.tariffs_list}>
-          {tariffs.map((tariff) => (
-            <div className={style.tariffs_block}>
+          {tariffs.map((tariff, index) => (
+            <div className={style.tariffs_block} key={index}>
               <h2 className={style.tariffs_block_title} dangerouslySetInnerHTML={{ __html: tariff.title }}/>
               <ul className={style.tariffs_advantages}>
-                {tariff.advantages.map((advantage) => (
-                  <li>{advantage}</li>
+                {tariff.advantages.map((advantage, index) => (
+                  <li key={index}>{advantage}</li>
                 ))}
               </ul>
               {tariff.additional && (
@@ -39,9 +39,6 @@ const Tariffs: FC<ITariffs> = () => {
               </div>
             </div>
           ))}
-        </div>
-        <div className={style.tariffs_row}>
-          <button className={style.tariffs_row_button}>Рассчитать мою матрицу</button>
         </div>
       </div>
     </section>

@@ -1412,9 +1412,16 @@ background: rgba(255, 255, 255, 0.01);
   }
   .us_number_block{
     width: 100%;
+    height: 100%;
   }
   .us_number_text{
     font-size: 14px;
+  }
+
+  .us_number_block:last-child{
+    max-width: 230px;
+    margin: 0 auto;
+    grid-column: span 2;
   }
 }
 
@@ -1572,6 +1579,14 @@ background: rgba(255, 255, 255, 0.01);
 
   .couple_button {
     width: 100%;
+  }
+
+  .us_number_number{
+    width: 80%;
+  }
+
+  .us_number_grid{
+    gap: 10px;
   }
 }
 
