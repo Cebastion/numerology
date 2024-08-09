@@ -25,6 +25,7 @@
   justify-content: space-between;
   max-width: 700px;
   margin: 40px auto 0;
+  padding: 0 20px;
 }
 
 .user_block {
@@ -98,16 +99,16 @@
 
   box-shadow: 0px 0px 8.9px 0px rgba(165, 170, 214, 0.35);
   background: rgb(255, 255, 255);
+  padding: 10px 5px;
 
   & span {
     color: $txtDark;
     font-family: "Mont Light";
-    font-size: 18px;
+    @include adaptiv-font(18, 16);
     font-weight: 400;
     line-height: 140%;
     letter-spacing: 2%;
     text-align: left;
-    padding: 10px;
     text-align: right;
 
     &:first-child {
@@ -119,17 +120,17 @@
 .header_row_right {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  max-width: 268px;
+  width: 100%;
 
   & span {
     color: $txtDark;
     font-family: "Mont Light";
-    font-size: 18px;
+    @include adaptiv-font(18, 16);
     font-weight: 400;
     line-height: 140%;
     letter-spacing: 2%;
     text-align: left;
-    padding: 10px;
     text-align: right;
 
     &:first-child {
@@ -138,18 +139,33 @@
   }
 }
 
-.chakra_row {
-  font-family: "Mont Semi Bold";
+.table_body {
+  border-radius: 10px;
+
+  /* bg */
+  background: rgb(248, 248, 248);
+  width: 100%;
+  height: 100%;
   margin: 40px 0;
+  padding: 0 10px;
+}
+
+.chakra_row {
+  border-bottom: 1px solid rgb(210, 214, 249);
+  height: 60px;
+  font-family: "Mont Semi Bold";
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   .chakra_numbers {
     span {
       font-family: inherit;
-      font-size: 18px;
+      @include adaptiv-font(18, 16);
       font-weight: 600;
       line-height: 140%;
       letter-spacing: 2%;
@@ -160,13 +176,15 @@
 }
 
 .chakra_numbers {
-  gap: 105px;
+  max-width: 210px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
 .chakra_name {
-  width: 35%;
+  max-width: 196px;
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -174,7 +192,7 @@
 .chakra_name span {
   width: 70%;
   font-family: "Mont Semi Bold";
-  font-size: 18px;
+  @include adaptiv-font(18, 16);
   font-weight: 600;
   line-height: 140%;
   letter-spacing: 2%;
@@ -201,19 +219,121 @@
   box-shadow: 0px 0px 8.9px 0px rgba(165, 170, 214, 0.35);
   background: rgb(255, 255, 255);
 
-  span{
+  span {
     color: $txtDark;
-font-family: "Mont Semi Bold";
-font-size: 18px;
-font-weight: 700;
-line-height: 140%;
-letter-spacing: 2%;
-text-align: left;
+    font-family: "Mont Semi Bold";
+    @include adaptiv-font(18, 16);
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
   }
 }
 
 
-.result_row_right{
+.result_row_right {
   display: flex;
-  gap: 105px;
+  max-width: 210px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.chakra_info {
+  position: relative;
+}
+
+.info_block {
+  z-index: 500;
+  transition: all 1s ease-in-out;
+  display: none;
+  position: absolute;
+  box-shadow: 0 1px 10px 0 rgba(162, 165, 192, 0.2);
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 380px;
+  height: 168px;
+  top: 50%;
+  left: 50%;
+
+  .info_title {
+    h4 {
+      font-family: "Tenor Sans";
+      font-weight: 400;
+      @include adaptiv-font(26, 16);
+      color: $Red;
+    }
+  }
+
+  .info_text {
+    margin-top: 10px;
+    font-family: "Mont Light";
+    font-weight: 700;
+    @include adaptiv-font(16, 12);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $GreyViolet;
+
+    & p:first-child {
+      font-family: "Mont Semi Bold";
+    }
+  }
+}
+
+.chakra_info img{
+  cursor: pointer;
+}
+
+.chakra_info:hover{
+  .info_block{
+    transition: all 1s ease-in-out;
+    display: block;
+  }
+}
+
+
+@media(max-width: 1280px) {
+  .schema {
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .schema_row {
+    flex-direction: column;
+  }
+}
+
+@media(max-width: 620px) {
+  .info_block{
+    width: 234px;
+height: 140px;
+  }
+}
+
+@media(max-width: 525px) {
+  .header_row_right {
+    max-width: 220px;
+  }
+
+  .chakra_numbers,
+  .result_row_right {
+    max-width: 150px;
+  }
+}
+
+@media(max-width: 480px) {
+  .chakra_dot {
+    display: none;
+  }
+}
+
+@media(max-width: 430px) {
+  .info_block{
+    top: 100%;
+    left: -500%;
+  }
 }
