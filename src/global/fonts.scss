@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Mont Light';
+  src: local('Mont Light'), local('Mont Light'),
+      url('../../public/fonts/Mont/72dc5646ece43ee4a23c.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mont Semi Italic';
+  src: local('Mont Semi Italic'), local('Mont Semi Italic'),
+      url('../../public/fonts/Mont/4d0511f256c6e90f3f56.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Mont Semi Bold';
+  src: local('Mont Semi Bold'), local('Mont Semi Bold'),
+      url('../../public/fonts/Mont/0b5e68ebb36ca4006e21.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tenor Sans';
+  src: url('../../public/fonts/TenorSans/bca3021627f0fc4f1ace.ttf');
+  src: local('Tenor Sans'), local('Tenor Sans'),
+      url('../../public/fonts/TenorSans/bca3021627f0fc4f1ace.ttf') format('truetype');
+}

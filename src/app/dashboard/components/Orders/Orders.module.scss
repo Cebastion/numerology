@@ -1,0 +1,156 @@
+@import '../../../../global/colors.scss';
+@import '../../../../global/fonts.scss';
+@import '../../../../global/function.scss';
+
+.content_block {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  width: 413px;
+  height: 445px;
+  box-shadow: 0 4px 13px 0 rgba(170, 173, 202, 0.2);
+  background: #fff;
+}
+
+.block_title {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 14px 13px -8px rgba(170, 173, 202, 0.2);
+  background: #fff;
+
+  h2 {
+    margin-left: 20px;
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $GreyViolet;
+  }
+}
+
+.block_content {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 60%, rgba(255, 255, 255, 1) 100%);
+    pointer-events: none; // чтобы элемент не мешал взаимодействию с контентом
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.5);
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  span {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $GreyViolet;
+  }
+}
+
+
+
+.block_list {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.block_item {
+  cursor: pointer;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  max-height: 98px;
+  height: 100%;
+  background: #f8f8f8;
+}
+
+.item_title {
+  display: flex;
+  align-items: flex-end;
+
+  h4 {
+    margin-right: 20px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $GreyViolet;
+  }
+}
+
+.item_text{
+  span{
+    font-family: "Mont Semi Bold";
+font-weight: 700;
+font-size: 16px;
+line-height: 140%;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+text-align: center;
+color: $txtDark;
+  }
+}
+
+.block_link{
+  font-family: "Mont Light";
+font-weight: 400;
+font-size: 14px;
+line-height: 140%;
+letter-spacing: 0.02em;
+text-decoration: underline !important;
+text-decoration-skip-ink: none;
+color: $GreyViolet;
+text-align: center;
+}
+
+.empty{
+  font-family: "Mont Light";
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+letter-spacing: 0.02em;
+color: $GreyViolet;
+}
+
+@media(max-width: 580px) {
+  .content_block {
+    margin-top: 20px;
+  }
+}

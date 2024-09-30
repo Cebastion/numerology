@@ -1,0 +1,125 @@
+@import '../../global/colors.scss';
+@import '../../global/fonts.scss';
+@import '../../global/function.scss';
+
+.content {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  margin: 50px 0;
+}
+
+.content_title{
+  h1{
+    font-family: "Tenor Sans";
+font-weight: 400;
+@include adaptiv-font(30, 24);
+text-transform: uppercase;
+color: $txtDark;
+text-align: center;
+  }
+}
+
+.blogs_list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog_body {
+  margin-top: 30px;
+  cursor: pointer;
+  max-width: 413px;
+  max-height: 448px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  &:hover{
+    .blog_content{
+      transition: all 0.3s ease-in-out;
+      background: #e0e3ff;
+    }
+
+    .blog_title{
+      transition: all 0.3s ease-in-out;
+      h2{
+        transition: all 0.3s ease-in-out;
+        color: $Violet;
+      }
+    }
+  }
+}
+
+.blog_title {
+  transition: all 0.3s ease-in-out;
+  height: 250px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  padding: 0 10px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 90px;
+    background: linear-gradient(360deg, #f6f7f8 0%, rgba(247, 247, 248, 0) 100%);
+  }
+
+  h2 {
+    transition: all 0.3s ease-in-out;
+    width: 382px;
+    position: relative;
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $txtDark;
+  }
+}
+
+.blog_date {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  span {
+    display: inline-block;
+    margin-right: 20px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $GreyViolet;
+  }
+}
+
+
+.blog_content {
+  transition: all 0.3s ease-in-out;
+  padding: 20px 10px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+.blog_description {
+  margin-top: 10px;
+  max-width: 374px;
+
+  span {
+    font-family: "Mont Light";
+    font-weight: 400;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $txtDark;
+  }
+}

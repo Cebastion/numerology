@@ -1,0 +1,58 @@
+@import '../../../../../global/colors.scss';
+@import '../../../../../global/fonts.scss';
+@import '../../../../../global/function.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.pagination{
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination__container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.pagination__prev, .pagination__next, .pagination__link{
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  box-shadow: 0 0 1px 0 rgba(47, 52, 55, 0.1), -1px 1px 2px 0 rgba(47, 52, 55, 0.09), -2px 3px 2px 0 rgba(47, 52, 55, 0.05), -4px 5px 3px 0 rgba(47, 52, 55, 0.01), -7px 7px 3px 0 rgba(47, 52, 55, 0);
+  background: #fff;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 145%;
+  text-align: center;
+  color: rgba(37, 37, 41, 0.5);
+}
+
+.pagination__prev{
+  svg{
+    transform: rotate(-180deg);
+  }
+}
+
+.pagination__prev, .pagination__next{
+  background: #dcdcdc;
+}
+
+.pagination__link_active{
+  background: $Violet;
+  color: #fff;
+}
+
+.pagination__disabled{
+  opacity: 0.5;
+  svg{
+    color: #dcdcdc;
+  }
+}

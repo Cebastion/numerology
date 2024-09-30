@@ -1,0 +1,96 @@
+@import '../../../../global/colors.scss';
+@import '../../../../global/fonts.scss';
+@import '../../../../global/function.scss';
+
+.content_block {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  width: 413px;
+  height: 445px;
+  box-shadow: 0 4px 13px 0 rgba(170, 173, 202, 0.2);
+  background: #f8f8f8;
+}
+
+.block_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    margin-left: 20px;
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $GreyViolet;
+  }
+}
+
+.block_content {
+  margin-top: 20px;
+  flex: 1 1 auto;
+}
+
+.content_button {
+  border-radius: 100px;
+  padding: 17px 28px;
+  width: 100%;
+  height: 56px;
+  background: radial-gradient(58.9% 106.02% at 27.73% 0%, rgb(179, 186, 251) 0%, rgb(140, 151, 251) 100%);
+  font-family: "Mont Semi Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: $txtLight;
+}
+
+.form_content {
+  input {
+    border-radius: 100px;
+    padding: 17px 28px;
+    width: 100%;
+    height: 56px;
+    background: #fefefe;
+    font-family: "Mont Light";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $GreyViolet;
+
+    &:first-child {
+      margin-bottom: 20px;
+    }
+
+    &:hover{
+      background: #e2e4f5;
+    }
+
+    &:focus{
+      background: #fff;
+      border: 2px solid $Violet;
+    }
+  }
+}
+
+.form_password {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    cursor: pointer;
+  }
+}
+
+@media(max-width: 580px) {
+  .content_block {
+    margin-top: 20px;
+  }
+}

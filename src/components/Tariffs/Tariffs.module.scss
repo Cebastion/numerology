@@ -1,0 +1,326 @@
+@import "../../global/fonts.scss";
+@import "../../global/colors.scss";
+@import "../../global/function.scss";
+
+.content_tariffs {
+  background-color: rgb(233, 239, 248);
+  padding: 80px 20px;
+}
+
+.tariffs_content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tariffs_title {
+  p {
+    color: $LightViolet;
+    font-family: 'Mont Light';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+
+  h2 {
+    margin-top: 20px;
+    display: inline-block;
+    max-width: 741px;
+    color: $txtDark;
+    font-family: 'Tenor Sans';
+    @include adaptiv-font(30, 24);
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0%;
+    text-align: left;
+    text-transform: uppercase;
+  }
+}
+
+.tariffs_list {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.tariffs_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  width: 393px;
+  height: 437px;
+  border-radius: 10px;
+
+  background: radial-gradient(25.46% 73.88% at 18% 0%, rgb(255, 255, 255), rgb(255, 255, 255) 100%);
+
+  &:hover {
+    background: radial-gradient(26.93% 87.66% at 86% 76%, rgb(255, 255, 255), rgb(226, 229, 255) 100%);
+  }
+}
+
+.tariffs_block_title {
+  color: $LightViolet;
+  font-family: 'Mont Semi Bold';
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.tariffs_advantages {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  gap: 20px;
+
+  li {
+    display: flex;
+    color: $txtDark;
+    font-family: 'Mont Light';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 30px;
+      padding: 15px;
+      margin-right: 5px;
+      background-image: url('/image/galochka.svg');
+    }
+  }
+}
+
+.tariffs_additional {
+  margin-bottom: 30px;
+  text-align: center;
+
+  span {
+    color: rgb(140, 151, 251);
+    font-family: 'Mont Light';
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.tariffs_price,
+.tariffs_price_discount {
+  margin-bottom: 30px;
+  color: $LightViolet;
+  font-family: 'Tenor Sans';
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.tariffs_button {
+  button {
+    border-radius: 100px;
+
+    background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
+
+    width: 357px;
+    height: 56px;
+    /* Автолейаут */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 17px 28px 17px 28px;
+    color: $txtLight;
+    font-family: 'Mont Light';
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+
+    &:hover{
+      background: radial-gradient(74.03% 68.01% at 89% 59%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
+    }
+
+    &:active{
+      background: radial-gradient(59.14% 106.28% at 28.000000000000004% 0%,rgb(217, 219, 241),rgb(199, 201, 223) 100%);
+    }
+  }
+}
+
+.tariffs_price_discount {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  span {
+    color: rgb(244, 111, 111);
+    font-family: 'Mont Light';
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0%;
+
+    text-transform: uppercase;
+  }
+
+  & span:first-child {
+    color: rgb(171, 175, 215);
+    font-family: 'Mont Light';
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-decoration-line: line-through;
+    text-transform: uppercase;
+  }
+
+}
+
+.tariffs_row_button {
+  position: relative;
+  margin: 0 auto;
+  background: radial-gradient(30.08% 99.46% at 89% 74%, rgb(179, 186, 251), rgb(140, 151, 251) 100%);
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  color: rgb(247, 251, 254);
+  font-family: "Mont Semi Bold";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -9px;
+    width: 160px;
+    height: 140px;
+    background-image: url('/image/Ellipse.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.tariffs_row_button:hover{
+  background: radial-gradient(37.70% 124.23% at 22% 16%,rgb(184, 217, 255),rgb(140, 191, 251) 100%);
+  transition: all 1s ease; 
+}
+
+.tariffs_row {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tariffs_block {
+  &:nth-child(3) {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: 'Экономия 25%';
+      position: absolute;
+      display: block;
+      background: rgb(255, 247, 177);
+      width: 221px;
+      height: 40px;
+      /* Автолейаут */
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 51px 10px 51px;
+      transform: rotate(42.69deg);
+      top: 25px;
+      right: -64px;
+      color: $LightViolet;
+      font-family: 'Mont Light';
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 140%;
+      letter-spacing: 2%;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  &:nth-child(4) {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: 'Популярное';
+      position: absolute;
+      display: block;
+      background: rgb(177, 255, 190);
+      width: 221px;
+      height: 40px;
+      /* Автолейаут */
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 51px 10px 51px;
+      transform: rotate(42.69deg);
+      top: 25px;
+      right: -64px;
+      color: $LightViolet;
+      font-family: 'Mont Light';
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 140%;
+      letter-spacing: 2%;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+}
+
+@media(max-width: 1000px) {
+  .content_tariffs{
+    padding: 60px 20px;
+  }
+}
+
+@media(max-width: 490px) {
+  .content_tariffs{
+    padding: 40px 10px;
+  }
+}
+
+@media(max-width: 420px) {
+  .tariffs_block {
+    width: 320px;
+  }
+  .tariffs_button{
+    button{
+      width: 100%;
+    }
+  }
+  .tariffs_price, .tariffs_advantages, .tariffs_additional{
+    margin-bottom: 15px;
+  }
+}

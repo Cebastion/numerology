@@ -1,0 +1,122 @@
+@import '../../../../global/colors.scss';
+@import '../../../../global/fonts.scss';
+@import '../../../../global/function.scss';
+
+.content_block {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  width: 413px;
+  height: 100%;
+  box-shadow: 0 4px 13px 0 rgba(170, 173, 202, 0.2);
+  background: #f8f8f8;
+}
+
+.block_title {
+  display: flex;
+  align-items: center;
+
+  h2 {
+    margin-left: 20px;
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $GreyViolet;
+  }
+}
+
+.block_content {
+  margin-top: 20px;
+  flex: 1 1 auto;
+  span {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $GreyViolet;
+  }
+}
+
+.content_button {
+  border-radius: 100px;
+  padding: 17px 28px;
+  width: 100%;
+  height: 56px;
+  background: radial-gradient(58.9% 106.02% at 27.73% 0%, rgb(179, 186, 251) 0%, rgb(140, 151, 251) 100%);
+  font-family: "Mont Semi Bold";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: $txtLight;
+
+  &:active{
+    background: radial-gradient(58.9% 106.02% at 27.73% 0%, rgb(217, 219, 241) 0%, rgb(199, 201, 223) 100%);
+  }
+}
+
+.form{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 30px;
+  input{
+    border-radius: 100px;
+      padding: 17px 28px;
+      max-width: 357px;
+      width: 100%;
+      height: 56px;
+      background: #fefefe;
+      font-family: "Mont Light";
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      color: $GreyViolet;
+
+
+      &:hover{
+        background: #e2e4f5;
+      }
+
+      &:focus{
+        background: #fff;
+        border: 2px solid $Violet;
+      }
+  }
+}
+
+.form_title{
+  position: relative;
+  z-index: 0;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  h3{
+    color: $GreyViolet;
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+font-size: 14px;
+line-height: 140%;
+    letter-spacing: 2%;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.form_sex{
+  & input:last-child{
+    margin-top: 10px;
+  }
+}

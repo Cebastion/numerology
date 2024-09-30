@@ -1,0 +1,47 @@
+@import '../../../../../global/colors.scss';
+@import '../../../../../global/fonts.scss';
+@import '../../../../../global/function.scss';
+
+.block_item {
+  cursor: pointer;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  max-height: 98px;
+  height: 100%;
+  background: #f8f8f8;
+}
+
+.item_title {
+  display: flex;
+  align-items: flex-end;
+
+  h4 {
+    margin-right: 20px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $GreyViolet;
+  }
+}
+
+.item_text{
+  span{
+    font-family: "Mont Semi Bold";
+font-weight: 700;
+font-size: 16px;
+line-height: 140%;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+text-align: center;
+color: $txtDark;
+  }
+}

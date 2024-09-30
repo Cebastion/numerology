@@ -1,0 +1,179 @@
+@import '../../../../global/colors.scss';
+@import '../../../../global/fonts.scss';
+@import '../../../../global/function.scss';
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 20px 0;
+}
+
+.content_body {
+  padding: 0 10px;
+}
+
+.content_title {
+  text-align: center;
+
+  h1 {
+    font-family: "Tenor Sans";
+    font-weight: 400;
+    @include adaptiv-font(30, 24);
+    text-transform: uppercase;
+    text-align: center;
+    color: $txtDark;
+  }
+}
+
+.content_block {
+  margin-top: 20px;
+
+  img {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  h2 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $txtDark;
+  }
+
+  span {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $txtDark;
+  }
+}
+
+.block_images {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+
+  img {
+    border-radius: 10px 10px 0 0;
+    max-height: 300px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.block_quotation {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  height: 318px;
+  padding: 20px;
+  width: 100%;
+  margin-top: 50px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    max-width: 114px;
+    max-height: 114px;
+    width: 100%;
+    height: 100%;
+    background: url("/image/quotes.svg") no-repeat;
+  }
+
+  &::before {
+    top: -15%;
+    left: 0;
+  }
+
+  &::after {
+    bottom: -15%;
+    right: 0;
+  }
+
+  .quotation_text {
+    max-width: 700px;
+
+    span {
+      font-family: "Mont Semi Bold";
+      font-weight: 700;
+      @include adaptiv-font(18, 16);
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      text-align: center;
+      color: $txtDark;
+    }
+  }
+
+  .quotation_author {
+    max-width: 160px;
+
+    span {
+      font-family: "Mont Semi Bold";
+      font-style: italic;
+      font-weight: 800;
+      @include adaptiv-font(18, 16);
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-align: center;
+      color: $GreyViolet;
+    }
+  }
+}
+
+
+.block_conclusion {
+  margin-top: 30px;
+
+  h2 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $txtDark;
+  }
+
+  span {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $txtDark;
+  }
+}
+
+@media(max-width: 480px) {
+  .block_images {
+    flex-direction: column;
+  }
+}
+
+@media(max-width: 420px) {
+  .block_quotation {
+
+    &::before,
+    &::after {
+      max-width: 80px;
+      max-height: 80px;
+      background-size: cover;
+    }
+  }
+}

@@ -1,0 +1,784 @@
+@import '../../global/colors.scss';
+@import '../../global/fonts.scss';
+@import '../../global/function.scss';
+
+.content_title {
+  h1 {
+    /* h2 */
+    text-align: center;
+    color: $txtDark;
+    font-family: "Tenor Sans";
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+    span {
+      color: $LightViolet;
+    }
+  }
+}
+
+.content_user {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+
+.user_block {
+  img{
+    margin-right: 20px;
+  }
+  span {
+    /* body 18 */
+    color: $txtDark;
+    font-family: 'Mont Light';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+
+    b {
+      font-family: "Mont Semi Bold";
+      font-weight: 700;
+    }
+  }
+}
+
+.content_schema {
+  padding: 80px 20px;
+}
+
+.schema_container,
+.destiny_container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.schema_title {
+  h2 {
+    /* h2 */
+    font-family: 'Tenor Sans';
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+      color: $Red;
+    }
+  }
+}
+
+.row_right, .row_left{
+  height: 100%;
+  width: 100%;
+}
+
+.schema_row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.schema_block {
+  margin-top: 40px;
+  border-radius: 10px;
+
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.table_container {
+  width: 100%;
+  height: 100%;
+}
+
+.header_row {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6px;
+
+  box-shadow: 0px 0px 8.9px 0px rgba(165, 170, 214, 0.35);
+  background: rgb(255, 255, 255);
+  padding: 10px 5px;
+
+  & span {
+    color: $txtDark;
+    font-family: "Mont Light";
+    @include adaptiv-font(18, 14);
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+    text-align: right;
+
+    &:first-child {
+      margin-left: 10px;
+      text-align: left;
+    }
+  }
+}
+
+.header_row_right {
+  display: flex;
+  justify-content: space-between;
+  max-width: 50%;
+  width: 100%;
+
+  & span {
+    color: $txtDark;
+    font-family: "Mont Light";
+    @include adaptiv-font(18, 14);
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+    text-align: right;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+}
+
+.table_body {
+  border-radius: 10px;
+
+  /* bg */
+  background: rgb(248, 248, 248);
+  width: 100%;
+  height: 100%;
+  margin: 40px 0;
+  padding: 0 10px;
+}
+
+.chakra_row {
+  border-bottom: 1px solid rgb(210, 214, 249);
+  height: 60px;
+  font-family: "Mont Semi Bold";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .chakra_numbers {
+    span {
+      font-family: inherit;
+      @include adaptiv-font(18, 16);
+      font-weight: 600;
+      line-height: 140%;
+      letter-spacing: 2%;
+      text-align: center;
+      color: $txtDark;
+    }
+  }
+}
+
+.chakra_numbers {
+  max-width: 240px;
+  width: 100%;
+  display: flex;
+  gap: 80px;
+  //justify-content: space-between;
+}
+
+.chakra_name {
+  max-width: 196px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.chakra_name span {
+  width: 70%;
+  font-family: "Mont Semi Bold";
+  @include adaptiv-font(18, 16);
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: 2%;
+  text-align: left;
+}
+
+.chakra_dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chakra_info {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.result_row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 6px;
+
+  box-shadow: 0px 0px 8.9px 0px rgba(165, 170, 214, 0.35);
+  background: rgb(255, 255, 255);
+
+  span {
+    color: $txtDark;
+    font-family: "Mont Semi Bold";
+    @include adaptiv-font(18, 16);
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}
+
+
+.result_row_right {
+  display: flex;
+  max-width: 240px;
+  gap: 80px;
+  width: 100%;
+  //justify-content: space-between;
+}
+
+.chakra_info {
+  position: relative;
+}
+
+.info_block {
+  z-index: 500;
+  transition: all 1s ease-in-out;
+  display: none;
+  position: absolute;
+  box-shadow: 0 1px 10px 0 rgba(162, 165, 192, 0.2);
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 380px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+
+  .info_title {
+    h4 {
+      font-family: "Tenor Sans";
+      font-weight: 400;
+      @include adaptiv-font(26, 16);
+      color: $Red;
+    }
+  }
+
+  .info_text {
+    margin-top: 10px;
+    font-family: "Mont Light";
+    font-weight: 700;
+    @include adaptiv-font(16, 12);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $GreyViolet;
+
+    & p:first-child {
+      font-family: "Mont Semi Bold";
+    }
+  }
+}
+
+.chakra_info img {
+  cursor: pointer;
+}
+
+.chakra_info:hover {
+  .info_block {
+    transition: all 1s ease-in-out;
+    display: block;
+  }
+}
+
+
+.content_destiny {
+  padding: 80px 20px;
+  background: #e9eff8;
+  margin: 0 0 60px 0;
+}
+
+.destiny_row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.destiny_block {
+  background: #f5f9ff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 317px;
+height: 194px;
+}
+
+.destiny_title {
+  h4 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: $GreyViolet;
+  }
+}
+
+.destiny_block_row {
+  display: flex;
+  justify-content: space-around;
+  span{
+    //margin-top: 40px;
+    font-family: "Mont Semi Bold";
+font-weight: 700;
+font-size: 18px;
+line-height: 140%;
+letter-spacing: 0.02em;
+color: $txtDark;
+  }
+}
+
+.destiny_block_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .destiny_block_column_row {
+    //margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+
+
+    span {
+      font-family: "Mont Semi Bold";
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      color: $txtDark;
+    }
+
+    .destiny_block_column_circle{
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #494d59;
+      border-radius: 100px;
+      padding: 10px;
+      width: 52px;
+height: 52px;
+      span{
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.schema{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.destiny_img{
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content_spoiler{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px
+}
+
+.forecast_blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 20px;
+
+  &::after{
+
+    background: radial-gradient(94.16% 115.68% at 100% 32.78%, rgb(255, 255, 255) 0%, rgb(243, 245, 255) 78.18462252616882%, rgb(248, 248, 255) 100%);
+    content: '';
+    position: absolute;
+    z-index: 1;
+    
+    display: block;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: #e0e3ff;
+    
+    display: block;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    transform: rotate(0.8deg);
+  }
+}
+
+.forecast_block, .forecast_sub_block {
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  background: #fefeff;
+}
+
+.forecast_block_title_age {
+  h2 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $txtDark;
+  }
+}
+
+.forecast_block_title {
+  margin-bottom: 20px;
+
+  h2 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: left;
+    color: $GreyViolet;
+  }
+}
+
+.block_plus {
+  h3 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #72b969;
+  }
+}
+
+.block_minus {
+  h3 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #d34645;
+  }
+}
+
+.block_minus,
+.block_plus {
+  margin-top: 20px;
+
+  span {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: "Mont Light";
+    font-weight: 400;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    color: $txtDark;
+  }
+}
+
+.forecast_age{
+  span{
+    font-family: "Mont Semi Bold";
+font-weight: 700;
+@include adaptiv-font(18, 16);
+line-height: 140%;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+color: #9b9fca;
+  }
+}
+
+.forecast_status{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  span{
+    font-family: "Mont Semi Bold";
+font-weight: 700;
+@include adaptiv-font(16, 14);
+line-height: 140%;
+letter-spacing: 0.02em;
+color: #9b9fca;
+  }
+}
+
+.forecast_info{
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forecast_block_column{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.forecast_blocks_unlock{
+  &::before{
+    background: #ebebeb;
+  }
+  &::after{
+    background: radial-gradient(94.16% 115.68% at 100% 32.78%, rgb(255, 255, 255) 0%, rgb(243, 243, 243) 52.49999761581421%, rgb(243, 243, 243) 100%);
+  }
+}
+
+.forecast_blocks_unregistered{
+  &::before{
+    background: #ffe5be;
+  }
+  &::after{
+    background: radial-gradient(94.16% 115.68% at 100% 32.78%, rgb(255, 255, 255) 0%, rgb(243, 245, 255) 78.18462252616882%, rgb(248, 248, 255) 100%);
+  }
+}
+
+
+.block_top, .block_bottom{
+  display: flex;
+  justify-content: space-between;
+}
+
+.block_bottom{
+  margin-top: 20px;
+}
+
+.forecast_block{
+  border-radius: 0;
+  border-top: 1px solid #d2d6f9;
+  border-bottom: 1px solid #d2d6f9;
+}
+
+.block_top_title{
+  display: flex;
+  align-items: center;
+  h4{
+    margin-left: 20px;
+    font-family: "Mont Semi Bold";
+font-weight: 700;
+@include adaptiv-font(18, 16);
+line-height: 140%;
+letter-spacing: 0.02em;
+color: #494d59;
+  }
+}
+
+.block_top_precept{
+  span{
+    font-family: "Mont Semi Bold";
+font-weight: 700;
+@include adaptiv-font(18, 16);
+line-height: 140%;
+letter-spacing: 0.02em;
+color: #d61e8c;
+  }
+}
+
+.block_bottom_traits{
+  span{
+    font-family: "Mont Light";
+font-weight: 400;
+@include adaptiv-font(18, 16);
+line-height: 140%;
+letter-spacing: 0.02em;
+color: $GreyViolet;
+  }
+}
+.block_bottom_result{
+  p{
+    font-family: "Mont Light";
+font-weight: 400;
+@include adaptiv-font(18, 16);
+line-height: 140%;
+letter-spacing: 0.02em;
+text-align: right;
+color: $GreyViolet;
+  }
+}
+
+@media(max-width: 1280px) {
+  .schema {
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .schema_row {
+    flex-direction: column;
+  }
+}
+
+@media(max-width: 770px){
+  .forecast_block{
+    padding: 10px;
+  }
+  .block_top, .block_bottom{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
+  .block_bottom_traits{
+      text-align: center;
+  }
+  .block_bottom_result{
+    margin-top: 10px;
+    p{
+      text-align: center;
+    }
+  }
+}
+
+@media(max-width: 620px) {
+  .info_block {
+    width: 234px;
+    height: 140px;
+  }
+}
+
+@media(max-width: 550px) {
+  .content_user {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+@media(max-width: 525px) {
+  .header_row_right {
+    max-width: 220px;
+  }
+
+  .chakra_numbers,
+  .result_row_right {
+    max-width: 160px;
+    gap: 50px;
+  }
+}
+
+@media(max-width: 480px) {
+  .chakra_dot {
+    display: none;
+  }
+}
+
+@media(max-width: 430px) {
+  .info_block {
+    top: 100%;
+    left: -500%;
+  }
+}
+
+@media(max-width: 415px) {
+  .header_row_right {
+    max-width: 80%;
+  }
+
+  .chakra_numbers,
+  .result_row_right {
+    max-width: 30%;
+    gap: 0;
+    justify-content: space-between;
+  }
+}
+
+
+@media(max-width: 380px) {
+  .content_spoiler{
+    overflow: hidden;
+  }
+  .forecast_blocks{
+    padding: 10px;
+  }
+  .forecast_sub_block{
+    padding: 10px;
+  }
+}
+
+@media(max-width: 330px) {
+  .header_row{
+    & span:first-child{
+      margin-left: 0;
+    }
+  }
+
+  .header_row_right{
+    margin-left: 5px;
+    gap: 5px;
+  }
+}

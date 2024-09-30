@@ -1,0 +1,113 @@
+/*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  transition: all 1s;
+  background-color: rgb(248, 248, 248);
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  transition: all 1s;
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  transition: all 1s;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  transition: all 1s;
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/*--------------------*/
+
+:root {
+  --myColor1: magenta;
+  --myColor2: #00ff00;
+}
+
+.wallpaper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
+}
+
+.content{
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+}
+
+.list li{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  list-style: circle;
+}
+
+
+[class*="__container"] {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* [class*="_content"] {
+  max-width: 1280px;
+  margin: 0 auto;
+} */
