@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC, FormEvent, useState } from 'react'
+import { FC, FormEvent, useEffect, useState } from 'react'
 import style from './page.module.scss'
 import { ValidatorService } from '@/services/validator.service'
 import { IValidSignUp } from '@/interfaces/Validator.interface'
@@ -32,7 +32,7 @@ const page: FC = () => {
 
     if(!NameError && !EmailError && !PasswordError && !PasswordRepeatError) {
       const response = await UserService.SignUp(formValues.Email, formValues.Password, formValues.Name)
-      localStorage.setItem("signup", JSON.stringify({ email: formValues.Email, password: formValues.Password }));
+      sessionStorage.setItem("signup", JSON.stringify({ email: formValues.Email, password: formValues.Password }));
       if (!response.result && response.error) {
         setDirty({ Name: NameError, Email: EmailError, Password: PasswordError, PasswordRepeat: PasswordRepeatError })
       }

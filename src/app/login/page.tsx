@@ -35,7 +35,7 @@ const page: FC = () => {
       try {
         console.log("Form submitted:", formValues)
         const response = await UserService.LogIn(formValues.Email, formValues.Password)
-        localStorage.setItem("login", JSON.stringify({ email: formValues.Email, password: formValues.Password }));
+        sessionStorage.setItem("login", JSON.stringify({ email: formValues.Email, password: formValues.Password }));
         if (!response.result && response.error) {
           setDirty({ Email: true, Password: true })
         }

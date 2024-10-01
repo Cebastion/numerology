@@ -53,22 +53,33 @@ const page: FC = () => {
       const searchParams = urlObject.searchParams
       const invId = searchParams.get('InvId')
       const signatureValue = searchParams.get('SignatureValue')
-  
-      if (token) {
-        if (signatureValue && invId) {
+      const OutSum = searchParams.get('OutSum')
+
+      // Проверяем, был ли этот URL уже проверен
+      const isUrlChecked = localStorage.getItem('checkedUrl')
+
+      if (token && !isUrlChecked) {
+        if (signatureValue && invId && OutSum) {
           const result = await UserService.PayTariffChecked(fullUrl, token)
           if (result) {
+            // Сохраняем проверенный URL
+            localStorage.setItem('checkedUrl', fullUrl)
+
             // Очистка параметров строки запроса
             window.history.replaceState(null, '', window.location.pathname)
-            router.push('/matrix')
+            if (OutSum == '750') {
+              router.push('/matrix')
+            }
+            if (OutSum == '550') {
+              router.push('/forecast')
+            }
           }
         }
       }
     }
-  
+
     CheckedTariff()
   }, [])
-  
 
   console.log(UserData)
 

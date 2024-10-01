@@ -48,8 +48,8 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
   }
 
   function CheckEmail(){
-    const LoginEmail = localStorage.getItem('login')
-    const SignUpEmail = localStorage.getItem('signup')
+    const LoginEmail = sessionStorage.getItem('login')
+    const SignUpEmail = sessionStorage.getItem('signup')
 
     if (LoginEmail || SignUpEmail) {
       if (LoginEmail) {
@@ -66,6 +66,18 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
 
   useEffect(() => {
     CheckEmail()
+  })
+
+  useEffect(() => {
+    const CheckUser = async () => {
+      const token = sessionStorage.getItem('auth_token')
+
+      if (!token) {
+        window.location.href = '/login'
+      }
+    }
+
+    CheckUser()
   })
 
 
