@@ -101,6 +101,9 @@ export default function Home() {
       if(selectMatrix === 'Мужчина') {
         FormMatrix.Gender = 'М'
       }
+
+      FormMatrix.Name = FormMatrix.Name.charAt(0).toUpperCase() + FormMatrix.Name.slice(1).toLowerCase()
+
       localStorage.setItem('matrix', JSON.stringify(FormMatrix))
       router.push('/matrix')
     }
@@ -122,6 +125,9 @@ export default function Home() {
       if(selectForecast === 'Мужчина') {
         FormForecast.Gender = 'М'
       }
+
+      FormForecast.Name = FormForecast.Name.charAt(0).toUpperCase() + FormForecast.Name.slice(1).toLowerCase()
+
       localStorage.setItem('forecast', JSON.stringify(FormForecast))
       router.push('/forecast')
     }

@@ -34,6 +34,8 @@ const Orders: FC = () => {
     GetHistoryOrders()
   }, [])
 
+  console.log(HistoryOrders)
+
   const ConvertTimeStampToDate = (timestamp: number) => {
     const date = new Date(timestamp * 1000)
 
@@ -49,7 +51,7 @@ const Orders: FC = () => {
   const Redirect = (history: IOneUserHistory) => {
     if(history.calculator_type === "age"){
       const UserData = {
-        Name: history.name,
+        Name: history.name.charAt(0).toUpperCase() + history.name.slice(1).toLowerCase(),
         Date: history.birthday,
         Gender: history.gender
       }
@@ -58,7 +60,7 @@ const Orders: FC = () => {
     }
     if(history.calculator_type === "matrix"){
       const UserData = {
-        Name: history.name,
+        Name: history.name.charAt(0).toUpperCase() + history.name.slice(1).toLowerCase(),
         Date: history.birthday,
         Gender: history.gender
       }

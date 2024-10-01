@@ -6,16 +6,12 @@ import Image from 'next/image'
 import { IMatrix } from '@/interfaces/Matrix.inteface'
 import OpenBLock from '../assets/OpenBlock.svg'
 import Tariffs from '@/components/Tariffs/Tariffs'
-import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 
 const page: FC = () => {
   const [UserData, SetUserData] = useState()
   const [UserInfo, SetUserInfo] = useState<IMatrix>()
   const [openIndex, SetOpenIndex] = useState([0])
-  const [IsToken, SetIsToken] = useState(false)
-  const router = useRouter()
-  const pathname = usePathname();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,10 +22,11 @@ const page: FC = () => {
         SetUserInfo(UserDataParse)
         if (token) {
           const data = await CalculateService.CalculateYears(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name, token)
+          if(data["paid_version"]) {
+            SetOpenIndex([12, 1, 2, 3, 4, 5])
+          }
           console.log(data)
           SetUserData(data)
-          SetIsToken(true)
-          SetOpenIndex([12, 1, 2, 3, 4, 5])
         } else {
           const data = await CalculateService.CalculateYears(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
           console.log(data)
@@ -69,6 +66,7 @@ const page: FC = () => {
   }
 
   console.log(UserData)
+  console.log(UserData && UserData[Object.keys(UserData)[1]]["Суть года, основной мотив"]["В плюсе"])
 
   return (
     <div className={style.content}>
@@ -89,24 +87,24 @@ const page: FC = () => {
         </div>
         <div className={style.content_forecast}>
           <div className={style.forecast_title}>
-            <h2>{!IsToken && 'Бесплатный'} прогноз на <span>{new Date().getFullYear()} - {new Date().getFullYear() + 7}</span></h2>
+            <h2>{UserData && UserData["paid_version"] && 'Бесплатный'} прогноз на <span>{new Date().getFullYear()} - {new Date().getFullYear() + 7}</span></h2>
           </div>
           <div className={style.forecast_column}>
             <div className={style.forecast_blocks}>
               <div className={style.forecast_block}>
                 <div className={style.forecast_block_title_age}>
-                  <h2>{UserData && Object.keys(UserData)[0]}</h2>
+                  <h2>{UserData && Object.keys(UserData)[1]}</h2>
                 </div>
                 <div className={style.forecast_block_title}>
                   <h2>Суть года, основной мотив</h2>
                 </div>
                 <div className={style.block_plus}>
                   <h3>В плюсе</h3>
-                  <span>{UserData && UserData[Object.keys(UserData)[0]]["Суть года, основной мотив"]["В плюсе"]}</span>
+                  <span>{UserData && UserData[Object.keys(UserData)[1]]["Суть года, основной мотив"]["В плюсе"]}</span>
                 </div>
                 <div className={style.block_minus}>
                   <h3>В минусе</h3>
-                  <span>{UserData && UserData[Object.keys(UserData)[0]]["Суть года, основной мотив"]["В минусе"]}</span>
+                  <span>{UserData && UserData[Object.keys(UserData)[1]]["Суть года, основной мотив"]["В минусе"]}</span>
                 </div>
               </div>
               <div className={style.forecast_block}>
@@ -115,15 +113,15 @@ const page: FC = () => {
                 </div>
                 <div className={style.block_plus}>
                   <h3>В плюсе</h3>
-                  <span>{UserData && UserData[Object.keys(UserData)[0]]["Причины событий"]["В плюсе"]}</span>
+                  <span>{UserData && UserData[Object.keys(UserData)[1]]["Причины событий"]["В плюсе"]}</span>
                 </div>
                 <div className={style.block_minus}>
                   <h3>В минусе</h3>
-                  <span>{UserData && UserData[Object.keys(UserData)[0]]["Причины событий"]["В минусе"]}</span>
+                  <span>{UserData && UserData[Object.keys(UserData)[1]]["Причины событий"]["В минусе"]}</span>
                 </div>
               </div>
             </div>
-            <div className={`${style.forecast_blocks} ${IsToken ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(12)}>
+            <div className={`${style.forecast_blocks} ${UserData &&UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(12)}>
               <div className={style.forecast_info}>
                 <div className={style.forecast_age}>
                   <span>{new Date().getFullYear() + 1} - {new Date().getFullYear() + 2}</span>
@@ -134,62 +132,7 @@ const page: FC = () => {
                 </div>
               </div>
               <div style={{ display: openIndex.find((i) => i === 12) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
-                {!IsToken && (
-                  <div className={style.forecast_sub_block}>
-                    <div className={style.forecast_block}>
-                      <div className={style.block_plus}>
-                        <span>{UserData && UserData[Object.keys(UserData)[1]]}</span>
-                      </div>
-                      <div className={style.block_continue} onClick={() => RedirectTariffs()}>
-                        <span>Читать продолжение</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {IsToken && (
-                  <>
-                    <div className={style.forecast_block}>
-                      <div className={style.forecast_block_title}>
-                        <h2>Суть года, основной мотив</h2>
-                      </div>
-                      <div className={style.block_plus}>
-                        <h3>В плюсе</h3>
-                        <span>{UserData && UserData[Object.keys(UserData)[1]]["Суть года, основной мотив"]["В плюсе"]}</span>
-                      </div>
-                      <div className={style.block_minus}>
-                        <h3>В минусе</h3>
-                        <span>{UserData && UserData[Object.keys(UserData)[1]]["Суть года, основной мотив"]["В минусе"]}</span>
-                      </div>
-                    </div>
-                    <div className={style.forecast_block}>
-                      <div className={style.forecast_block_title}>
-                        <h2>Причины событий</h2>
-                      </div>
-                      <div className={style.block_plus}>
-                        <h3>В плюсе</h3>
-                        <span>{UserData && UserData[Object.keys(UserData)[1]]["Причины событий"]["В плюсе"]}</span>
-                      </div>
-                      <div className={style.block_minus}>
-                        <h3>В минусе</h3>
-                        <span>{UserData && UserData[Object.keys(UserData)[1]]["Причины событий"]["В минусе"]}</span>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div >
-            </div>
-            <div className={`${style.forecast_blocks} ${IsToken ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(1)}>
-              <div className={style.forecast_info}>
-                <div className={style.forecast_age}>
-                  <span>{new Date().getFullYear() + 2} - {new Date().getFullYear() + 3}</span>
-                </div>
-                <div className={`${style.forecast_status} ${style.forecast_status_open}`}>
-                  <span>Блок открыт</span>
-                  <Image src={OpenBLock} width={24} height={24} alt='open' />
-                </div>
-              </div>
-              <div style={{ display: openIndex.find((i) => i === 1) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
-                {!IsToken && (
+                {UserData && !UserData["paid_version"] && (
                   <div className={style.forecast_sub_block}>
                     <div className={style.forecast_block}>
                       <div className={style.block_plus}>
@@ -201,7 +144,7 @@ const page: FC = () => {
                     </div>
                   </div>
                 )}
-                {IsToken && (
+                {UserData && UserData["paid_version"] && (
                   <>
                     <div className={style.forecast_block}>
                       <div className={style.forecast_block_title}>
@@ -233,18 +176,18 @@ const page: FC = () => {
                 )}
               </div >
             </div>
-            <div className={`${style.forecast_blocks} ${IsToken ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(2)}>
+            <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(1)}>
               <div className={style.forecast_info}>
                 <div className={style.forecast_age}>
-                  <span>{new Date().getFullYear() + 4}</span>
+                  <span>{new Date().getFullYear() + 2} - {new Date().getFullYear() + 3}</span>
                 </div>
                 <div className={`${style.forecast_status} ${style.forecast_status_open}`}>
                   <span>Блок открыт</span>
                   <Image src={OpenBLock} width={24} height={24} alt='open' />
                 </div>
               </div>
-              <div style={{ display: openIndex.find((i) => i === 2) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
-                {!IsToken && (
+              <div style={{ display: openIndex.find((i) => i === 1) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
+                {UserData && !UserData["paid_version"] && (
                   <div className={style.forecast_sub_block}>
                     <div className={style.forecast_block}>
                       <div className={style.block_plus}>
@@ -256,7 +199,7 @@ const page: FC = () => {
                     </div>
                   </div>
                 )}
-                {IsToken && (
+                {UserData && UserData["paid_version"] && (
                   <>
                     <div className={style.forecast_block}>
                       <div className={style.forecast_block_title}>
@@ -288,18 +231,18 @@ const page: FC = () => {
                 )}
               </div >
             </div>
-            <div className={`${style.forecast_blocks} ${IsToken ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(3)}>
+            <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(2)}>
               <div className={style.forecast_info}>
                 <div className={style.forecast_age}>
-                  <span>{new Date().getFullYear() + 4} - {new Date().getFullYear() + 5}</span>
+                  <span>{new Date().getFullYear() + 4}</span>
                 </div>
                 <div className={`${style.forecast_status} ${style.forecast_status_open}`}>
                   <span>Блок открыт</span>
                   <Image src={OpenBLock} width={24} height={24} alt='open' />
                 </div>
               </div>
-              <div style={{ display: openIndex.find((i) => i === 3) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
-                {!IsToken && (
+              <div style={{ display: openIndex.find((i) => i === 2) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
+                {UserData && !UserData["paid_version"] && (
                   <div className={style.forecast_sub_block}>
                     <div className={style.forecast_block}>
                       <div className={style.block_plus}>
@@ -311,7 +254,7 @@ const page: FC = () => {
                     </div>
                   </div>
                 )}
-                {IsToken && (
+                {UserData && UserData["paid_version"] && (
                   <>
                     <div className={style.forecast_block}>
                       <div className={style.forecast_block_title}>
@@ -343,18 +286,18 @@ const page: FC = () => {
                 )}
               </div >
             </div>
-            <div className={`${style.forecast_blocks} ${IsToken ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(4)}>
+            <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(3)}>
               <div className={style.forecast_info}>
                 <div className={style.forecast_age}>
-                  <span>{new Date().getFullYear() + 5} - {new Date().getFullYear() + 6}</span>
+                  <span>{new Date().getFullYear() + 4} - {new Date().getFullYear() + 5}</span>
                 </div>
                 <div className={`${style.forecast_status} ${style.forecast_status_open}`}>
                   <span>Блок открыт</span>
                   <Image src={OpenBLock} width={24} height={24} alt='open' />
                 </div>
               </div>
-              <div style={{ display: openIndex.find((i) => i === 4) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
-                {!IsToken && (
+              <div style={{ display: openIndex.find((i) => i === 3) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
+                {UserData && !UserData["paid_version"] && (
                   <div className={style.forecast_sub_block}>
                     <div className={style.forecast_block}>
                       <div className={style.block_plus}>
@@ -366,7 +309,7 @@ const page: FC = () => {
                     </div>
                   </div>
                 )}
-                {IsToken && (
+                {UserData && UserData["paid_version"] && (
                   <>
                     <div className={style.forecast_block}>
                       <div className={style.forecast_block_title}>
@@ -398,18 +341,18 @@ const page: FC = () => {
                 )}
               </div >
             </div>
-            <div className={`${style.forecast_blocks} ${IsToken ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(5)}>
+            <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(4)}>
               <div className={style.forecast_info}>
                 <div className={style.forecast_age}>
-                  <span>{new Date().getFullYear() + 6} - {new Date().getFullYear() + 7}</span>
+                  <span>{new Date().getFullYear() + 5} - {new Date().getFullYear() + 6}</span>
                 </div>
                 <div className={`${style.forecast_status} ${style.forecast_status_open}`}>
                   <span>Блок открыт</span>
                   <Image src={OpenBLock} width={24} height={24} alt='open' />
                 </div>
               </div>
-              <div style={{ display: openIndex.find((i) => i === 5) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
-                {!IsToken && (
+              <div style={{ display: openIndex.find((i) => i === 4) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
+                {UserData && !UserData["paid_version"] && (
                   <div className={style.forecast_sub_block}>
                     <div className={style.forecast_block}>
                       <div className={style.block_plus}>
@@ -421,7 +364,7 @@ const page: FC = () => {
                     </div>
                   </div>
                 )}
-                {IsToken && (
+                {UserData && UserData["paid_version"] && (
                   <>
                     <div className={style.forecast_block}>
                       <div className={style.forecast_block_title}>
@@ -447,6 +390,61 @@ const page: FC = () => {
                       <div className={style.block_minus}>
                         <h3>В минусе</h3>
                         <span>{UserData && UserData[Object.keys(UserData)[6]]["Причины событий"]["В минусе"]}</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div >
+            </div>
+            <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(5)}>
+              <div className={style.forecast_info}>
+                <div className={style.forecast_age}>
+                  <span>{new Date().getFullYear() + 6} - {new Date().getFullYear() + 7}</span>
+                </div>
+                <div className={`${style.forecast_status} ${style.forecast_status_open}`}>
+                  <span>Блок открыт</span>
+                  <Image src={OpenBLock} width={24} height={24} alt='open' />
+                </div>
+              </div>
+              <div style={{ display: openIndex.find((i) => i === 5) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
+                {UserData && !UserData["paid_version"] && (
+                  <div className={style.forecast_sub_block}>
+                    <div className={style.forecast_block}>
+                      <div className={style.block_plus}>
+                        <span>{UserData && UserData[Object.keys(UserData)[7]]}</span>
+                      </div>
+                      <div className={style.block_continue} onClick={() => RedirectTariffs()}>
+                        <span>Читать продолжение</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {UserData && UserData["paid_version"] && (
+                  <>
+                    <div className={style.forecast_block}>
+                      <div className={style.forecast_block_title}>
+                        <h2>Суть года, основной мотив</h2>
+                      </div>
+                      <div className={style.block_plus}>
+                        <h3>В плюсе</h3>
+                        <span>{UserData && UserData[Object.keys(UserData)[7]]["Суть года, основной мотив"]["В плюсе"]}</span>
+                      </div>
+                      <div className={style.block_minus}>
+                        <h3>В минусе</h3>
+                        <span>{UserData && UserData[Object.keys(UserData)[7]]["Суть года, основной мотив"]["В минусе"]}</span>
+                      </div>
+                    </div>
+                    <div className={style.forecast_block}>
+                      <div className={style.forecast_block_title}>
+                        <h2>Причины событий</h2>
+                      </div>
+                      <div className={style.block_plus}>
+                        <h3>В плюсе</h3>
+                        <span>{UserData && UserData[Object.keys(UserData)[7]]["Причины событий"]["В плюсе"]}</span>
+                      </div>
+                      <div className={style.block_minus}>
+                        <h3>В минусе</h3>
+                        <span>{UserData && UserData[Object.keys(UserData)[7]]["Причины событий"]["В минусе"]}</span>
                       </div>
                     </div>
                   </>
