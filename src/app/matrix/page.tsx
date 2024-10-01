@@ -34,30 +34,34 @@ const matrix: FC = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const LocalUserData = localStorage.getItem('matrix')
-      const token = sessionStorage.getItem('auth_token')
-      if (LocalUserData) {
-        const UserDataParse = JSON.parse(LocalUserData)
-        console.log(UserDataParse)
-        setUserMatrix(UserDataParse)
-        const points = await ArcanaService.GenerateArcana(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
-        setPoints(points)
-        if (token) {
-          const data = await CalculateService.CalculateFate(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name, token)
-          if(data["paid_version"]) {
-            setOpenIndex([12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+      try {
+        const LocalUserData = localStorage.getItem('matrix')
+        const token = sessionStorage.getItem('auth_token')
+        if (LocalUserData) {
+          const UserDataParse = JSON.parse(LocalUserData)
+          setUserMatrix(UserDataParse)
+          if (token) {
+            const data = await CalculateService.CalculateFate(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name, token)
+            if (data["paid_version"]) {
+              setOpenIndex([12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+            }
+            const UserNotParse = localStorage.getItem('UserData')
+            if (UserNotParse) {
+              const UserParse = JSON.parse(UserNotParse)
+              SetUserData(data)
+              SetUser(UserParse)
+            }
           }
-          const UserNotParse = localStorage.getItem('UserData')
-          if (UserNotParse) {
-            const UserParse = JSON.parse(UserNotParse)
+          if (!token || token === null) {
+            //console.log(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
+            const data = await CalculateService.CalculateFate(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
             SetUserData(data)
-            SetUser(UserParse)
           }
-        } else {
-          console.log(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
-          const data = await CalculateService.CalculateFate(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
-          SetUserData(data)
+          const points = await ArcanaService.GenerateArcana(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
+          setPoints(points)
         }
+      } catch (error) {
+        console.error("Error: ", error)
       }
     }
 
@@ -480,7 +484,7 @@ const matrix: FC = () => {
               <div style={{ display: openIndex.find((i) => i === 2) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
                 <div className={`${style.forecast_sub_block} ${style.forecast_sub_block_full_background}`}>
                   <div className={style.sub_block_title}>
-                    <h4>{UserData &&  Object.keys(UserData["Прошлая жизнь"])[0].split(':')[0].trim()}: <span style={{ color: '#494d59' }}>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[1].trim()}</span></h4>
+                    <h4>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[0].trim()}: <span style={{ color: '#494d59' }}>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[1].trim()}</span></h4>
                   </div>
                   <div className={style.sub_block_text}>
                     <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[0]]}</span>

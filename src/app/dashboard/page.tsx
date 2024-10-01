@@ -53,19 +53,22 @@ const page: FC = () => {
       const searchParams = urlObject.searchParams
       const invId = searchParams.get('InvId')
       const signatureValue = searchParams.get('SignatureValue')
-      
+  
       if (token) {
         if (signatureValue && invId) {
           const result = await UserService.PayTariffChecked(fullUrl, token)
           if (result) {
+            // Очистка параметров строки запроса
+            window.history.replaceState(null, '', window.location.pathname)
             router.push('/matrix')
           }
         }
       }
     }
-
+  
     CheckedTariff()
-  })
+  }, [])
+  
 
   console.log(UserData)
 
