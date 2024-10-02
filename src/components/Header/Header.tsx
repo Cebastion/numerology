@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import style from './Header.module.scss'
 import { usePathname } from 'next/navigation'
+import React from 'react'
 
 const Header: FC = () => {
   const [showMenu, setShowMenu] = useState(false)

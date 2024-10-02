@@ -23,17 +23,23 @@ const page: FC = () => {
         try {
           if (token) {
             console.log(token)
-            const User = await UserService.GetUser(token)
+            try {
+              const User = await UserService.GetUser(token)
 
-            if (!User) {
+              if (!User) {
+                router.push('/login')
+              }
+
+              SetUserData(User)
+
+              const UserJSON = JSON.stringify(User)
+
+              localStorage.setItem("UserData", UserJSON)
+            } catch (error) {
               router.push('/login')
+              localStorage.removeItem('UserData')
+              alert("Произошла ошибка, пожалуйста попробуйте еще раз")
             }
-
-            SetUserData(User)
-
-            const UserJSON = JSON.stringify(User)
-
-            localStorage.setItem("UserData", UserJSON)
           }
         } catch (error) {
           router.push('/login')
@@ -44,42 +50,6 @@ const page: FC = () => {
     }
   }, [])
 
-
-  useEffect(() => {
-    async function CheckedTariff() {
-      const token = sessionStorage.getItem('auth_token')
-      const fullUrl = window.location.href
-      const urlObject = new URL(fullUrl)
-      const searchParams = urlObject.searchParams
-      const invId = searchParams.get('InvId')
-      const signatureValue = searchParams.get('SignatureValue')
-      const OutSum = searchParams.get('OutSum')
-
-      // Проверяем, был ли этот URL уже проверен
-      const isUrlChecked = localStorage.getItem('checkedUrl')
-
-      if (token && !isUrlChecked) {
-        if (signatureValue && invId && OutSum) {
-          const result = await UserService.PayTariffChecked(fullUrl, token)
-          if (result) {
-            // Сохраняем проверенный URL
-            localStorage.setItem('checkedUrl', fullUrl)
-
-            // Очистка параметров строки запроса
-            window.history.replaceState(null, '', window.location.pathname)
-            if (OutSum == '750') {
-              router.push('/matrix')
-            }
-            if (OutSum == '550') {
-              router.push('/forecast')
-            }
-          }
-        }
-      }
-    }
-
-    CheckedTariff()
-  }, [])
 
   console.log(UserData)
 

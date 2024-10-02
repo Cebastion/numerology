@@ -44,5 +44,8 @@ export interface ISchema {
   Y: number,
   T1: number,
   T2: number,
-  T3: number
+  T3: number,
+  Y_2: number, 
+  X_2: number,
+  LP1_2: number,
 }

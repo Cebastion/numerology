@@ -3,6 +3,7 @@ import style from './ResetPassword.module.scss'
 import { ISendCode } from '@/interfaces/SendCode.interface'
 import { UserService } from '@/services/user.service'
 import Link from 'next/link'
+import React from 'react'
 
 interface IResetPassword {
   SetOpen: (value: any) => void
@@ -15,10 +16,10 @@ const ResetPassword: FC<IResetPassword> = ({SetOpen}) => {
   const SendCode = async () => {
     try {
       if (FormSendCode.email && FormSendCode.code) {
-        const error = await UserService.SendCodeEmail(FormSendCode.email, FormSendCode.code)
-        if (error) {
-          return
-        }
+        //const error = await UserService.SendCodeEmail(FormSendCode.email, FormSendCode.code)
+        // if (error) {
+        //   return
+        // }
       }
     } catch (e) {
     }

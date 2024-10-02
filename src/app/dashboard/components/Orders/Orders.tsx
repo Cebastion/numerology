@@ -17,7 +17,9 @@ const Orders: FC = () => {
         try {
           const response = await UserService.GetHistoryUser(token)
           SetHistoryOrders(response)
-          setErrorMessage(null) // Сбрасываем ошибку, если запрос успешен
+          if (!response) {
+            window.location.assign('/login')
+          }
         } catch (error: any) {
           window.location.assign('/login')
           if (error.response && error.response.status === 400) {

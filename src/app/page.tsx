@@ -26,6 +26,7 @@ export default function Home() {
   const faqRefs = useRef<(HTMLDivElement | null)[]>([])
   const faqBlockRef = useRef<HTMLDivElement | null>(null)
   const MatrixBlockRef = useRef<HTMLDivElement | null>(null)
+  const ForecastBlockRef = useRef<HTMLDivElement | null>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const router = useRouter()
 
@@ -428,7 +429,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id='forecast' className={`${style.content_forecast} ${style.content_reg}`}>
+        <section id='forecast' ref={ForecastBlockRef} className={`${style.content_forecast} ${style.content_reg}`}>
           <div className={`${style.forecast_content} ${style.reg_content}`}>
             <div className={`${style.forecast_title} ${style.reg_title}`}>
               <h1>Расчет прогноза на 10 лет</h1>
@@ -596,7 +597,15 @@ export default function Home() {
                     )}
                   </div>
                   <div className={style.tariffs_button}>
-                    <button onClick={() => RedirectTariff(tariff.id)}>Выбрать</button>
+                    <button onClick={() => {
+                      if(tariff.id === 1) {
+                        MatrixBlockRef.current?.scrollIntoView({ behavior: 'smooth' })
+                      } else if(tariff.id === 2) {
+                        ForecastBlockRef.current?.scrollIntoView({ behavior: 'smooth' })
+                      } else {
+                        MatrixBlockRef.current?.scrollIntoView({ behavior: 'smooth' })
+                      }
+                    }}>Выбрать</button>
                   </div>
                 </div>
               ))}

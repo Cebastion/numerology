@@ -10,5 +10,18 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.url));
   }
 
+  // Пример ошибки истекшей сессии
+  const sessionExpiredError = {
+    error: "Сессия истекла. Авторизуйтесь в личный кабинет снова.",
+    error_type: "BadRequest",
+    result: false
+  };
+
+  // Проверка на ошибку истечения сессии
+  if (sessionExpiredError.error_type === 'BadRequest' && sessionExpiredError.error.includes('Сессия истекла')) {
+    // Перенаправление на страницу логина, если сессия истекла
+    return NextResponse.redirect(new URL('/login', req.url));
+  }
+
   return NextResponse.next();
 }

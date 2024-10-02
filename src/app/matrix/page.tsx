@@ -59,9 +59,13 @@ const matrix: FC = () => {
           }
           const points = await ArcanaService.GenerateArcana(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
           setPoints(points)
+        } else {
+          window.location.href = '/#matrix'
         }
       } catch (error) {
-        console.error("Error: ", error)
+        window.location.href = '/#matrix'
+        localStorage.removeItem('matrix')
+        alert("Произошла ошибка, пожалуйста попробуйте еще раз")
       }
     }
 
@@ -183,7 +187,7 @@ const matrix: FC = () => {
                         </div>
                       </div>
                       <div className={style.chakra_numbers}>
-                        <span>{points?.X}</span>
+                        <span>{points?.X_2}</span>
                         <span>{points?.X}</span>
                         <span>{points?.K3}</span>
                       </div>
@@ -370,8 +374,8 @@ const matrix: FC = () => {
                   <span>Соц</span>
                 </div>
                 <div className={style.destiny_img}>
-                  <div className="LN point-text">{points?.LP1}</div>
-                  <div className="LZ point-text">{points?.Y}</div>
+                  <div className="LN point-text">{points?.LP1_2}</div>
+                  <div className="LZ point-text">{points?.Y_2}</div>
                   <div className="LP1 point-text">{points?.LP3}</div>
                   <Image src={`/image/destiny.png`} width={300} height={150} alt="destiny" />
                 </div>

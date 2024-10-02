@@ -25,8 +25,7 @@ export class ArcanaService {
           timeout: 5000,
         },
       );
-
-      console.log(data);
+      
       return data;
       
     } catch (error: any) {

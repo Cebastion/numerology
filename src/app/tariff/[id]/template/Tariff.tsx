@@ -31,6 +31,7 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
       const forecast = localStorage.getItem('forecast')
       const matrix = localStorage.getItem('matrix')
       const token = sessionStorage.getItem('auth_token')
+      console.log(matrix)
       if(forecast && tariff){
         if(token){
           const UserData = JSON.parse(forecast)
@@ -66,7 +67,7 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
 
   useEffect(() => {
     CheckEmail()
-  })
+  }, [])
 
   useEffect(() => {
     const CheckUser = async () => {
@@ -78,7 +79,7 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
     }
 
     CheckUser()
-  })
+  }, [])
 
 
   return (

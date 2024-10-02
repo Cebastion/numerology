@@ -16,22 +16,30 @@ const page: FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const UserData = localStorage.getItem('forecast')
-      if (UserData) {
-        const UserDataParse = JSON.parse(UserData)
-        const token = sessionStorage.getItem('auth_token')
-        SetUserInfo(UserDataParse)
-        if (token) {
-          const data = await CalculateService.CalculateYears(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name, token)
-          if(data["paid_version"]) {
-            SetOpenIndex([12, 1, 2, 3, 4, 5])
+      try {
+        if (UserData) {
+          const UserDataParse = JSON.parse(UserData)
+          const token = sessionStorage.getItem('auth_token')
+          SetUserInfo(UserDataParse)
+          if (token) {
+            const data = await CalculateService.CalculateYears(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name, token)
+            if (data["paid_version"]) {
+              SetOpenIndex([12, 1, 2, 3, 4, 5])
+            }
+            console.log(data)
+            SetUserData(data)
+          } else {
+            const data = await CalculateService.CalculateYears(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
+            console.log(data)
+            SetUserData(data)
           }
-          console.log(data)
-          SetUserData(data)
         } else {
-          const data = await CalculateService.CalculateYears(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
-          console.log(data)
-          SetUserData(data)
+          window.location.href = '/#forecast'
         }
+      } catch (error) {
+        window.location.href = '/#forecast'
+        localStorage.removeItem('forecast')
+        alert("Произошла ошибка, пожалуйста попробуйте еще раз")
       }
     }
 
@@ -121,7 +129,7 @@ const page: FC = () => {
                 </div>
               </div>
             </div>
-            <div className={`${style.forecast_blocks} ${UserData &&UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(12)}>
+            <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(12)}>
               <div className={style.forecast_info}>
                 <div className={style.forecast_age}>
                   <span>{new Date().getFullYear() + 1} - {new Date().getFullYear() + 2}</span>
@@ -396,7 +404,7 @@ const page: FC = () => {
                 )}
               </div >
             </div>
-            <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(5)}>
+            {/* <div className={`${style.forecast_blocks} ${UserData && UserData["paid_version"] ? '' : style.forecast_block_half}`} onClick={() => ToggleOpenIndex(5)}>
               <div className={style.forecast_info}>
                 <div className={style.forecast_age}>
                   <span>{new Date().getFullYear() + 6} - {new Date().getFullYear() + 7}</span>
@@ -450,7 +458,7 @@ const page: FC = () => {
                   </>
                 )}
               </div >
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
