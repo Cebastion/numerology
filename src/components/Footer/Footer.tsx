@@ -1,11 +1,20 @@
+'use client'
 import Link from 'next/link'
 import { FC } from 'react'
 import style from './Footer.module.scss'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 const Footer: FC = () => {
+  const pathname = usePathname()
+
+  const isActive = (path: string) => {
+    const regex = new RegExp(`^${path.replace(/:\w+/g, '\\d+')}$`)
+    return regex.test(pathname)
+  }
+
   return (
-    <footer className={style.footer}>
+    <footer className={style.footer} style={isActive('/purchase') ? { display: 'none' } : { backgroundColor: 'flex' }}>
       <div className={style.footer_container}>
         <div className={style.footer_menu}>
           <div className={style.menu_column}>

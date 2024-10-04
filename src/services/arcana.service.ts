@@ -32,6 +32,9 @@ export class ArcanaService {
       // Handling any potential errors
       console.error('Error:', error);
 
+      alert("Произошла ошибка, пожалуйста попробуйте еще раз")
+      window.location.assign('/#matrix');
+
       if (error.response) {
         console.error('Error response data:', error.response.data);
         console.error('Error response status:', error.response.status);

@@ -45,7 +45,7 @@ const Header: FC = () => {
 
   return (
     <>
-      <header className={style.header}>
+      <header className={style.header} style={isActive('/purchase') ? { display: 'none' } : { backgroundColor: 'flex' }}>
         <div className={style.header__container}>
           <ul className={style.header__menu}>
             <li style={{ display: widthWindow > 540 ? 'block' : 'none' }} className={isActive('/') ? style.header__menu_li_active : ''}>

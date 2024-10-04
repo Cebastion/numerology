@@ -28,23 +28,43 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
     setDirty({ Email: EmailError, IsChecked: !isChecked })
 
     if (!EmailError && isChecked) {
-      const forecast = localStorage.getItem('forecast')
-      const matrix = localStorage.getItem('matrix')
+      const forecast = sessionStorage.getItem('forecast')
+      const matrix = sessionStorage.getItem('matrix')
       const token = sessionStorage.getItem('auth_token')
-      console.log(matrix)
       if(forecast && tariff){
         if(token){
           const UserData = JSON.parse(forecast)
           await UserService.PayTariff(token, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+          console.log("Forecast")
+          return;
+        }
+        if(!token) {
+          const UserData = JSON.parse(forecast)
+          const NewToken = await UserService.FastRegistrationUser(formValues.Email, UserData.Name)
+          if(NewToken) {
+            await UserService.PayTariff(NewToken, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+            console.log("Forecast New")
+            return;
+          }
         }
       }
       if(matrix && tariff){
         if(token){
           const UserData = JSON.parse(matrix)
           await UserService.PayTariff(token, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+          console.log("Matrix")
+          return;
+        }
+        if(!token) {
+          const UserData = JSON.parse(matrix)
+          const NewToken = await UserService.FastRegistrationUser(formValues.Email, UserData.Name)
+          if(NewToken) {
+            await UserService.PayTariff(NewToken, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+            console.log("Matrix New")
+            return;
+          }
         }
       }
-      console.log('Form submitted:', formValues)
     }
   }
 
@@ -67,18 +87,6 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
 
   useEffect(() => {
     CheckEmail()
-  }, [])
-
-  useEffect(() => {
-    const CheckUser = async () => {
-      const token = sessionStorage.getItem('auth_token')
-
-      if (!token) {
-        window.location.href = '/login'
-      }
-    }
-
-    CheckUser()
   }, [])
 
 

@@ -15,7 +15,8 @@ const page: FC = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const UserData = localStorage.getItem('forecast')
+      sessionStorage.removeItem('matrix')
+      const UserData = sessionStorage.getItem('forecast')
       try {
         if (UserData) {
           const UserDataParse = JSON.parse(UserData)
@@ -38,7 +39,7 @@ const page: FC = () => {
         }
       } catch (error) {
         window.location.href = '/#forecast'
-        localStorage.removeItem('forecast')
+        sessionStorage.removeItem('forecast')
         alert("Произошла ошибка, пожалуйста попробуйте еще раз")
       }
     }

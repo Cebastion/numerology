@@ -30,6 +30,7 @@ export class CalculateService {
 
         // Проверка на истечение сессии и редирект
         if (errorData.error === "Сессия истекла. Авторизуйтесь в личный кабинет снова.") {
+          alert("Сессия истекла. Авторизуйтесь в личный кабинет снова")
           window.location.assign('/login');
         }
 
@@ -71,6 +72,7 @@ export class CalculateService {
 
         // Проверка на истечение сессии и редирект
         if (errorData.error === "Сессия истекла. Авторизуйтесь в личный кабинет снова.") {
+          alert("Сессия истекла. Авторизуйтесь в личный кабинет снова")
           window.location.assign('/login');
         }
 

@@ -23,7 +23,8 @@ const Order: FC<IOneInstanceUserHistory> = ({history}) => {
         Date: history.birthday,
         Gender: history.gender
       }
-      localStorage.setItem('forecast', JSON.stringify(UserData))
+      sessionStorage.setItem('forecast', JSON.stringify(UserData))
+      sessionStorage.removeItem('matrix')
       window.location.assign('/forecast')
     }
     if(history.calculator_type === "matrix"){
@@ -32,7 +33,8 @@ const Order: FC<IOneInstanceUserHistory> = ({history}) => {
         Date: history.birthday,
         Gender: history.gender
       }
-      localStorage.setItem('matrix', JSON.stringify(UserData))
+      sessionStorage.setItem('matrix', JSON.stringify(UserData))
+      sessionStorage.removeItem('forecast')
       window.location.assign('/matrix')
     }
   }

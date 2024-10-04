@@ -35,13 +35,17 @@ const matrix: FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const LocalUserData = localStorage.getItem('matrix')
+        sessionStorage.removeItem('forecast')
+        const LocalUserData = sessionStorage.getItem('matrix')
         const token = sessionStorage.getItem('auth_token')
         if (LocalUserData) {
           const UserDataParse = JSON.parse(LocalUserData)
           setUserMatrix(UserDataParse)
           if (token) {
             const data = await CalculateService.CalculateFate(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name, token)
+            if (!data) {
+              window.location.href = '/#matrix'
+            }
             if (data["paid_version"]) {
               setOpenIndex([12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
             }
@@ -53,18 +57,23 @@ const matrix: FC = () => {
             }
           }
           if (!token || token === null) {
-            //console.log(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
             const data = await CalculateService.CalculateFate(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
+            if (!data) {
+              window.location.href = '/#matrix'
+            }
             SetUserData(data)
           }
           const points = await ArcanaService.GenerateArcana(UserDataParse.Date, UserDataParse.Gender, UserDataParse.Name)
+          if (!points) {
+            window.location.href = '/#matrix'
+          }
           setPoints(points)
         } else {
           window.location.href = '/#matrix'
         }
       } catch (error) {
         window.location.href = '/#matrix'
-        localStorage.removeItem('matrix')
+        sessionStorage.removeItem('matrix')
         alert("Произошла ошибка, пожалуйста попробуйте еще раз")
       }
     }
@@ -487,14 +496,29 @@ const matrix: FC = () => {
               </div>
               <div style={{ display: openIndex.find((i) => i === 2) ? 'flex' : 'none' }} className={`${style.forecast_block_column}`}>
                 <div className={`${style.forecast_sub_block} ${style.forecast_sub_block_full_background}`}>
-                  <div className={style.sub_block_title}>
-                    <h4>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[0].trim()}: <span style={{ color: '#494d59' }}>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[1].trim()}</span></h4>
-                  </div>
-                  <div className={style.sub_block_text}>
-                    <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[0]]}</span>
-                    <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[1]]}</span>
-                    <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[2]]}</span>
-                  </div>
+                  {UserData?.["Прошлая жизнь"] && Object.keys(UserData["Прошлая жизнь"]).length > 0 ? (
+                    <>
+                      <div className={style.sub_block_title}>
+                        <h4>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[0].trim()}: <span style={{ color: '#494d59' }}>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[1].trim()}</span></h4>
+                      </div>
+                      <div className={style.sub_block_text}>
+                        <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[0]]}</span>
+                        <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[1]]}</span>
+                        <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[2]]}</span>
+                      </div>
+                    </>
+                  ) :
+                    <>
+                      <div className={style.sub_block_title}>
+                        <h4>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[0].trim()}: <span style={{ color: '#494d59' }}>{UserData && Object.keys(UserData["Прошлая жизнь"])[0].split(':')[1].trim()}</span></h4>
+                      </div>
+                      <div className={style.sub_block_text}>
+                        <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[0]]}</span>
+                        <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[1]]}</span>
+                        <span>{UserData && UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]][Object.keys(UserData["Прошлая жизнь"][Object.keys(UserData["Прошлая жизнь"])[0]])[2]]}</span>
+                      </div>
+                    </>
+                  }
                 </div>
               </div >
             </div>

@@ -1,27 +1,41 @@
-import { IPayTariff, IResultPayTariff } from '@/interfaces/PayTariff.inteface';
-import { IToken } from '@/interfaces/Token.interface';
-import { IUser } from '@/interfaces/User.interface';
-import { IManyUserHistory } from '@/interfaces/UserHistory.interface';
-import axios from 'axios';
+import { IPayTariff, IResultPayTariff } from '@/interfaces/PayTariff.inteface'
+import { IToken } from '@/interfaces/Token.interface'
+import { IUser } from '@/interfaces/User.interface'
+import { IManyUserHistory } from '@/interfaces/UserHistory.interface'
+import axios from 'axios'
 
 export class UserService {
-  
+
   static delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  static GeneratePassword() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()'
+    const passwordLength = 10
+    let password = ''
+
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length)
+      password += characters[randomIndex]
+    }
+
+    return password
   }
 
   // Общий метод для проверки истекшей сессии
   static handleSessionExpired(errorData: any) {
     if (errorData.error_type === 'BadRequest' && errorData.error.includes('Сессия истекла')) {
       // Перенаправляем пользователя на страницу логина
-      window.location.assign('/login');
+      alert("Сессия истекла. Авторизуйтесь в личный кабинет снова")
+      window.location.assign('/login')
       return {
         error: errorData.error,
         error_type: errorData.error_type,
         result: errorData.result
-      };
+      }
     }
-    return null;
+    return null
   }
 
   static async GetUser(auth_token: string) {
@@ -31,15 +45,15 @@ export class UserService {
           accept: 'application/json',
           apiKey: auth_token
         }
-      });
-      return data;
+      })
+      return data
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       }
-      return error;
+      return error
     }
   }
 
@@ -50,15 +64,15 @@ export class UserService {
           accept: 'application/json',
           apiKey: auth_token
         }
-      });
-      return data;
+      })
+      return data
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       }
-      return error;
+      return error
     }
   }
 
@@ -69,36 +83,36 @@ export class UserService {
           accept: 'application/json',
           apiKey: auth_token
         }
-      });
-      return data;
+      })
+      return data
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       }
-      return error;
+      return error
     }
   }
 
   static async LogIn(email: string, password: string) {
     try {
-      const { data } = await axios.post<IToken>('https://matrix-map.ru:5000/api/login', { email, password });
-      sessionStorage.setItem('auth_token', data.auth_token);
-      console.log(data.auth_token);
-      window.location.assign('/dashboard');
-      return { result: true };
+      const { data } = await axios.post<IToken>('https://matrix-map.ru:5000/api/login', { email, password })
+      sessionStorage.setItem('auth_token', data.auth_token)
+      console.log(data.auth_token)
+      window.location.assign('/dashboard')
+      return { result: true }
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       } else {
-        console.error("Произошла ошибка без ответа от сервера:", error.message);
+        console.error("Произошла ошибка без ответа от сервера:", error.message)
         return {
           error: "Unknown error",
           result: false
-        };
+        }
       }
     }
   }
@@ -110,73 +124,74 @@ export class UserService {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         }
-      });
-      sessionStorage.setItem('auth_token', data.auth_token);
-      window.location.assign('/dashboard');
-      return { result: true };
+      })
+      sessionStorage.setItem('auth_token', data.auth_token)
+      window.location.assign('/dashboard')
+      return { result: true }
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       } else {
-        console.error("Произошла ошибка без ответа от сервера:", error.message);
+        console.error("Произошла ошибка без ответа от сервера:", error.message)
         return {
           error: "Unknown error",
           result: false
-        };
+        }
       }
     }
   }
 
   static async ResetAccount(token: string, new_password: string, again_new_password: string) {
-    await this.delay(5000);
+    await this.delay(5000)
     try {
-      const { data } = await axios.put('https://matrix-map.ru:5000/api/user/data', 
+      const { data } = await axios.put('https://matrix-map.ru:5000/api/user/data',
         JSON.stringify({ new_password, again_new_password }), {
         headers: {
           'Content-Type': 'application/json',
           accept: 'application/json',
           apiKey: token
         }
-      });
-      return data;
+      })
+      return data
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       } else {
-        console.error("Произошла ошибка без ответа от сервера:", error.message);
+        console.error("Произошла ошибка без ответа от сервера:", error.message)
         return {
           error: "Unknown error",
           result: false
-        };
+        }
       }
     }
   }
 
   static async PayTariff(token: string, direction: string, birthday?: string, gender?: string, name?: string) {
     try {
-      const { data } = await axios.post<IPayTariff>('https://matrix-map.ru:5000/api/payments', 
+      const { data } = await axios.post<IPayTariff>('https://matrix-map.ru:5000/api/payments',
         { direction, birthday, gender, name }, {
         headers: {
           accept: 'application/json',
           apiKey: token
         }
-      });
-      window.open(data.link, '_blank');
+      })
+      window.location.href = data.link
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       } else {
-        console.error("Произошла ошибка без ответа от сервера:", error.message);
+        console.error("Произошла ошибка без ответа от сервера:", error.message)
+        window.location.assign('/login')
         return {
           error: "Unknown error",
           result: false
-        };
+        }
       }
     }
   }
@@ -189,19 +204,42 @@ export class UserService {
           accept: 'application/json',
           apiKey: token
         }
-      });
-      return data.result;
+      })
+      return data.result
     } catch (error: any) {
       if (error.response && error.response.data) {
-        const sessionError = this.handleSessionExpired(error.response.data);
-        if (sessionError) return sessionError;
-        return error.response.data;
+        const sessionError = this.handleSessionExpired(error.response.data)
+        if (sessionError) return sessionError
+        return error.response.data
       } else {
-        console.error("Произошла ошибка без ответа от сервера:", error.message);
+        console.error("Произошла ошибка без ответа от сервера:", error.message)
         return {
           error: "Unknown error",
           result: false
-        };
+        }
+      }
+    }
+  }
+
+
+  static async FastRegistrationUser(email: string, name: string) {
+    try {
+      const password = this.GeneratePassword()
+
+      const { data } = await axios.post<IToken>('https://matrix-map.ru:5000/api/register', { email, name, password }, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+
+      sessionStorage.setItem('auth_token', data.auth_token)
+
+      return data.auth_token
+    } catch (error:any) {
+      if (error.response && error.response.data.error === "Указанный пользователь уже зарегистрирован.") {
+        window.location.assign('/login')
+        alert("Пользователь с таким email уже зарегистрирован. Авторизуйтесь в личный кабинет.")
       }
     }
   }
