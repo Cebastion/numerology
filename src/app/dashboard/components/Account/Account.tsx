@@ -35,6 +35,7 @@ const Account: FC<IUser> = (User: IUser) => {
         const result = await UserService.ResetAccount(token, formValues.Password, formValues.PasswordRepeat)
         console.log("Form submitted:", formValues, token)
         console.log(result)
+        alert("Смена пароля произошла успешно")
       }
     }
   }
@@ -53,7 +54,7 @@ const Account: FC<IUser> = (User: IUser) => {
       <div className={style.block_content}>
         <form onSubmit={ResetAccount} className={style.form_content}>
           <input className={Dirty.Name ? style.form_name_error : ''} type="text" placeholder={User.name} value={formValues.Name} onChange={(e) => setFormValues({ ...formValues, Name: e.target.value })} />
-          <input className={Dirty.Email ? style.form_email_error : ''} type="email" placeholder='Введите ваш e-mal*' value={formValues.Email} onChange={(e) => setFormValues({ ...formValues, Email: e.target.value })} />
+          <input disabled className={Dirty.Email ? style.form_email_error : ''} type="email" placeholder='Введите ваш e-mal*' value={formValues.Email} onChange={(e) => setFormValues({ ...formValues, Email: e.target.value })} />
           <div style={{ marginTop: '20px' }} className={style.form_password}>
             <input className={Dirty.Password ? style.form_password_error : ''} type={ShowPassword ? 'text' : 'password'} placeholder='Новый пароль*' value={formValues.Password} onChange={(e) => setFormValues({ ...formValues, Password: e.target.value })} />
             {ShowPassword ? <Image src={'/image/EyeOn.svg'} width={24} height={24} alt='eye' onClick={TogglePassword} /> : <Image src={'/image/EyeOff.svg'} width={24} height={24} alt='eye' onClick={TogglePassword} />}

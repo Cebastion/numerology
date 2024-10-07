@@ -95,11 +95,11 @@ export default function Home() {
 
     SetDirtyMatrix({ Name: NameError, Date: DateError })
 
-    if(!NameError && !DateError) {
-      if(selectMatrix === 'Женщина') {
+    if (!NameError && !DateError) {
+      if (selectMatrix === 'Женщина') {
         FormMatrix.Gender = 'Ж'
       }
-      if(selectMatrix === 'Мужчина') {
+      if (selectMatrix === 'Мужчина') {
         FormMatrix.Gender = 'М'
       }
 
@@ -119,11 +119,11 @@ export default function Home() {
 
     SetDirtyForecast({ Name: NameError, Date: DateError })
 
-    if(!NameError && !DateError) {
-      if(selectForecast === 'Женщина') {
+    if (!NameError && !DateError) {
+      if (selectForecast === 'Женщина') {
         FormForecast.Gender = 'Ж'
       }
-      if(selectForecast === 'Мужчина') {
+      if (selectForecast === 'Мужчина') {
         FormForecast.Gender = 'М'
       }
 
@@ -145,24 +145,43 @@ export default function Home() {
 
     SetDirtyCompatibility({ WomanName: WomanNameError, WomanDate: WomanDateError, ManName: ManNameError, ManDate: ManDateError })
 
-    if(!WomanNameError && !WomanNameError && !ManNameError && !ManDateError) {
+    if (!WomanNameError && !WomanNameError && !ManNameError && !ManDateError) {
       console.log("Form submitted:", FormCompatibility)
       router.push('/compatibility')
     }
 
   }
 
-  const handleDateChange = (e: ChangeEvent<HTMLInputElement>, formName: string, fieldName: string) => {
-    let value = e.target.value.replace(/\D/g, ''); // Удаляем все нецифровые символы
-    
-    // Добавляем точки после второй и пятой цифры
-    if (value.length > 1) value = value.slice(0, 2) + '.' + value.slice(2);
-    if (value.length > 4) value = value.slice(0, 5) + '.' + value.slice(5, 9);
-  
-    // Обрезаем строку, чтобы она не превышала длину 10 символов
+
+
+
+
+
+
+  const handleDateChange = (e: ChangeEvent<HTMLInputElement>, formName: string, fieldName: string): void => {
+    const input = e.target;
+    let value = input.value.replace(/\D/g, ''); // Удаляем все нецифровые символы
+
+    // Сохраняем текущую позицию каретки
+    let cursorPosition = input.selectionStart || 0;
+
+    // Определяем количество точек перед кареткой
+    const dotsBeforeCursor = (input.value.slice(0, cursorPosition).match(/\./g) || []).length;
+
+    // Добавляем точки для форматирования даты
+    if (value.length > 2) value = value.slice(0, 2) + '.' + value.slice(2);
+    if (value.length > 5) value = value.slice(0, 5) + '.' + value.slice(5);
+
+    // Обрезаем строку, чтобы она не превышала длину 10 символов (DD.MM.YYYY)
     if (value.length > 10) value = value.slice(0, 10);
-  
-    // Обновляем соответствующую форму
+
+    // Вычисляем количество точек в строке после форматирования
+    const formattedDots = (value.slice(0, cursorPosition).match(/\./g) || []).length;
+
+    // Корректируем позицию каретки с учётом добавленных точек
+    cursorPosition += formattedDots - dotsBeforeCursor;
+
+    // Обновляем значение в форме
     if (formName === 'formMatrix') {
       SetFormMatrix({ ...FormMatrix, [fieldName]: value });
     } else if (formName === 'formForecast') {
@@ -170,7 +189,14 @@ export default function Home() {
     } else if (formName === 'formCompatibility') {
       SetFormCompatibility({ ...FormCompatibility, [fieldName]: value });
     }
+
+    // Восстанавливаем позицию каретки после форматирования
+    setTimeout(() => input.setSelectionRange(cursorPosition, cursorPosition), 0);
   };
+
+
+
+
 
   return (
     <main className="content">
@@ -189,7 +215,7 @@ export default function Home() {
                   border: '2px solid rgb(251, 140, 140)',
                   borderRadius: '100px',
                   background: 'rgb(255, 255, 255)'
-                } : undefined} value={FormMatrix.Name} onChange={(e) => SetFormMatrix({ ...FormMatrix, Name: e.target.value })}/>
+                } : undefined} value={FormMatrix.Name} onChange={(e) => SetFormMatrix({ ...FormMatrix, Name: e.target.value })} />
                 <input pattern="\d{2}\.\d{2}\.\d{4}" type="text" placeholder='Введите дату рождения*' style={DirtyMatrix.Date ? {
                   boxSizing: 'border-box',
                   border: '2px solid rgb(251, 140, 140)',
@@ -598,9 +624,9 @@ export default function Home() {
                   </div>
                   <div className={style.tariffs_button}>
                     <button onClick={() => {
-                      if(tariff.id === 1) {
+                      if (tariff.id === 1) {
                         MatrixBlockRef.current?.scrollIntoView({ behavior: 'smooth' })
-                      } else if(tariff.id === 2) {
+                      } else if (tariff.id === 2) {
                         ForecastBlockRef.current?.scrollIntoView({ behavior: 'smooth' })
                       } else {
                         MatrixBlockRef.current?.scrollIntoView({ behavior: 'smooth' })

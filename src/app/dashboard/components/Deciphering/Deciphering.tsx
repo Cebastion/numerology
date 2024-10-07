@@ -39,25 +39,39 @@ const Deciphering: FC = () => {
     ManDate: '',
   })
 
-  const handleDateChange = (e: ChangeEvent<HTMLInputElement>, formName: string, fieldName: string) => {
-    let value = e.target.value.replace(/\D/g, '') // Удаляем все нецифровые символы
+  const handleDateChange = (e: ChangeEvent<HTMLInputElement>, formName: string, fieldName: string): void => {
+    const input = e.target;
+    let value = input.value.replace(/\D/g, ''); // Удаляем все нецифровые символы
 
-    // Добавляем точки после второй и пятой цифры
-    if (value.length > 1) value = value.slice(0, 2) + '.' + value.slice(2)
-    if (value.length > 4) value = value.slice(0, 5) + '.' + value.slice(5, 9)
+    // Сохраняем текущую позицию каретки
+    let cursorPosition = input.selectionStart || 0;
+
+    // Восстанавливаем формат даты с пустыми символами там, где не хватает цифр
+    let formattedValue = value.padEnd(8, '_'); // Если не хватает цифр, добавляем "_"
+
+    // Добавляем точки после второго и пятого символов для форматирования
+    if (formattedValue.length > 2) {
+      formattedValue = formattedValue.slice(0, 2) + '.' + formattedValue.slice(2);
+    }
+    if (formattedValue.length > 5) {
+      formattedValue = formattedValue.slice(0, 5) + '.' + formattedValue.slice(5);
+    }
 
     // Обрезаем строку, чтобы она не превышала длину 10 символов
-    if (value.length > 10) value = value.slice(0, 10)
+    if (formattedValue.length > 10) formattedValue = formattedValue.slice(0, 10);
 
-    // Обновляем соответствующую форму
+    // Обновляем форму с новым значением
     if (formName === 'formMatrix') {
-      SetFormMatrix({ ...FormMatrix, [fieldName]: value })
+      SetFormMatrix({ ...FormMatrix, [fieldName]: formattedValue });
     } else if (formName === 'formForecast') {
-      SetFormForecast({ ...FormForecast, [fieldName]: value })
+      SetFormForecast({ ...FormForecast, [fieldName]: formattedValue });
     } else if (formName === 'formCompatibility') {
-      SetFormCompatibility({ ...FormCompatibility, [fieldName]: value })
+      SetFormCompatibility({ ...FormCompatibility, [fieldName]: formattedValue });
     }
-  }
+
+    // Восстанавливаем позицию каретки после форматирования
+    setTimeout(() => input.setSelectionRange(cursorPosition, cursorPosition), 0);
+  };
 
   const Redirect = (select: string) => {
     if (select === 'Матрица судьбы') {
@@ -158,7 +172,7 @@ const Deciphering: FC = () => {
           </form>
         )}
         {select === 'Совместимость' && (
-          <form style={{gap: '30px'}} className={style.form}>
+          <form style={{ gap: '30px' }} className={style.form}>
             <div className={style.form_sex}>
               <div className={style.form_title}>
                 <Image src={'/image/woman.svg'} width={24} height={24} alt="woman" />
