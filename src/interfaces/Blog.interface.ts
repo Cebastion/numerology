@@ -1,23 +1,24 @@
 export interface IBlog {
   id: number
   date: string
-  core_img: string
   title: string
-  img_1: string
-  text_title: string
-  texts: {
-      title: string
-      text_1: string
-      img_1?: string
-      img_2?: string
-      text_2?: string
+  img: string
+  text_1:string
+  text_2?: string
+  paragraph: {
+    title:string
+    text:string[]
+    list?:{
+        title:string
+        text: string
     }[]
-  img_2: string
-  quotation: {
-    auth: string
-    text: string
-  }
-  conclusion: string
+    paragraph_mini?: {
+      title:string
+      text:string
+    }[]
+    text_end?:string
+  }[]
+  conclusion?: string
 }
 
 export interface IBlogs {

@@ -36,23 +36,81 @@ const page = ({ params }: BlogPageProps) => {
             </div>
             <div className={style.content_body}>
               <div className={style.content_block}>
-                <Image src={Blog.img_1} alt="block_1" width={1064} height={480} />
-                <span>{Blog.text_title}</span>
+                {Blog.text_1 && <span style={{marginBottom: "20px"}}>{Blog.text_1}</span>}
+                <Image src={Blog.img} alt="block_1" width={1064} height={480} />
+                {Blog.text_2 && (<span>{Blog.text_2}</span>)}
               </div>
-              {Blog.texts.map((text) => (
+              {Blog.paragraph.map((item) => (
                 <div className={style.content_block}>
-                  <h2>{text.title}</h2>
-                  <span>{text.text_1}</span>
-                  {text.img_1 && text.img_2 && (
-                    <div className={style.block_images}>
-                    <Image src={text.img_1} alt="Blog" width={300} height={300} />
-                    <Image src={text.img_2} alt="Blog" width={300} height={300} />
-                  </div>
-                  )}
-                  {text.text_2 && <span>{text.text_2}</span>}
+                  <h2>{item.title}</h2>
+                  {item.text.map(item_text => (
+                    <p>{item_text}</p>
+                  ))}
+                  {item.paragraph_mini?.map(sub_item => (
+                    <div className={style.content_block} style={{paddingLeft: "20px"}}>
+                      <h2>{sub_item.title}</h2>
+                      <span>{sub_item.text}</span>
+                    </div>
+                  ))}
+                  {item.list && (
+  <ul style={{ paddingLeft: "0", margin: "0" }}>
+    {item.list?.map((sub_item) => (
+      <li
+        className={style.content_block}
+        style={{
+          display: "flex", // Используем flexbox
+          alignItems: "center", // Выравниваем по центру по вертикали
+          marginLeft: "20px",
+          fontSize: "20px",
+          position: "relative",
+          flexDirection: "row"
+        }}
+      >
+        {/* Создаем маркер вручную */}
+        <span
+          style={{
+            width: "10px",
+            height: "10px",
+            backgroundColor: "black",
+            borderRadius: "50%",
+            display: "inline-block",
+            marginRight: "15px", // Отступ для маркера
+          }}
+        ></span>
+
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <h2>{sub_item.title}</h2>
+          <span>{sub_item.text}</span>
+        </div>
+      </li>
+    ))}
+  </ul>
+)}
+
+                  {item.text_end && (<span>{item.text_end}</span>)}
                 </div>
               ))}
-              <div className={style.content_block}>
+              {Blog.conclusion && (
+                <div className={style.block_conclusion}>
+                <h2>Вывод</h2>
+                <span>{Blog.conclusion}</span>
+              </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default page
+
+
+/*
+
+
+<div className={style.content_block}>
                 <Image src="/image/blog_2.png" alt="Blog" width={1064} height={480} />
                 <div className={style.block_quotation}>
                   <div className={style.quotation_text}>
@@ -63,16 +121,4 @@ const page = ({ params }: BlogPageProps) => {
                   </div>
                 </div>
               </div>
-              <div className={style.block_conclusion}>
-                <h2>Вывод</h2>
-                <span>{Blog.conclusion}</span>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  )
-}
-
-export default page
+*/

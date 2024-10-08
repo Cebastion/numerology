@@ -27,6 +27,8 @@
 
 .content_block {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 
   img {
     border-radius: 10px 10px 0 0;
@@ -44,7 +46,7 @@
     color: $txtDark;
   }
 
-  span {
+  span, p {
     display: inline-block;
     margin-top: 20px;
     font-family: "Mont Light";
