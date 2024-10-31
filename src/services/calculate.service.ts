@@ -1,3 +1,4 @@
+import { IError } from '@/interfaces/Error.interface';
 import axios from 'axios'
 import { useRouter } from 'next/router';
 
@@ -8,7 +9,8 @@ export class CalculateService {
 
   static async CalculateYears(birthday: string, gender: string, name: string, auth_token?: string) {
     try {
-      const { data } = await axios.post('https://matrix-map.ru:5000/api/calculate/years',
+      name = name.replace(/\s+/g, "")
+      const { data } = await axios.post('https://matrix-map.ru/api/calculate/years',
         { birthday, gender, name },
         {
           headers: {
@@ -21,37 +23,19 @@ export class CalculateService {
 
       return data
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        const errorData = error.response.data
-
-        console.error("Ошибка:", errorData.error)
-        console.error("Тип ошибки:", errorData.error_type)
-        console.error("Результат:", errorData.result)
-
-        // Проверка на истечение сессии и редирект
-        if (errorData.error === "Сессия истекла. Авторизуйтесь в личный кабинет снова.") {
-          alert("Сессия истекла. Авторизуйтесь в личный кабинет снова")
-          window.location.assign('/login');
-        }
-
-        return {
-          error: errorData.error,
-          error_type: errorData.error_type,
-          result: errorData.result
-        }
-      } else {
-        console.error("Произошла ошибка без ответа от сервера:", error.message)
-        return {
-          error: "Unknown error",
-          result: false
-        }
+      if (axios.isAxiosError(error) && error.response) {
+        const Error = error.response.data
+        alert(Error.error)
+        window.location.assign("/#forecast")
       }
     }
   }
 
   static async CalculateFate(birthday: string, gender: string, name: string, auth_token?: string) {
     try {
-      const { data } = await axios.post('https://matrix-map.ru:5000/api/calculate/fate',
+      name = name.replace(/\s+/g, "")
+      console.log(name)
+      const { data } = await axios.post('https://matrix-map.ru/api/calculate/fate',
         { birthday, gender, name },
         {
           headers: {
@@ -63,30 +47,11 @@ export class CalculateService {
       console.log(data)
       return data
     } catch (error: any) {
-      if (error.response && error.response.data) {
-        const errorData = error.response.data
-
-        console.error("Ошибка:", errorData.error)
-        console.error("Тип ошибки:", errorData.error_type)
-        console.error("Результат:", errorData.result)
-
-        // Проверка на истечение сессии и редирект
-        if (errorData.error === "Сессия истекла. Авторизуйтесь в личный кабинет снова.") {
-          alert("Сессия истекла. Авторизуйтесь в личный кабинет снова")
-          window.location.assign('/login');
-        }
-
-        return {
-          error: errorData.error,
-          error_type: errorData.error_type,
-          result: errorData.result
-        }
-      } else {
-        console.error("Произошла ошибка без ответа от сервера:", error.message)
-        return {
-          error: "Unknown error",
-          result: false
-        }
+      if (axios.isAxiosError(error) && error.response?.status === 400) {
+        console.error(error)
+        const Error = error.response.data
+        alert(Error.error)
+        window.location.assign("/#matrix")
       }
     }
   }

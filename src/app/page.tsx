@@ -158,6 +158,11 @@ export default function Home() {
 
 
 
+
+
+
+
+
   const handleDateChange = (e: ChangeEvent<HTMLInputElement>, formName: string, fieldName: string): void => {
     const input = e.target;
     let value = input.value.replace(/\D/g, ''); // Удаляем все нецифровые символы
@@ -165,21 +170,21 @@ export default function Home() {
     // Сохраняем текущую позицию каретки
     let cursorPosition = input.selectionStart || 0;
 
-    // Определяем количество точек перед кареткой
-    const dotsBeforeCursor = (input.value.slice(0, cursorPosition).match(/\./g) || []).length;
+    // Проверяем, была ли каретка перед вставкой точки после второго или четвёртого символа
+    const isCursorBeforeSecondDot = cursorPosition === 2;
+    const isCursorBeforeFifthDot = cursorPosition === 5;
 
-    // Добавляем точки для форматирования даты
-    if (value.length > 2) value = value.slice(0, 2) + '.' + value.slice(2);
-    if (value.length > 5) value = value.slice(0, 5) + '.' + value.slice(5);
+    // Принудительно добавляем точки после двух и четырёх цифр
+    if (value.length >= 2) value = value.slice(0, 2) + '.' + value.slice(2);
+    if (value.length >= 5) value = value.slice(0, 5) + '.' + value.slice(5);
 
-    // Обрезаем строку, чтобы она не превышала длину 10 символов (DD.MM.YYYY)
-    if (value.length > 10) value = value.slice(0, 10);
+    // Ограничиваем строку до 10 символов (формат DD.MM.YYYY)
+    value = value.slice(0, 10);
 
-    // Вычисляем количество точек в строке после форматирования
-    const formattedDots = (value.slice(0, cursorPosition).match(/\./g) || []).length;
-
-    // Корректируем позицию каретки с учётом добавленных точек
-    cursorPosition += formattedDots - dotsBeforeCursor;
+    // Устанавливаем позицию каретки сразу после точки, если она была добавлена
+    if (isCursorBeforeSecondDot || isCursorBeforeFifthDot) {
+      cursorPosition++;
+    }
 
     // Обновляем значение в форме
     if (formName === 'formMatrix') {
@@ -193,6 +198,10 @@ export default function Home() {
     // Восстанавливаем позицию каретки после форматирования
     setTimeout(() => input.setSelectionRange(cursorPosition, cursorPosition), 0);
   };
+
+
+
+
 
 
 
@@ -405,7 +414,7 @@ export default function Home() {
                   </div>
                   <div className={style.material_block_number}>2</div>
                 </div>
-                <div className={style.material_block}>
+                {/*<div className={style.material_block}>
                   <div className={style.material_info}>
                     <h2 className={style.material_block_title}>МАТРИЦА СОВМЕСТИМОСТИ:</h2>
                     <div className={style.material_text}>
@@ -416,7 +425,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className={style.material_block_number}>3</div>
-                </div>
+                </div>*/}
               </div>
               <Image src={'/image/book.png'} width={1136} height={800} alt='book' />
             </div>
@@ -431,7 +440,7 @@ export default function Home() {
                   <h3>ПОДАРКИ</h3>
                 </div>
                 <div className={style.recognise_text}>
-                  <span>Рабочая тетрадь для практической проработки инсайтов.В нее входят:Чек листы, таблицы, упражнения, индивидуальные медитации</span>
+                  <span>Рабочая тетрадь для практической проработки инсайтов. В нее входят: Чек листы, таблицы, упражнения, индивидуальные медитации</span>
                 </div>
               </div>
               <div className={`${style.recognise_block} ${style.recognise_block_material}`}>
@@ -440,7 +449,7 @@ export default function Home() {
                   <h3>СТРУКТУРу</h3>
                 </div>
                 <div className={style.recognise_text}>
-                  <span>Вся информация, интуитивно понятна и структурированна.Ее приятно и легко изучать.Описание делится на подробную часть и основные тезисы</span>
+                  <span>Вся информация, интуитивно понятна и структурированна. Ее приятно и легко изучать. Описание делится на подробную часть и основные тезисы</span>
                 </div>
               </div>
               <div className={`${style.recognise_block} ${style.recognise_block_material}`}>
@@ -459,7 +468,7 @@ export default function Home() {
           <div className={`${style.forecast_content} ${style.reg_content}`}>
             <div className={`${style.forecast_title} ${style.reg_title}`}>
               <h1>Расчет прогноза на 10 лет</h1>
-              <p>Глубокоя расшифровка вашей личности</p>
+              <p>Глубокaя расшифровка вашей личности</p>
               <p>Узнайте на какие события обратить внимание в определенный год вашего рождения, что вас может ожидать, на что можно надеяться и чего следует опасаться</p>
             </div>
             <form onSubmit={RedirectForecast} className={`${style.reg_form} ${style.forecast_form}`}>
@@ -507,7 +516,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id='compatibility' className={`${style.content_couple} ${style.content_reg}`}>
+        {/*<section id='compatibility' className={`${style.content_couple} ${style.content_reg}`}>
           <div className={`${style.couple_content} ${style.reg_content}`}>
             <div className={`${style.couple_title} ${style.reg_title}`}>
               <h1>Расчет совместимости</h1>
@@ -556,7 +565,7 @@ export default function Home() {
               <button className={style.couple_button}>Рассчитать</button>
             </form>
           </div>
-        </section>
+        </section>*/}
         <section className={`${style.content_level} ${style.content_cards}`}>
           <div className={`${style.level_content} ${style.cards_content}`}>
             <div className={`${style.level_title} ${style.cards_title}`}>
@@ -589,7 +598,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className={style.faq_text} ref={(el) => setRef(el, index)}>
-                    <span>{question.text}</span>
+                    <span>{question.text}{index === 4 && (<a href="https://t.me/mtrxmap">@mtrxmap</a>)}</span>
                   </div>
                 </div>
               ))}

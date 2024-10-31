@@ -1,3 +1,4 @@
+import { IError } from '@/interfaces/Error.interface'
 import { IPayTariff, IResultPayTariff } from '@/interfaces/PayTariff.inteface'
 import { IToken } from '@/interfaces/Token.interface'
 import { IUser } from '@/interfaces/User.interface'
@@ -40,7 +41,7 @@ export class UserService {
 
   static async GetUser(auth_token: string) {
     try {
-      const { data } = await axios.get<IUser>('https://matrix-map.ru:5000/api/user/data', {
+      const { data } = await axios.get<IUser>('https://matrix-map.ru/api/user/data', {
         headers: {
           accept: 'application/json',
           apiKey: auth_token
@@ -59,7 +60,7 @@ export class UserService {
 
   static async GetHistoryUser(auth_token: string) {
     try {
-      const { data } = await axios.get<IManyUserHistory>('https://matrix-map.ru:5000/api/user/history', {
+      const { data } = await axios.get<IManyUserHistory>('https://matrix-map.ru/api/user/history', {
         headers: {
           accept: 'application/json',
           apiKey: auth_token
@@ -78,7 +79,7 @@ export class UserService {
 
   static async GetHistoryUserLimitPage(auth_token: string, page: number) {
     try {
-      const { data } = await axios.get<IManyUserHistory>(`https://matrix-map.ru:5000/api/user/history?limit=10&page=${page}`, {
+      const { data } = await axios.get<IManyUserHistory>(`https://matrix-map.ru/api/user/history?limit=10&page=${page}`, {
         headers: {
           accept: 'application/json',
           apiKey: auth_token
@@ -97,7 +98,7 @@ export class UserService {
 
   static async LogIn(email: string, password: string) {
     try {
-      const { data } = await axios.post<IToken>('https://matrix-map.ru:5000/api/login', { email, password })
+      const { data } = await axios.post<IToken>('https://matrix-map.ru/api/login', { email, password })
       sessionStorage.setItem('auth_token', data.auth_token)
       console.log(data.auth_token)
       window.location.assign('/dashboard')
@@ -105,8 +106,8 @@ export class UserService {
     } catch (error: any) {
       if (error.response && error.response.data) {
         const sessionError = this.handleSessionExpired(error.response.data)
-        if (sessionError) return sessionError
-        return error.response.data
+        if (sessionError) alert(sessionError.error)
+        alert(error.response.data.error)
       } else {
         console.error("Произошла ошибка без ответа от сервера:", error.message)
         return {
@@ -119,7 +120,7 @@ export class UserService {
 
   static async SignUp(email: string, password: string, name: string) {
     try {
-      const { data } = await axios.post<IToken>('https://matrix-map.ru:5000/api/register', { email, name, password }, {
+      const { data } = await axios.post<IToken>('https://matrix-map.ru/api/register', { email, name, password }, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
@@ -146,7 +147,7 @@ export class UserService {
   static async ResetAccount(token: string, new_password: string, again_new_password: string) {
     await this.delay(5000)
     try {
-      const { data } = await axios.put('https://matrix-map.ru:5000/api/user/data',
+      const { data } = await axios.put('https://matrix-map.ru/api/user/data',
         JSON.stringify({ new_password, again_new_password }), {
         headers: {
           'Content-Type': 'application/json',
@@ -170,10 +171,10 @@ export class UserService {
     }
   }
 
-  static async PayTariff(token: string, direction: string, birthday?: string, gender?: string, name?: string) {
+  static async PayTariff(token: string, direction: string, birthday?: string, gender?: string, name?: string, email?: string) {
     try {
-      const { data } = await axios.post<IPayTariff>('https://matrix-map.ru:5000/api/payments',
-        { direction, birthday, gender, name }, {
+      const { data } = await axios.post<IPayTariff>('https://matrix-map.ru/api/payments',
+        { direction, birthday, gender, name, email }, {
         headers: {
           accept: 'application/json',
           apiKey: token
@@ -198,7 +199,7 @@ export class UserService {
 
   static async PayTariffChecked(request: string, token: string) {
     try {
-      const { data } = await axios.put<IResultPayTariff>('https://matrix-map.ru:5000/api/payments', { request }, {
+      const { data } = await axios.put<IResultPayTariff>('https://matrix-map.ru/api/payments', { request }, {
         headers: {
           'Content-Type': 'application/json',
           accept: 'application/json',
@@ -226,7 +227,7 @@ export class UserService {
     try {
       const password = this.GeneratePassword()
 
-      const { data } = await axios.post<IToken>('https://matrix-map.ru:5000/api/register', { email, name, password }, {
+      const { data } = await axios.post<IToken>('https://matrix-map.ru/api/register', { email, name, password }, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
@@ -234,13 +235,53 @@ export class UserService {
       })
 
       sessionStorage.setItem('auth_token', data.auth_token)
-
+      console.log(data)
       return data.auth_token
-    } catch (error:any) {
+    } catch (error: any) {
       if (error.response && error.response.data.error === "Указанный пользователь уже зарегистрирован.") {
         window.location.assign('/login')
         alert("Пользователь с таким email уже зарегистрирован. Авторизуйтесь в личный кабинет.")
       }
+    }
+  }
+
+
+  static async CheckedURL(restore_key: string) {
+    try {
+      const { data } = await axios.get<{ result: boolean }>(`https://matrix-map.ru/api/user/reset?restore_key=${restore_key}`)
+      return data.result
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
+  static async CheckUser(email: string) {
+    try {
+      const { data } = await axios.post<{ result: boolean, error?: string }>("https://matrix-map.ru/api/user/reset", { email });
+      return data;
+    } catch (error: any) {
+      if (axios.isAxiosError(error) && error.response?.status === 400) {
+        const errorMessage: IError = error.response.data;
+        console.log(errorMessage);
+        return errorMessage;
+      } else {
+        console.log("Произошла непредвиденная ошибка:", error);
+        return { result: false, message: "Произошла непредвиденная ошибка." };
+      }
+    }
+  }
+
+
+
+
+  static async PasswordRecovery(password: string, restore_key: string) {
+    try {
+      const { data } = await axios.put<{ result: boolean }>("https://matrix-map.ru/api/user/reset", { password, restore_key })
+      if (data.result === true) { window.location.assign('/login') } else { window.location.assign("/") }
+    } catch (error) {
+      console.log(error)
     }
   }
 }

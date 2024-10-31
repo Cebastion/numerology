@@ -1,0 +1,16 @@
+@import "../../global/colors.scss";
+@import "../../global/fonts.scss";
+@import "../../global/function.scss";
+
+
+.about_text {
+  span {
+    color: $txtDark;
+    font-family: "Mont Light";
+    @include adaptiv-font(18, 16);
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: left;
+  }
+}

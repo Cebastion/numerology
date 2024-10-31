@@ -1,0 +1,184 @@
+@import '../../global/colors.scss';
+@import '../../global/fonts.scss';
+@import '../../global/function.scss';
+
+.content{
+  position: relative;
+  z-index: 1;
+  background-color: #f8f8f8;
+}
+
+.content_body {
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 630px;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 4px 13px 0 rgba(170, 173, 202, 0.2);
+  background: #f8f8f8;
+  margin-bottom: 40px;
+}
+
+.content_title {
+  h1 {
+    font-family: "Tenor Sans";
+    font-weight: 400;
+    @include adaptiv-font(30, 24);
+    text-transform: uppercase;
+    text-align: center;
+    color: $txtDark;
+
+    span {
+      color: $Violet;
+    }
+  }
+
+  p {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(18, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: $GreyViolet;
+  }
+}
+
+.content_from {
+  margin-top: 20px;
+
+  .form_inputs {
+    margin-top: 40px;
+
+    input {
+      border-radius: 100px;
+      padding: 17px 28px;
+      width: 100%;
+      height: 56px;
+      background: #fefefe;
+      font-family: "Mont Light";
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      color: $GreyViolet;
+
+      &:first-child {
+        margin-bottom: 20px;
+      }
+
+
+      &:hover{
+        background: #e2e4f5;
+      }
+
+      &:focus{
+        background: #fff;
+        border: 2px solid $Violet;
+      }
+    }
+  }
+
+  .form_button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      border-radius: 100px;
+      padding: 17px 28px;
+      width: 357px;
+      height: 56px;
+      background: radial-gradient(58.9% 106.02% at 27.73% 0%, rgb(179, 186, 251) 0%, rgb(140, 151, 251) 100%);
+      font-family: "Mont Semi Bold";
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      color: $txtLight;
+
+      &:active{
+        background: radial-gradient(58.9% 106.02% at 27.73% 0%, rgb(217, 219, 241) 0%, rgb(199, 201, 223) 100%);
+      }
+    }
+  }
+}
+
+.form_title {
+  h2 {
+    font-family: "Mont Semi Bold";
+    font-weight: 700;
+    @include adaptiv-font(24, 20);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $txtDark;
+  }
+}
+
+.form_password {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    cursor: pointer;
+  }
+}
+
+
+.content_forgotten {
+  margin-top: 20px;
+  text-align: center;
+
+  span {
+    cursor: pointer;
+    font-family: "Mont Light";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $GreyViolet;
+  }
+}
+
+.content_signup {
+  margin-top: 20px;
+  text-align: center;
+
+  span {
+    font-family: "Mont Light";
+    font-weight: 600;
+    @include adaptiv-font(20, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $GreyViolet;
+
+    a {
+      margin-left: 10px;
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      font-family: "Mont Light";
+    font-weight: 600;
+    @include adaptiv-font(20, 16);
+    line-height: 140%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $GreyViolet;
+    }
+  }
+}
+
+.form_email_error, .form_password_error{
+  background: #fff;
+  border: 2px solid #fb8c8c;
+  color: $Red;
+}

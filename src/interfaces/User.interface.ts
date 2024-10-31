@@ -8,6 +8,7 @@ export interface IUser {
       result: {}
     }
   ],
+  email: string,
   created_at: string,
   name: string,
   plan: string

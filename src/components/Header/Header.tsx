@@ -54,9 +54,9 @@ const Header: FC = () => {
             <li className={isActive('/forecast') ? style.header__menu_li_active : ''}>
               <Link href='/#forecast'>Прогноз по годам</Link>
             </li>
-            <li className={isActive('/compatibility') ? style.header__menu_li_active : ''}>
+            {/*<li className={isActive('/compatibility') ? style.header__menu_li_active : ''}>
               <Link href='/#compatibility'>Совместимость</Link>
-            </li>
+            </li>*/}
             <li style={{ display: widthWindow > 768 ? 'block' : 'none' }} className={isActive('/blogs') || isActive('/blogs/blog/:id') ? style.header__menu_li_active : ''}>
               <Link href='/blogs'>Блог</Link>
             </li>

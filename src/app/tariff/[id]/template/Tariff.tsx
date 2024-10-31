@@ -31,35 +31,35 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
       const forecast = sessionStorage.getItem('forecast')
       const matrix = sessionStorage.getItem('matrix')
       const token = sessionStorage.getItem('auth_token')
-      if(forecast && tariff){
-        if(token){
+      if (forecast && tariff) {
+        if (token) {
           const UserData = JSON.parse(forecast)
-          await UserService.PayTariff(token, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+          await UserService.PayTariff(token, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name, formValues.Email)
           console.log("Forecast")
           return;
         }
-        if(!token) {
+        if (!token) {
           const UserData = JSON.parse(forecast)
           const NewToken = await UserService.FastRegistrationUser(formValues.Email, UserData.Name)
-          if(NewToken) {
-            await UserService.PayTariff(NewToken, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+          if (NewToken) {
+            await UserService.PayTariff(NewToken, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name, formValues.Email)
             console.log("Forecast New")
             return;
           }
         }
       }
-      if(matrix && tariff){
-        if(token){
+      if (matrix && tariff) {
+        if (token) {
           const UserData = JSON.parse(matrix)
-          await UserService.PayTariff(token, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+          await UserService.PayTariff(token, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name, formValues.Email)
           console.log("Matrix")
           return;
         }
-        if(!token) {
+        if (!token) {
           const UserData = JSON.parse(matrix)
           const NewToken = await UserService.FastRegistrationUser(formValues.Email, UserData.Name)
-          if(NewToken) {
-            await UserService.PayTariff(NewToken, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name)
+          if (NewToken) {
+            await UserService.PayTariff(NewToken, TariffEnum[tariff?.id - 1], String(UserData.Date), UserData.Gender, UserData.Name, formValues.Email)
             console.log("Matrix New")
             return;
           }
@@ -68,7 +68,7 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
     }
   }
 
-  function CheckEmail(){
+  function CheckEmail() {
     const LoginEmail = sessionStorage.getItem('login')
     const SignUpEmail = sessionStorage.getItem('signup')
 
@@ -77,7 +77,7 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
         const EmailParse = JSON.parse(LoginEmail)
         setFormValues({ ...formValues, Email: EmailParse.email })
       }
-      if(SignUpEmail) {
+      if (SignUpEmail) {
         const EmailParse = JSON.parse(SignUpEmail)
         setFormValues({ ...formValues, Email: EmailParse.email })
       }
@@ -139,7 +139,7 @@ const Tariff: FC<ITariff> = ({ tariff }) => {
               setIsChecked(!isChecked)
               setFormValues({ ...formValues, IsChecked: !isChecked })
             }} />
-            <span>Я прочитал(а) и принимаю <a href="">правила и условия</a> сайта *</span>
+            <span>Я прочитал(а) и принимаю <a href="/public_offer">публичную оферту</a> и <a href="/privacy_policy">политика конфиденциальности</a> сайта</span>
           </label>
         </div>
         <div className={style.tariff_button}>

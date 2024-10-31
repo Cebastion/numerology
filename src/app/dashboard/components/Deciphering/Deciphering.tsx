@@ -46,27 +46,29 @@ const Deciphering: FC = () => {
     // Сохраняем текущую позицию каретки
     let cursorPosition = input.selectionStart || 0;
 
-    // Восстанавливаем формат даты с пустыми символами там, где не хватает цифр
-    let formattedValue = value.padEnd(8, '_'); // Если не хватает цифр, добавляем "_"
+    // Проверяем, была ли каретка перед вставкой точки после второго или четвёртого символа
+    const isCursorBeforeSecondDot = cursorPosition === 2;
+    const isCursorBeforeFifthDot = cursorPosition === 5;
 
-    // Добавляем точки после второго и пятого символов для форматирования
-    if (formattedValue.length > 2) {
-      formattedValue = formattedValue.slice(0, 2) + '.' + formattedValue.slice(2);
+    // Принудительно добавляем точки после двух и четырёх цифр
+    if (value.length >= 2) value = value.slice(0, 2) + '.' + value.slice(2);
+    if (value.length >= 5) value = value.slice(0, 5) + '.' + value.slice(5);
+
+    // Ограничиваем строку до 10 символов (формат DD.MM.YYYY)
+    value = value.slice(0, 10);
+
+    // Устанавливаем позицию каретки сразу после точки, если она была добавлена
+    if (isCursorBeforeSecondDot || isCursorBeforeFifthDot) {
+      cursorPosition++;
     }
-    if (formattedValue.length > 5) {
-      formattedValue = formattedValue.slice(0, 5) + '.' + formattedValue.slice(5);
-    }
 
-    // Обрезаем строку, чтобы она не превышала длину 10 символов
-    if (formattedValue.length > 10) formattedValue = formattedValue.slice(0, 10);
-
-    // Обновляем форму с новым значением
+    // Обновляем значение в форме
     if (formName === 'formMatrix') {
-      SetFormMatrix({ ...FormMatrix, [fieldName]: formattedValue });
+      SetFormMatrix({ ...FormMatrix, [fieldName]: value });
     } else if (formName === 'formForecast') {
-      SetFormForecast({ ...FormForecast, [fieldName]: formattedValue });
+      SetFormForecast({ ...FormForecast, [fieldName]: value });
     } else if (formName === 'formCompatibility') {
-      SetFormCompatibility({ ...FormCompatibility, [fieldName]: formattedValue });
+      SetFormCompatibility({ ...FormCompatibility, [fieldName]: value });
     }
 
     // Восстанавливаем позицию каретки после форматирования
@@ -133,7 +135,7 @@ const Deciphering: FC = () => {
     <div className={style.content_block}>
       <div className={style.block_title}>
         <Image src={PenSvg} alt="pen" width={24} height={24} />
-        <h2>Выберите расшировку</h2>
+        <h2>Выберите расшифровку</h2>
       </div>
       <div className={style.block_content}>
         <SelectCalculator select={select} setSelect={setSelect} />
@@ -171,7 +173,7 @@ const Deciphering: FC = () => {
             <Select select={selectForecast} setSelect={setSelectForecast} />
           </form>
         )}
-        {select === 'Совместимость' && (
+        {/*select === 'Совместимость' && (
           <form style={{ gap: '30px' }} className={style.form}>
             <div className={style.form_sex}>
               <div className={style.form_title}>
@@ -210,7 +212,7 @@ const Deciphering: FC = () => {
               } : undefined} value={FormCompatibility.ManDate} onChange={(e) => handleDateChange(e, 'formCompatibility', 'ManDate')} />
             </div>
           </form>
-        )}
+        )*/}
       </div>
       <button className={style.content_button} onClick={() => Redirect(select)}>
         Рассчитать

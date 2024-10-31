@@ -28,10 +28,10 @@ const page: FC = () => {
                   <h2>{blog.title}</h2>
                 </div>
                 <div className={style.blog_content}>
-                  <div className={style.blog_date}>
+                  {/*<div className={style.blog_date}>
                     <span>{blog.date}</span>
                     <Image src={'/image/Calendar.svg'} width={24} height={24} alt='Calendar' />
-                  </div>
+                  </div>*/}
                   <div className={style.blog_description}>
                     <span>{blog.text_1.slice(0, 150) + '...'}</span>
                   </div>

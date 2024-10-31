@@ -573,6 +573,7 @@ background: rgba(255, 255, 255, 0.01);
   display: flex;
   align-items: center;
   width: 100%;
+  margin-top: 5px;
   margin-bottom: 20px;
 
   h3 {
@@ -590,6 +591,7 @@ background: rgba(255, 255, 255, 0.01);
 }
 
 .recognise_text {
+  margin-bottom: 15px;
   span {
     /* body 18 */
     color: $txtDark;
@@ -755,7 +757,7 @@ background: rgba(255, 255, 255, 0.01);
   img {
     position: absolute;
     z-index: 0;
-    left: 35%;
+    left: 38%;
     bottom: -5%;
   }
 }
@@ -1240,7 +1242,7 @@ background: rgba(255, 255, 255, 0.01);
 .faq_text {
   transition: 0.3s ease-in-out;
 
-  span {
+  span, a {
     color: $txtDark;
     font-family: 'Mont Light';
     @include adaptiv-font(18, 16);
